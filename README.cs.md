@@ -1,122 +1,357 @@
-# Výzkum klasifikace na modelu Jev
+# Jev prompt engineering
 
-**Kolik z chování klasifikátoru si určujete vy?**
+**Klasifikátor někde vede hranici. Když ji nenapíšete vy, napsal ji někdo jiný.**
 
-Reprodukovatelné pokusy s modelem [Jev od TypeSafe](https://docs.typesafe.ai/) — System One
-modelem, který vrací typovaná rozhodnutí místo textu. Každé číslo tady pochází ze
-skutečného volání API a každý pokus se spouští jedním příkazem.
+[Jev od TypeSafe](https://docs.typesafe.ai/) vyšel 15. 9. 2026. Negeneruje text —
+pošlete mu obsah a typovanou otázku, on vrátí rozhodnutí s pravděpodobnostmi.
+Kolem sekundy, dvě setiny centu za volání.
 
-> **Stav:** probíhající výzkum, zahájen 21. 9. 2026 — šest dní po vydání modelu.
-> Další pokusy přibývají v následujících dvou týdnech.
+Prodává se to tak, že je to deterministické tam, kde jsou LLM mlhavá: typovaný výstup,
+žádné vymyšlené kategorie, kalibrované pravděpodobnosti. Všechno pravda — a všechno
+je to o **tvaru** odpovědi. Ten úsudek uvnitř je naučený, což znamená, že nese bias,
+což znamená, že by se měl dát promptovat.
+
+Tenhle repozitář je první pokus zjistit jak. Devět věcí, které jsem nejdřív udělal
+špatně a pak si je změřil — ~1 300 volání API, každý skript spustitelný jedním
+příkazem, každý syrový výsledek commitnutý.
+
+Je to raná práce na modelu starém týden, od jednoho člověka, na malých vzorcích.
+Berte to jako výchozí bod a metodu, kterou si můžete přepustit na vlastních datech,
+**ne jako hotový fakt.** Kde si nejsem jistý, říkám to, a jednou už jsem se musel opravit.
+
+> **Stav:** úvodní testování, pokračuje.
+> Čísla platí pro `jev-1.13.0` a budou se s dalšími verzemi měnit.
 
 ---
 
-## Krátce
+## To jedno číslo
 
-Klasifikátor někde vede hranici. Když ji nenapíšete vy, napsal ji za vás někdo jiný —
-trénovací data a rozhodnutí autorů modelu.
+Napříč šesti doménami, 41 párových položek:
 
-**Ta výchozí hranice není neutrální. Je něčí.** Tyhle pokusy měří čí, jak daleko je od
-toho, co chtějí skuteční lidé, a kolik z ní jde posunout.
-
-Napříč šesti doménami a 1 180 voláními API:
-
-| | naivní zadání | pořádně napsaná criteria |
+| | naivní otázka | pořádně napsaná kritéria |
 |---|---|---|
 | **Přesnost** | **70 %** (57/82) | **96 %** (79/82) |
 
-Ten rozdíl není tím, že by model zmoudřel. Je to rozdíl mezi přijetím jeho vestavěné
-normy a vyslovením té vlastní.
+Ten rozdíl není tím, že by model zmoudřel. Je to rozdíl mezi přijetím výchozího
+nastavení a vyslovením toho, co doopravdy myslíte.
+
+**Všechno níže je pokus přijít na to, jak to vyslovit.**
 
 ---
 
-## Hlavní zjištění
+# Co jsem zatím zjistil
 
-### 1. `criteria` je nejsilnější páka v celém API
+## 1 — Páka je podle všeho v kritériích, ne v otázce
 
-Stejný text, stejná otázka, jiná definice toho, co se počítá jako vulgární:
+**Proč na tom záleží:** většina lidí věnuje energii formulaci otázky. Změřeno je to
+ta **nejméně** účinná věc, kterou můžete udělat.
+
+Stejný text, stejná otázka, mění se jen definice toho, co je vulgární:
 
 | | bez kulturní normy | s normou |
 |---|---|---|
 | `is_vulgar` | **0,98** | **0,13** |
 | rozhodnutí o moderaci | `flag_for_review` | **`allow`** |
 
-Vstupní text se nezměnil ani o písmeno. → [findings/01](findings/01-criteria-ablation.cs.md)
+Ve vstupním textu se nezměnilo ani písmeno. Ablace ukazuje, která část definice nese účinek:
 
-**Ablace ukazuje, která část nese účinek:**
-
-| varianta | posun |
+| co se změnilo | posun |
 |---|---|
-| lepší `instructions`, criteria beze změny | −0,04 |
-| vágní pokyn („buď benevolentní") | −0,12 |
-| **konkrétní výčet výrazů** | **−0,82** |
-| plná norma (výčet + kulturní vysvětlení) | −0,85 |
+| lepší `instructions`, `criteria` beze změny | **−0,04** |
+| vágní pokyn: *„buď benevolentní k české mluvě"* | −0,12 |
+| **konkrétní výčet těch výrazů** | **−0,82** |
+| výčet plus kulturní vysvětlení | −0,85 |
 
-Konkrétní výčty modelem hnou. Postoje ne. A definovat, co **projde**, je zhruba
-**3,5× účinnější** než rozšiřovat, co neprojde (−0,70 vs. −0,20).
+**Odnést si:** konkrétní výčty modelem hnou, postoje ne, a ten promyšlený odstavec,
+na který jste byli nejvíc pyšní, má nejspíš cenu 0,03. Přepsání otázky má cenu 0,04 — šum.
 
-### 2. Model má bias, a je měřitelný
-
-Směrování „odpovědět z tréninku, nebo hledat na webu?":
-
-| dotaz | naivní klasifikátor |
-|---|---|
-| „Kdo je **současný** papež?" | **0,43** ✗ pod prahem |
-| „Kdo byl papežem za druhé světové?" | 0,08 ✓ |
-| „Kdo je **současný** prezident USA?" | **0,43** ✗ |
-| „Kdo vyhrál volby 2020?" | 0,09 ✓ |
-
-Model trefí každou historickou otázku a žádnou současnou — přestože slovo „současný"
-je přímo v zadání. **Nerozlišuje mezi „vím to" a „věděl jsem to v době trénování."**
-
-Naivní zadání: 66,7 %. Dva odstavce v `criteria`: 100 %. → [findings/02](findings/02-model-bias.cs.md)
-
-### 3. Typ otázky rozhoduje víc než formulace
-
-Tentýž příběh o umírajícím psovi, položený dvěma způsoby:
-
-| | hodnota | provozní rozhodnutí |
-|---|---|---|
-| **Noul** „je to vhodné?" | 0,690 | **publikovat** |
-| **Score** „jak moc vhodné?" | druhá nejnižší úroveň | **označit, potřebuje dospělého** |
-
-Noul vrací *pravděpodobnost, že odpověď zní ano*. Score vrací *polohu na stupnici*.
-Různé veličiny — nelze je od sebe odečítat, a volba té špatné obrátí výsledek.
-→ [findings/03](findings/03-question-type.cs.md)
-
-### 4. Čísla napsaná do criteria nedělají nic
-
-Ukotvit Noul větami „0,55–0,70 znamená X, 0,15–0,30 znamená Y" **nefunguje**. Nechali
-jsme popisy slovo od slova stejné a měnili jen čísla, včetně úplně obrácené škály:
-
-| sada čísel | naměřeno |
-|---|---|
-| původní | 0,759 |
-| posunutá dolů | 0,778 |
-| **obrácená** | **0,804** |
-
-Rozpětí: 0,045. **Všechnu práci odvedou popisy, čísla model ignoruje.**
-Když potřebujete stupnici, použijte Score — od toho tam je.
+📄 [Plný zápis](findings/01-criteria-ablation.cs.md) ·
+▶ `python experiments/10_cultural_norm.py`
 
 ---
 
-## Kolik to stojí
+## 2 — Definujte, co má projít, ne jen co neprojde
 
-Naměřeno, ne převzato z dokumentace:
+**Proč na tom záleží:** je to zhruba 3,5× účinnější a je to opak toho, jak se píše
+většina pravidel pro obsah.
 
-| | |
+Ze stejné ablace, definovaná vždy jen jedna větev kritérií:
+
+| | posun |
 |---|---|
-| Cena | $0,042 za 1M vstupních tokenů, **výstup zdarma** |
-| Jedna klasifikace (~500 tokenů) | **$0,00002** |
-| Celá ablační studie | **~$0,004** |
-| Všech 1 180 volání v tomhle repu | **~$0,05** |
-| Latence (z ČR) | medián **1,1 s**, p95 1,8 s |
-| Paralelní otázky | **20 otázek ≈ 1 otázka** (0,73 s) |
+| jen větev `true` — rozšiřování zakázaného | −0,20 |
+| **jen větev `false` — pojmenování výjimek** | **−0,70** |
 
-> ⚠️ **K latenci:** měřeno z domácí linky v České republice. Americký benchmark uvádí
-> p50 378 ms; rozdíl ~0,7 s je síťový round-trip. TypeSafe nemá EU region.
-> **Tahle čísla měří vzdálenost do Virginie, ne model.** Pusťte si skripty sami
-> a dostanete svoje.
+Model už má pevné představy o tom, co je špatně. Co potřebuje od vás, je **kde to končí**.
+
+Ostřejší verze téhož je v personalizaci: žebřík, jehož nejvyšší příčka říká *„smutné
+nebo těžké momenty jsou v pořádku, dokud platí tahle podmínka"*, se chová úplně jinak
+než ten, který jen vyjmenovává zákazy. Bez té věty se celá škála posune do přísnosti
+a začne filtrovat všechno mírně smutné.
+
+**Odnést si:** napište to dovolení, ne jen zákaz.
+
+📄 [Plný zápis](findings/01-criteria-ablation.cs.md)
+
+---
+
+## 3 — Typ otázky rozhoduje, kam se uživatel vejde
+
+**Proč na tom záleží:** zvolit špatný typ není chyba ve formulaci. Je to volba tvaru,
+ve kterém není místo pro člověka, pro kterého to stavíte.
+
+Zeptejte se *„je tenhle příběh vhodný pro dítě od 5 do 7?"* — to je **Noul**, otázka
+ano/ne — a dostanete jedno číslo s cizím prahem zabudovaným uvnitř:
+
+```
+pohádka o pavoučici   0,910 → zobrazit
+pohádka o zajíčkovi   0,892 → zobrazit
+```
+
+Obojí správně. Obojí nepoužitelné, když stavíte pro konkrétní dítě.
+
+**Score** bere tutéž otázku plus *kritéria*: úrovně od nejhorší po nejlepší, každá
+jedna věta, kterou píšete vy. Model rozdělí 100 % pravděpodobnosti mezi ně.
+**Čtyři nebo pět míst, kde můžete říct, co myslíte — místo jednoho.**
+
+Tentýž příběh položený oběma způsoby vede k opačným provozním rozhodnutím — umírající
+pes čte Noul jako 0,690 *(publikovat)* a Score ho zařadí na druhou nejnižší
+z šesti úrovní *(označit, potřebuje dospělého)*.
+
+> ⚠️ Hodnoty Noulu a polohy na Score jsou **různé veličiny** a nesmí se od sebe
+> odečítat. Noul vrací pravděpodobnost, že odpověď zní ano; Score vrací polohu na
+> stupnici. V rané verzi tohohle výzkumu jsem to spletl — oprava je v zápisu.
+
+**K jemnosti:** tři úrovně popletly pořadí testovacích příběhů a měly nejnižší
+confidence. Od čtyř to bylo stabilní. Používejte aspoň čtyři.
+
+📄 [Plný zápis](findings/03-question-type.cs.md) ·
+▶ `python experiments/08_noul_vs_score.py`
+
+---
+
+## 4 — Hyperpersonalizace žije v příčkách
+
+**Proč na tom záleží:** tohle je ta lekce, která mění, co se dá postavit.
+
+Dvě běžné rodiny se šestiletými dětmi. Jedna holčička má skutečný strach z pavouků —
+po pohádce s pavoukem neusne. Jeden kluk miluje zvířata, ale jeho rodiče nezvládnou
+příběhy, kde je někdo vyloučený z kolektivu; přesně tohle řeší ve škole.
+
+Dvě laskavé pohádky, žádné násilí, obě končí dobře: pavoučice si staví novou pavučinu;
+zajíčka nevezmou do hry a pak vezmou.
+
+Napsané obecně **obě pohádky projdou pro obě děti**. Pak jeden žebřík na dítě, stejná
+otázka, stejný kód, liší se jen kritéria:
+
+```
+DÍTĚ 1 (bojí se pavouků) — pravděpodobnost přes pět příček
+                     [0]    [1]    [2]    [3]    [4]
+pavoučice           98 %    2 %    0 %    0 %    0 %   →  NEPOUŠTĚT
+zajíček              0 %    0 %    5 %   34 %   61 %   →  pustit
+
+DÍTĚ 2 (nechávají ho stranou ve škole)
+                     [0]    [1]    [2]    [3]    [4]
+pavoučice            0 %   27 %    1 %   25 %   47 %   →  pustit
+zajíček             91 %    6 %    0 %    2 %    1 %   →  NEPOUŠTĚT
+```
+
+Dokonalý kříž. **Pohádka, která je pro jedno dítě absolutní ne, je pro druhé v pohodě —
+a obecný žebřík mávl obě dál.**
+
+Dvě formulace v žebříku dítěte 1 dělají skutečnou práci a obě se dají přenést:
+
+- **„ať je napsaná jakkoli laskavě"** — bez toho se vlídně napsaný pavouk vůbec
+  neprojeví jako problém, protože se opravdu nic zlého neděje. Řekněte, že problém
+  je ta *přítomnost*, ne zpracování.
+- **„smutné nebo těžké momenty jsou v pořádku"** — viz část 2.
+
+**Není to filtrování podle klíčových slov.** Filtr na slovo „pavouk" by udělal totéž
+pro dítě 1 a zablokoval by i dokument o včelách, který by milovali.
+
+📄 [Plný zápis](findings/09-personalised-scales.cs.md) ·
+▶ `python experiments/11_personalised_scales.py`
+
+---
+
+## 5 — Model neví, co neví
+
+**Proč na tom záleží:** jestli routujete mezi „odpověz z paměti" a „hledej na webu",
+tohle je živá chyba ve vašem produktu právě teď.
+
+Patnáct dotazů, spárovaných tak, aby skoro totožná formulace měla opačnou správnou odpověď:
+
+| dotaz | naivní klasifikátor | |
+|---|---|---|
+| „Kdo byl papežem za druhé světové?" | 0,077 | ✓ |
+| „Kdo je **současný** papež?" | **0,430** | ✗ pod prahem |
+| „Kdo vyhrál volby 2020?" | 0,087 | ✓ |
+| „Kdo je **současný** prezident USA?" | **0,430** | ✗ |
+
+**Každou historickou otázku správně. Každou současnou špatně** — i se slovem „současný"
+přímo v dotazu. Model má uloženou odpověď a vnímá ji jako znalost, ne jako snímek v čase.
+
+A není to plošné: *„nejnovější verze Reactu"* vyšla správně i naivně (0,917).
+**Ten bias je doménově specifický** — naučil se, že čísla verzí zastarávají, ne že
+lidé odcházejí z funkcí.
+
+Oprava byly dva odstavce v `criteria` a nosná věta zní:
+
+> *„I když má model uloženou odpověď a je si jistý, ta odpověď už může být zastaralá."*
+
+**66,7 % → 100 %.** Šest ukázkových příkladů přidaných navrch nezměnilo nic — už to
+bylo na stropě, čistý náklad.
+
+📄 [Plný zápis](findings/02-model-bias.cs.md) ·
+▶ `python experiments/05_tool_routing.py`
+
+---
+
+## 6 — Čísla napsaná do kritérií nedělala nic
+
+**Proč na tom záleží:** je to ta zjevná věc, kterou zkusíte, a je to slepá ulička.
+Ušetřete si odpoledne.
+
+Ukotvení výslovnými pásmy — *„0,55–0,70 znamená skutečné nebezpečí, vyřešené"* —
+nefunguje. Popisy slovo od slova stejné, mění se jen čísla:
+
+| sada čísel pro cílové pásmo | naměřeno |
+|---|---|
+| původní (0,55–0,70) | 0,759 |
+| posunutá dolů (0,25–0,35) | 0,778 |
+| stlačená nahoru (0,85–0,90) | 0,772 |
+| **úplně obrácená** (vlídné = 0, drastické = 1) | **0,804** |
+
+Rozpětí přes všechny čtyři: **0,045**. Obrácená škála měla dát pravý opak původní.
+Dala o chlup vyšší číslo.
+
+**Popisy dělají všechnu práci. Čísla jsou dekorace.** Když potřebujete stupnici,
+použijte Score — ten ji má zabudovanou.
+
+📄 [Plný zápis](findings/04-scale-anchors.cs.md) ·
+▶ `python experiments/07_scale_anchors.py`
+
+---
+
+## 7 — Příklady buď nesou informaci, nebo nenesou nic
+
+**Proč na tom záleží:** „přidej few-shot příklady" je reflex. Někdy je to odpověď,
+někdy jen tokeny.
+
+Dvě řady stejné délky — jedna few-shot příkladů, druhá sémanticky neutrální výplně:
+
+| délka | s příklady | neutrální výplň |
+|---|---|---|
+| holá otázka | 0,925 | — |
+| ~500 tokenů | **0,353** | 0,898 |
+| ~5 000 tokenů | 0,304 | 0,885 |
+
+Neutrální řada se pohnula celkem o 0,013. **Ten posun je obsahem, ne délkou.**
+
+Všimněte si ale klesajícího užitku: prvních 5 příkladů dalo −0,572, dalších 45 přidalo
+−0,049. Zhruba **12:1 ve prospěch prvních pár**.
+
+A v páté části příklady nepřidaly vůbec nic — kritéria už byla na 100 %.
+
+**Odnést si:** příklady fungují, když nesou informaci, kterou model nemá, typicky
+hranici, kterou si nemůže odvodit. Na úlohách, které už umí, jsou nákladem. Sedí to na
+zjištění [leepokaie](https://github.com/leepokai/llm-prompt-techniques-on-jev), že
+few-shot je na akademických benchmarcích neutrální až škodlivý — viz *Související práce* níže.
+
+**K latenci:** plochá do ~2 000 tokenů, **+0,28 s při ~5 000**, shodně v obou řadách.
+15,8× víc tokenů stálo jen 1,27× delší odezvu, protože zpracování vstupu je paralelní.
+
+📄 [Plný zápis](findings/08-length-vs-content.cs.md) ·
+▶ `python experiments/04_length_vs_content.py`
+
+---
+
+## 8 — Norma musí působit oběma směry
+
+**Proč na tom záleží:** norma, která posune všechno dolů, není kalibrace, ale vypnutá
+moderace. Tohle je test, který vám řekne, kterou z nich jste napsali.
+
+Devět mírných textů, které mají projít, tři hraniční, které nesmí:
+
+| | průměrný posun | výsledek |
+|---|---|---|
+| Mírné české hovorové výrazy | **−0,456** | posunuto dolů ✓ |
+| Osobní urážky a výhrůžka | **+0,329** | **hranice udržena 3/3** ✓ |
+
+Nejzřetelnější případ: *„Přijdu si pro ně osobně a nebude se vám to líbit"* — výhrůžka
+**bez jediného vulgarismu**. Bez normy dostala 0,040, správně: žádná sprostá slova.
+S normou 0,420 a `block`, protože norma pojmenovává osu:
+
+> *„Záleží na tom, jestli je napadán ČLOVĚK, ne jestli se v textu objeví hrubé slovo."*
+
+Model tu osu přijal. Přestal počítat slova a začal se ptát, kdo je terčem.
+
+**Tři rozhodnutí ze dvanácti se změnila — a všechna tři odešla *z* fronty na
+moderátora.** Jedno ven, dvě zablokovat. Norma zmenšila frontu z obou stran.
+
+**Pozor na přesah:** norma mluví výhradně o češtině, a přesto anglický testovací text
+klesl z 0,916 na 0,176. Kritéria posouvají celkový práh citlivosti, ne filtr na
+vyjmenovaná slova. Když chcete úzký efekt, ohraničte ho výslovně.
+
+📄 [Plný zápis](findings/06-cultural-norm.cs.md) ·
+▶ `python experiments/10_cultural_norm.py`
+
+---
+
+## 9 — Čeština si tady vedla stejně jako angličtina
+
+**Proč na tom záleží:** dokumentace varuje před neanglickým obsahem. Na téhle úloze se
+to v číslech neprojevilo — což se hodí vědět, když stavíte pro neanglický trh.
+
+15 dvojjazyčných párů, každá položka existuje v obou jazycích se shodným obsahem:
+
+| | přesnost | průměrný absolutní rozdíl |
+|---|---|---|
+| Anglický text | **15/15** | — |
+| Český text | **15/15** | **0,036** |
+| Shoda rozhodnutí | **15/15** | — |
+
+**Osm z patnácti vrátilo v obou jazycích identickou hodnotu**, včetně sarkasmu,
+podmiňovacího způsobu, hlášení ve třetí osobě a dvou českých idiomů bez přímého
+anglického ekvivalentu.
+
+**Prakticky:** práh vyladěný na anglických datech se přenese.
+
+**Jediná výjimka — negace.** *„Zásilka nedorazila pozdě a nic nechybělo"* dostalo
+v angličtině 0,022 a v češtině **0,464**. Obojí formálně správně, ale česká verze leží
+blízko hranici. Čeština vyžaduje dvojitý zápor a model možná sčítá negativní signály —
+*hypotéza z jednoho příkladu, ne prokázaný mechanismus.* Negativní konstrukce si
+otestujte zvlášť.
+
+Přeložit otázku do češtiny nepomohlo (15/15 tak i tak).
+
+📄 [Plný zápis](findings/05-czech-language.cs.md) ·
+▶ `python experiments/09_czech_vs_english.py`
+
+---
+
+## Limity a cena
+
+| | dokumentováno | naměřeno |
+|---|---|---|
+| `state` + nejdelší otázka | 32k tokenů | ✅ 32 796 OK, víc → `max_tokens_exceeded` |
+| Options u Choice | max 255 | ✅ 255 OK, 256 → chyba |
+| Úrovně u Score | 2–10 | ✅ 10 OK, 11 → chyba |
+| **Délka `criteria`** | **žádný samostatný limit** | ✅ 191 750 znaků prošlo |
+
+Tokenový rozpočet je **sdílený** mezi `state` a otázkami — ne 32k na každé.
+
+**Cena:** $0,042 za 1M vstupních tokenů, výstup zdarma. Jedna klasifikace ≈ $0,00002.
+Celá sada v tomhle repu ≈ $0,05.
+
+**Délku ale platíte při každém volání.** 30 000 tokenů kritérií ≈ $0,13 na 1 000 volání;
+při milionu volání měsíčně je to $1 260 za normu, která se nemění. Ablace z první části existuje proto, aby vám řekla, co můžete vyhodit.
+
+**Latence z ČR:** medián **1,1 s**, p95 1,8 s. Americký benchmark uvádí p50 378 ms —
+rozdíl je síťový round-trip, TypeSafe nemá evropský region.
+**Tahle čísla měří vzdálenost do Virginie, ne model.**
+
+📄 [Plný zápis](findings/07-limits-and-cost.cs.md)
 
 ---
 
@@ -126,23 +361,17 @@ Naměřeno, ne převzato z dokumentace:
 git clone https://github.com/RastislavDujava/jev-classification-prompting
 cd jev-classification-prompting
 pip install -r requirements.txt
-cp .env.example .env     # doplňte klíč z console.typesafe.ai
+cp .env.example .env     # váš klíč z console.typesafe.ai
 python experiments/01_primitives.py
 ```
 
 Každý pokus běží bez argumentů. Syrový JSON z každého běhu je v `results/`, takže
-libovolné číslo z `findings/` se dá dohledat až k volání, které ho vyrobilo.
+libovolné číslo výše se dá dohledat až k volání, které ho vyrobilo.
 
----
-
-## Metodika
-
-- **5–10 běhů na variantu**, mediány místo průměrů
-- **Prokládané spouštění** — varianty se střídají, aby zpomalení sítě nepadlo na jednu skupinu
-- **Práh šumu 0,05**, naměřený: model kolísá o ±0,01–0,03 mezi identickými běhy
-- **Posun se počítá jako prokázaný**, jen když zároveň překročí rozhodovací hranici *a* překoná šum
-
-Podrobnosti v [docs/METHODOLOGY.md](docs/METHODOLOGY.md).
+**Metoda:** 5–10 běhů na variantu · mediány místo průměrů · varianty prokládané, aby
+zpomalení sítě nepadlo na jednu skupinu · **práh šumu 0,05**, naměřený — model kolísá
+o ±0,01–0,03 mezi identickými běhy · posun se počítá, jen když překročí rozhodovací
+hranici *a* překoná šum. Podrobnosti v [docs/METHODOLOGY.md](docs/METHODOLOGY.md).
 
 ---
 
@@ -150,20 +379,23 @@ Podrobnosti v [docs/METHODOLOGY.md](docs/METHODOLOGY.md).
 
 - **Malé vzorky.** 5–15 položek na doménu. Ukazuje to mechanismy, ne přesnost.
 - **Jeden hodnotitel.** Očekávané odpovědi jsou můj úsudek, ne ověřená pravda.
-- **Jedna verze modelu.** `jev-1.13.0`, šest dní po vydání. Další verze budou jiné.
-- **Latence je zeměpis.** Viz výše.
-- **Existuje práce s opačným závěrem.** [leepokai/llm-prompt-techniques-on-jev](https://github.com/leepokai/llm-prompt-techniques-on-jev)
-  zjistil, že few-shot příklady jsou na akademických benchmarcích *neutrální až škodlivé*.
-  Není to rozpor — viz níže.
+- **Vstupy i kritéria jsem psal já** — reálné riziko, že jsem nevědomky psal testy,
+  které se hodí k hypotéze. Kontroly to zmírňují, neodstraňují.
+- **Žádná oddělená testovací sada.** Kritéria se psala a měřila na stejných položkách.
+- **Jedna verze modelu**, šest dní po vydání.
+- **Jednou jsem to už spletl** — porovnával jsem hodnoty Noulu s polohami na Score
+  jako čísla. Oprava je vidět v lekci 3, ne potichu vygumovaná.
 
-### Proč mají pravdu oba
+### Související práce a proč si odporuje
 
-leepokai testoval úlohy s **objektivně správnou odpovědí** (LegalBench, MMLU-Pro).
-Tam příklady nepřidávají nic, co model už nemá, a jen ředí signál.
+[leepokai/llm-prompt-techniques-on-jev](https://github.com/leepokai/llm-prompt-techniques-on-jev)
+otestoval 15+ promptovacích technik na LegalBench, BIG-Bench Hard, MMLU-Pro a CLERC
+a zjistil, že **few-shot příklady jsou neutrální až škodlivé**.
 
-Tyhle pokusy testují úlohy, kde **správná odpověď závisí na normě** — co se počítá jako
-vulgární, co rodič dovolí, co vyžaduje vaše jurisdikce. Tam příklady a definice nesou
-informaci, kterou model mít nemůže.
+Není to rozpor. Testoval úlohy s **objektivně správnou odpovědí**, kde příklady
+nepřidávají nic, co model nemá. Tyhle pokusy testují úlohy, kde **správná odpověď
+závisí na normě** — co se počítá jako vulgární, co rodič dovolí, co vyžaduje vaše
+jurisdikce. Tam příklady a definice nesou informaci, kterou model mít nemůže.
 
 Vysvětluje to jejich vlastní rozlišení: techniky, které *nesou informaci*, fungují;
 techniky, které jen *přeformulují*, ne. Kulturní norma je informace. „Buď benevolentnější"
@@ -171,75 +403,11 @@ je přeformulování.
 
 ---
 
-## Nejostřejší výsledek: dvě rodiny, opačné verdikty
-
-Dvě běžné rodiny se šestiletými dětmi. Dcera **rodiny A** má skutečný strach z pavouků —
-po pohádce s pavoukem neusne. Syn **rodiny B** miluje zvířata, ale jeho rodiče teď
-nezvládnou příběhy, kde je někdo vyloučený z kolektivu; přesně tohle řeší ve škole.
-
-Dvě laskavé pohádky: pavoučice si staví novou pavučinu, a zajíček, kterého nevezmou
-do hry a pak vezmou. Žádné násilí, žádná smrt, obě končí dobře.
-
-| příběh | bez profilu | Rodina A | Rodina B |
-|---|---|---|---|
-| **Pavoučice staví pavučinu** | **0,912** → pustit | **0,006** → NEPOUŠTĚT | **0,721** → pustit |
-| **Zajíčka nevzali do hry** | **0,759** → pustit | **0,889** → pustit | **0,035** → NEPOUŠTĚT |
-
-Dokonalý kříž. **Bez profilu projde obojí. S profily dostane každá rodina opačné
-rozhodnutí na tomtéž obsahu** — a model si byl v obou případech prakticky jistý
-(confidence 1,000 a 0,990).
-
-Není to filtrování podle klíčových slov. Filtr na slovo „pavouk" by udělal totéž pro
-rodinu A, ale zablokoval by i dokument o včelách, který by milovali.
-
-→ [findings](findings/09-personalised-scales.cs.md)
-
----
-
-## Dvě zjištění, která stojí za zvláštní zmínku
-
-### Čeština si na této úloze vede stejně jako angličtina
-
-Dokumentace varuje, že primárním trénovacím jazykem je angličtina. Měřeno na 15
-dvojjazyčných párech, kde každá položka existuje v obou jazycích se shodným obsahem:
-
-| | přesnost | průměrný rozdíl |
-|---|---|---|
-| Anglický text | **15/15** | — |
-| Český text | **15/15** | **0,036** |
-| Shoda rozhodnutí | **15/15** | — |
-
-Osm z patnácti vrátilo **identickou hodnotu** v obou jazycích — včetně sarkasmu,
-podmiňovacího způsobu a dvou českých idiomů bez přímého anglického ekvivalentu.
-
-**Práh vyladěný na anglických datech se přenese.** Jediná výjimka — negace — leží
-v češtině blíž hranici (0,464 vs. 0,022); viz [findings](findings/05-czech-language.cs.md).
-
-### Kulturní norma musí působit oběma směry
-
-Norma, která posune všechno dolů, není kalibrace, ale vypnutá moderace. Měřeno na
-9 mírných textech, které mají projít, a 3 hraničních, které nesmí:
-
-| | průměrný posun | výsledek |
-|---|---|---|
-| Mírné české hovorové výrazy | **−0,456** | posunuto dolů ✓ |
-| Osobní urážky a výhrůžka | **+0,329** | **hranice udržena 3/3** ✓ |
-
-Nejzřetelnější případ: *„Přijdu si pro ně osobně a nebude se vám to líbit"* — výhrůžka
-bez jediného vulgarismu. Bez normy dostala **0,040** (správně: žádná sprostá slova).
-S normou **0,420** a `block`, protože norma pojmenovává osu:
-
-> *„Záleží na tom, jestli je napadán ČLOVĚK, ne jestli se v textu objeví hrubé slovo."*
-
-Tři rozhodnutí ze dvanácti se změnila a **všechna tři odešla z fronty na moderátora** —
-jedno ven, dvě zablokovat. Norma zmenšila frontu z obou stran.
-
----
-
 ## Probíhá
 
-- **Personalizované klasifikátory** — stejný obsah, různé uživatelské profily, opačná rozhodnutí. Dvoukroková kaskáda: binární brána, pak stupnice rozepsaná uživatelovými slovy. První výsledky jsou výrazné; zveřejním, až bude vzorek větší.
-- **Srovnání s Gemini 2.5 Flash s context cachingem** — otázka, kterou nikdo pořádně nezměřil
+- **Větší kulturní vzorek** — současná sada je moc malá na jakékoli tvrzení
+- **Srovnání s Gemini 2.5 Flash s context cachingem** — otázka, kterou nikdo
+  pořádně nezměřil
 
 ---
 
@@ -251,4 +419,4 @@ Bez vazby na TypeSafe AI. Nezávislý výzkum prompt inženýra, který chtěl v
 klasifikátory vlastně dělají.
 
 **Našli jste chybu?** Založte issue. Čísla, která obstojí v kritice, mají větší cenu
-než čísla, která žádnou nedostanou.
+než čísla, která nikdo nekontroluje.
