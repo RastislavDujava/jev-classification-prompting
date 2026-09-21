@@ -123,8 +123,8 @@ Naměřeno, ne převzato z dokumentace:
 ## Jak si to pustit
 
 ```bash
-git clone https://github.com/RastislavDujavaPiccard/jev-classification-research
-cd jev-classification-research
+git clone https://github.com/RastislavDujava/jev-classification-prompting
+cd jev-classification-prompting
 pip install -r requirements.txt
 cp .env.example .env     # doplňte klíč z console.typesafe.ai
 python experiments/01_primitives.py

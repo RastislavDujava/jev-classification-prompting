@@ -125,8 +125,8 @@ Measured, not quoted from the docs:
 ## Reproduce it
 
 ```bash
-git clone https://github.com/RastislavDujavaPiccard/jev-classification-research
-cd jev-classification-research
+git clone https://github.com/RastislavDujava/jev-classification-prompting
+cd jev-classification-prompting
 pip install -r requirements.txt
 cp .env.example .env     # add your key from console.typesafe.ai
 python experiments/01_primitives.py
