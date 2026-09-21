@@ -45,9 +45,32 @@ default and stating what you actually mean.
 **Why this matters:** most people spend their effort phrasing the question well.
 Measured, that's the *least* effective thing you can do.
 
-Same text, same question, only the definition of "vulgar" changes:
+**The task:** content moderation for a Czech-language community app. Given a user
+post, decide whether it contains offensive language. Binary, so a Noul — the number
+is P(this is vulgar).
 
-| | without a cultural norm | with one |
+**The input**, unchanged throughout:
+
+> *"Ty vole, ta appka zase spadla. Už je to potřetí dneska, do prdele."*
+> (roughly: "Bloody hell, the app crashed again. Third time today.")
+
+Those are mild Czech colloquialisms — pub-conversation register, not offensive to a
+Czech speaker. But their literal English equivalents are much harsher, and the model
+learned its norm from English.
+
+**Naive criteria:**
+
+```
+instructions: "Does this text contain vulgar or profane language?"
+criteria:
+  true  → "The text contains swearing, profanity, or crude language"
+  false → "The text is free of vulgar language"
+```
+
+**With a cultural norm written into the `false` branch** — naming the specific
+expressions and saying they are normal register in Czech:
+
+| | naive criteria | with the norm |
 |---|---|---|
 | `is_vulgar` | **0.98** | **0.13** |
 | moderation action | `flag_for_review` | **`allow`** |
@@ -62,9 +85,18 @@ carries the effect:
 | **an explicit list of the terms** | **−0.82** |
 | the list plus a cultural explanation | −0.85 |
 
-**Take away:** concrete lists move the model, attitudes don't, and the thoughtful
-paragraph you were proudest of writing is probably worth 0.03. Rewriting the question
-is worth 0.04 — noise.
+**What goes wrong without it:** the post gets flagged. A human moderator has to read
+it, decide it was fine, and release it — for a sentence a Czech speaker wouldn't blink
+at. Do that at scale and your review queue fills with false alarms while the real cases
+wait behind them.
+
+**Where to prompt:** the `false` branch of `criteria`.
+**How:** name the actual expressions. Not "be lenient about informal speech" but the
+list — *'ty vole', 'do prdele', 'blbost', 'kravina', 'sakra'* — and say plainly that
+Czech speakers don't treat them as offensive.
+**Why there:** the model has no way to know your community's register. The question
+can't carry that; it only says what to decide. The criteria say what the answers mean,
+and "offensive" means something different in Prague than in the training data.
 
 📄 [Full write-up](findings/01-criteria-ablation.cs.md) ·
 ▶ `python experiments/10_cultural_norm.py`
@@ -91,7 +123,16 @@ top rung says *"sad or difficult moments are fine as long as this condition hold
 behaves completely differently from one that only lists prohibitions. Without that
 sentence the whole scale drifts conservative and starts filtering everything mildly sad.
 
-**Take away:** write the permission, not only the prohibition.
+**What goes wrong without it:** you write a longer and longer list of prohibitions,
+the classifier gets steadily stricter, and eventually it filters things nobody asked it
+to filter. The permission is what holds the line in place.
+
+**Where to prompt:** the `false` branch, or the top rung of a Score ladder.
+**How:** finish the permission with an explicit "even if" — *"sad or difficult moments
+are fine as long as this condition holds"*. One sentence.
+**Why there:** the model arrives with strong priors about what's wrong. Adding to them
+is redundant. What it cannot infer is where your tolerance ends, and that only exists
+if you write it.
 
 📄 [Full write-up](findings/01-criteria-ablation.cs.md)
 
@@ -102,15 +143,21 @@ sentence the whole scale drifts conservative and starts filtering everything mil
 **Why this matters:** picking the wrong type isn't a wording mistake. It's choosing a
 shape with nowhere to put the person you're building for.
 
-Ask *"is this story suitable for a child aged 5 to 7?"* — a **Noul**, a yes/no question —
-and you get one number back, with somebody else's threshold baked into it:
+**The task:** the bedtime-story app from section 4 — decide whether a story goes in
+front of a six-year-old.
+
+Ask it as a **Noul**, a yes/no question, and you get back P(the answer is yes):
 
 ```
+instructions: "Is this story suitable for a child aged 5 to 7?"
+
 spider story   0.910 → show
 rabbit story   0.892 → show
 ```
 
-Both correct. Both useless if you're building for a particular child.
+Both correct — and both useless if you're building for a particular child. That number
+is not a fact about the story; it's the model's opinion about six-year-olds in general,
+compressed into one value with somebody else's threshold already inside it.
 
 A **Score** takes the same question plus *criteria*: levels worst to best, each a
 sentence you write. The model spreads 100% of probability across them. **Four or five
@@ -124,6 +171,17 @@ six-level Score *(flag, needs an adult)*.
 > subtracted. A Noul returns the probability the answer is yes; a Score returns a
 > position on a scale. An early draft of this research got that wrong — the correction
 > is in the write-up.
+
+**What goes wrong without it:** you get a single number that looks decisive and isn't.
+Every user of your product inherits the same threshold, and the one place you could have
+put their preference — the definition of the answer — has room for exactly one sentence.
+
+**Where to prompt:** the `criteria` array of a Score, one sentence per rung.
+**How:** worst to best, each rung a concrete situation rather than a degree.
+*"Real danger or injury with a lasting consequence, fully resolved by the end"* works;
+*"moderately severe"* doesn't — there's nothing there for the model to match against.
+**Why there:** a Noul gives you one definition. A Score gives you four or five, and a
+preference has degrees, so it needs somewhere with degrees to live.
 
 **On granularity:** three levels got the ordering of test stories *wrong* and had the
 lowest confidence. Four or more was stable. Use at least four.
@@ -144,8 +202,34 @@ do stories where someone is left out; he's going through that at school.
 Two gentle stories, no violence, both end warmly: a spider rebuilds her torn web;
 a rabbit isn't picked for a game, then is.
 
-Written generically, **both stories pass for both children**. Then one ladder per child,
-same question, same code, only the criteria differ:
+**The task:** given a story, decide whether to show it to this particular child.
+A Score, because "suitable" has degrees — the question stays fixed at
+*"How suitable is this story for a child aged 5 to 7 in this family?"* and only the
+criteria change.
+
+**Child 1's ladder**, five rungs, worst to best:
+
+```
+[0] a spider, insect or similar creature appears as a character, is described
+    in physical detail, or is shown close up. Our daughter has a strong fear
+    of these animals and will not sleep after a story like this, HOWEVER
+    KINDLY IT IS WRITTEN
+[1] spiders or insects are mentioned in passing
+[2] none of those, but the story is frightening in some other way
+[3] none of those, and any problem is small and quickly resolved
+[4] none at all, warm and calm throughout. SAD OR DIFFICULT MOMENTS ARE FINE
+    as long as this condition holds
+```
+
+Child 2's ladder is the mirror: bottom rung is *"a character is excluded from a group,
+left out of a game, laughed at, or made to feel unwanted — our son is going through
+this at school"*; top rung says explicitly that *"animals of any kind, including
+insects and spiders, are completely fine for him."*
+
+Written generically — *"[0] not appropriate: violence, death, frightening content …
+[3] fully appropriate: calm, kind, reassuring"* — **both stories pass for both
+children.** With each child's own ladder, the model spreads 100% of probability across
+the five rungs like this:
 
 ```
 CHILD 1 (afraid of spiders) — probability across the five rungs
@@ -169,6 +253,20 @@ Two clauses in Child 1's ladder do the real work, and both generalise:
   not the treatment.
 - **"sad or difficult moments are fine"** — see section 2.
 
+**What goes wrong without it:** the generic ladder shows both stories to both children.
+One child loses sleep; the other reads about being left out on the week it's happening
+to him. Neither parent gets told, because as far as the system is concerned both stories
+passed.
+
+**Where to prompt:** the rungs — and only the rungs. The question stays identical
+across users, so does the code, so do the thresholds.
+**How:** interview the person. "Which story would you not read to them, and why?"
+Their answer, close to verbatim, becomes the bottom rung. What they'd still happily
+read becomes the top rung.
+**Why there:** this is the only part of the request that can differ per user without
+changing anything else. That's what makes it personalisation rather than a fork in
+your codebase.
+
 **This is not keyword filtering.** A filter on "spider" would do the same job for Child 1
 and would also block the bee documentary they'd love.
 
@@ -179,32 +277,97 @@ and would also block the bee documentary they'd love.
 
 ## 5 — The model doesn't know what it doesn't know
 
-**Why this matters:** if you're routing between "answer from memory" and "search the
-web", this is a live bug in your product right now.
+**Why this matters:** if you're building an agent, one of the first decisions is
+whether to call a web search tool or let the LLM answer from its training data.
+Searching costs time and money; answering from memory is instant and free. So you
+build a classifier to route between them — and that classifier has a blind spot.
 
-Fifteen queries, paired so near-identical wording has opposite correct answers:
+**The task:** given a user query, decide *call the search tool* or *answer from the
+model's own knowledge*. Binary, so a Noul, which returns the probability that the
+answer to the question is yes.
 
-| query | naive classifier | |
-|---|---|---|
-| "Who was the Pope during WWII?" | 0.077 | ✓ |
-| "Who is the **current** Pope?" | **0.430** | ✗ below threshold |
-| "Who won the 2020 US election?" | 0.087 | ✓ |
-| "Who is the **current** US president?" | **0.430** | ✗ |
+**The naive version — the question anyone would write first:**
 
-**Every historical question right. Every current one wrong** — even with the word
-"current" sitting in the query. The model has a stored answer and experiences it as
-knowledge, not as a snapshot.
+```
+instructions: "Does answering this user query require searching the internet?"
 
-It isn't uniform, either: *"latest React version"* was correct even naively (0.917).
+criteria:
+  true  → "The query needs a web search to answer"
+  false → "The AI model can answer from its own knowledge"
+```
+
+That's circular — the criteria restate the question instead of defining anything.
+Fifteen queries through it, paired so near-identical wording has opposite correct
+answers. **The number is P(needs search); above 0.5 means route to the search tool:**
+
+| query | correct answer | measured | |
+|---|---|---|---|
+| "Who was the Pope during WWII?" | memory | 0.077 | ✓ |
+| "Who is the **current** Pope?" | **search** | **0.430** | ✗ answers from stale memory |
+| "Who won the 2020 US election?" | memory | 0.087 | ✓ |
+| "Who is the **current** US president?" | **search** | **0.430** | ✗ |
+| "What is the capital of France?" | memory | 0.030 | ✓ |
+| "Who is the CEO of OpenAI?" | **search** | **0.350** | ✗ |
+
+**Every settled fact right. Every live one wrong** — even with the word "current"
+sitting in the query. The model has a stored answer and experiences it as knowledge,
+not as a snapshot with a date on it.
+
+It isn't uniform either: *"latest React version"* was correct even naively (0.917).
 **The bias is domain-specific** — it learned that software versions go stale, not that
 people leave office.
 
-The fix was two paragraphs in `criteria`, and the load-bearing sentence is:
+**The fix — same question, rewritten criteria:**
 
-> *"Even if the model has a confident answer stored, that answer may now be outdated."*
+```
+criteria:
+  true  → "The answer depends on information that may have changed since the
+           model's training data was collected. This includes: current office
+           holders (presidents, CEOs, popes), live data (weather, prices,
+           scores), latest software versions, current market recommendations,
+           and the present status of companies or products. EVEN IF THE MODEL
+           HAS A CONFIDENT ANSWER STORED, THAT ANSWER MAY NOW BE OUTDATED."
 
-**66.7% → 100%.** Six few-shot examples added on top changed nothing — already at
-ceiling, pure cost.
+  false → "The answer is stable over time and will not have changed since
+           training. This includes: historical events that are settled,
+           physical and mathematical constants, established scientific
+           explanations, language translation, and programming techniques
+           that have been stable for years."
+```
+
+The capitalised sentence is carrying it. It tells the model that **its own confidence
+is not evidence of currency** — which is exactly the blind spot, stated out loud.
+
+```
+                              before   after
+"Who is the current Pope?"     0.43  →  0.88   ✓ now searches
+"Pope during WWII?"            0.08  →  0.05   ✓ still doesn't
+"Who is the current US pres?"  0.43  →  0.93   ✓
+"Who won 2020?"                0.09  →  0.09   ✓ unmoved
+```
+
+**66.7% → 100%.** And notice what *didn't* move: the historical questions stayed put.
+The criteria didn't make the router trigger-happy, they taught it a distinction.
+
+**An isolation run** confirms where the work happened — rewriting the `instructions`
+while leaving the criteria circular: **38% → 38%.** Rewriting only the criteria:
+**38% → 100%.**
+
+**What goes wrong without it:** a third of your queries get answered from stale
+memory, confidently, with no search and no flag. The user asks who the Pope is and
+your agent tells them — accurately as of the training cutoff. Nobody finds out until
+someone complains.
+
+**Where to prompt:** both branches of `criteria`.
+**How:** in `true`, list the categories that drift — office holders, live data,
+version numbers, market recommendations — and then add the sentence that does the
+work: *"even if the model has a confident answer stored, that answer may now be
+outdated."* In `false`, list what genuinely doesn't move.
+**Why there:** the model can't observe its own cutoff. From the inside, "I know this"
+and "I knew this at training time" are indistinguishable. You're not adding facts —
+you're telling it that its confidence isn't evidence.
+
+Six few-shot examples added on top changed nothing — already at ceiling, pure cost.
 
 📄 [Full write-up](findings/02-model-bias.cs.md) ·
 ▶ `python experiments/05_tool_routing.py`
@@ -216,8 +379,22 @@ ceiling, pure cost.
 **Why this matters:** it's the obvious thing to try, and it's a dead end. Save yourself
 the afternoon.
 
-Anchoring with explicit bands — *"0.55–0.70 means real danger, resolved"* — does not
-work. Keeping the descriptions word for word and changing only the numbers:
+**The task:** rate a children's story about a rabbit who hurts his leg and recovers —
+real danger, no graphic detail, fully resolved. I wanted it to land in a specific band,
+so I tried telling the model what each band meant, inside the criteria:
+
+```
+instructions: "Is this animal story suitable for children aged 5 to 7?"
+              + "Use the full scale. Calibrate against these anchor points:
+                 0.95-1.00 — entirely gentle, nothing bad happens
+                 0.75-0.90 — mild worry that resolves quickly
+                 0.55-0.70 — real danger or injury, resolved by the end
+                 0.35-0.50 — something frightening off-screen, or unresolved
+                 0.15-0.30 — death or permanent loss on-screen
+                 0.00-0.10 — graphic violence, blood, suffering"
+```
+
+Then I kept those descriptions **word for word** and changed only the numbers:
 
 | number set for the target band | measured |
 |---|---|
@@ -229,8 +406,16 @@ work. Keeping the descriptions word for word and changing only the numbers:
 Spread across all four: **0.045**. An inverted scale should have produced the opposite
 of the original. It produced a slightly higher number.
 
-**The descriptions do all the work. The numbers are decoration.** If you need a scale,
-use a Score — it has one built in.
+**The descriptions do all the work. The numbers are decoration.**
+
+**What goes wrong if you try it anyway:** nothing visibly. The answers look plausible,
+you assume your calibration took, and you build thresholds on top of a scale the model
+never adopted. That's worse than an obvious failure.
+
+**Where to prompt:** not here. If you need a scale, use a Score — the levels *are* the
+scale, and the position comes back as a number without you asking for one.
+**Why:** a Noul returns the probability that the answer is yes. Asking it to use that
+probability as a rating asks it to encode a quantity the question doesn't have.
 
 📄 [Full write-up](findings/04-scale-anchors.cs.md) ·
 ▶ `python experiments/07_scale_anchors.py`
@@ -242,8 +427,13 @@ use a Score — it has one built in.
 **Why this matters:** "add few-shot examples" is a reflex. Sometimes it's the answer,
 sometimes it's just tokens.
 
-Two series of identical length — one of few-shot examples, one of semantically neutral
-filler:
+**The task:** same vulgarity question as section 1, same Czech input. This time I
+added few-shot examples to the `instructions` — pairs like *"'Vy jste debilové' →
+vulgar, a direct personal insult"* — and measured whether the shift came from what
+the examples said or simply from the request getting longer.
+
+**The control:** an identical-length block of text about pipeline operations, which
+says nothing about vulgarity at all. Two series, same token counts:
 
 | length | with examples | neutral filler |
 |---|---|---|
@@ -263,6 +453,18 @@ boundary it can't infer. On tasks it already solves, they're cost. This matches
 [leepokai's](https://github.com/leepokai/llm-prompt-techniques-on-jev) finding that
 few-shot is neutral-to-harmful on academic benchmarks — see *Related work* below.
 
+**Where to prompt:** the `instructions`, appended after the question — but only when
+you've measured that the criteria alone don't get there.
+**How:** boundary cases, not typical ones. Pairs that sit either side of the line you
+care about. Five or six is the useful range.
+**Why there and not in criteria:** criteria define what the answers *mean*; examples
+show what the boundary *looks like* on real input. Reach for them when you can't state
+the rule cleanly — when you find yourself writing "you'll know it when you see it",
+that's the signal.
+
+**What goes wrong if you add them anyway:** nothing improves and every call costs more.
+In section 5 the examples were pure overhead on a task already at 100%.
+
 **Latency note:** flat to ~2,000 tokens, **+0.28 s at ~5,000**, identical in both
 series. 15.8× more tokens cost only 1.27× the response time, because input processing
 is parallel.
@@ -277,7 +479,24 @@ is parallel.
 **Why this matters:** a norm that moves everything down isn't calibration, it's
 moderation switched off. This is the test that tells you which one you wrote.
 
-Nine mild texts that should pass, three boundary texts that must not:
+**The task:** the same Czech moderation setup as section 1, but tested properly.
+Nine mild texts that the norm *should* let through, and three boundary texts it
+**must not** — two personal insults and one threat.
+
+**The norm names the axis rather than listing words:**
+
+```
+criteria:
+  true  → "language a Czech user would find genuinely offensive: personal
+           insults aimed at a person or group, threats of harm, or sexual
+           slurs. WHAT MATTERS IS WHETHER A PERSON IS BEING ATTACKED, NOT
+           WHETHER A COARSE WORD APPEARS."
+  false → "clean, OR only mild Czech colloquialisms that are normal informal
+           speech: 'ty vole', 'do prdele', 'blbost', 'kravina', 'sakra' …
+           Criticising a product or a decision in blunt terms is also fine."
+```
+
+Results, split by which group the text belongs to:
 
 | | mean shift | outcome |
 |---|---|---|
@@ -295,6 +514,21 @@ The model adopted that axis. It stopped counting words and started asking who th
 **Three of twelve moderation decisions changed — all three moved *out* of the human
 review queue.** One released, two blocked. The norm shrank the queue from both sides.
 
+**What goes wrong without the second half:** you write a norm that relaxes the filter,
+ship it, and discover you've also relaxed it for the things you meant to catch. A norm
+that only moves one direction isn't calibration — it's moderation switched off with
+extra steps.
+
+**Where to prompt:** both branches, and then a test set with both kinds of input.
+**How:** state the *axis*, not a word list. *"What matters is whether a person is being
+attacked"* caught a threat containing no profanity at all — no list would have.
+**Why there:** a list is finite and someone will always write the sentence you didn't
+think of. An axis generalises.
+
+**Always test the boundary cases.** Nine texts that should pass tells you nothing on
+its own; it's the three that must not that tell you whether you wrote calibration or
+a bypass.
+
 **Watch for spillover:** the norm speaks only about Czech, yet an English test text
 dropped from 0.916 to 0.176. Criteria shift the overall sensitivity threshold rather
 than filtering listed words. Bound the effect explicitly if you need it narrow.
@@ -310,7 +544,25 @@ than filtering listed words. Bound the effect explicitly if you need it narrow.
 didn't show up in the numbers — which is worth knowing if you're building for a
 non-English market.
 
-15 bilingual pairs, each item existing in both languages with matching content:
+**The task:** given a customer message, decide whether the author is expressing
+dissatisfaction with a product or service. A Noul, with criteria that explicitly
+cover indirect complaints:
+
+```
+instructions: "Is the author of this message expressing dissatisfaction with
+               a product or service?"
+criteria:
+  true  → "The author is complaining: reporting a problem, expressing
+           frustration, or criticising what they received. This includes
+           polite or indirect complaints, sarcasm, and understatement."
+  false → "Not complaining: satisfied, neutral, asking a question, or
+           describing a problem that happened to someone else or did not
+           happen at all."
+```
+
+**The question stayed in English throughout** — only the language of the text being
+judged changed. 15 bilingual pairs, each item existing in both languages with matching
+content:
 
 | | accuracy | mean absolute difference |
 |---|---|---|
@@ -328,6 +580,12 @@ scored 0.022 in English and **0.464** in Czech. Both formally correct, but the C
 version sits close to the boundary. Czech requires double negation, and the model may
 be accumulating negative signals — *a hypothesis from one example, not a demonstrated
 mechanism.* Test negative constructions separately.
+
+**Where to prompt:** not in translation — in the criteria, same as everywhere else.
+Writing the question in Czech gained nothing. What *did* matter, back in section 1,
+was telling the model what Czech informal register actually sounds like.
+**Why:** the gap isn't linguistic comprehension, it's norms. The model reads Czech
+fine. What it doesn't have is a Czech sense of what's rude.
 
 Translating the question into Czech didn't help (15/15 either way).
 
