@@ -1,0 +1,570 @@
+{
+  "stories": {
+    "gentle": "Milly the mouse found a lost blue button in the meadow. It shone in the sunlight and was almost as big as she was. She rolled it all the way home and stood it up on its edge, and it made a perfect little table.\n\nShe invited her friend the hedgehog for tea. They had to sit very close together because the table was so small, and when the hedgehog laughed his spines rattled against the button and made a tiny drumming sound.\n\nThey laughed so much that the tea went cold, so they made a fresh pot and drank it watching the sun go down behind the grass.",
+    "mild_worry": "Quinn the duckling wandered further from the pond than he ever had before, following a line of ants to see where they were going. When he looked up, the reeds all looked the same and he could not tell which way was home.\n\nHe sat down and felt very small. He did not cry, but his beak wobbled a little. Then an old turtle came out from under a log and asked him what was wrong. She told him that home was always downhill, because that was where water went.\n\nQuinn waddled downhill and there was the pond, and his mother, who had been looking for him. She tucked him under her wing and he fell asleep before he could even tell her about the ants.",
+    "real_injury": "Pip was a small brown rabbit who lived at the edge of the meadow. Every morning he hopped down to the stream to watch the water beetles. His mother always told him to stay where he could still see the big oak tree, because that was how a rabbit knew the way home.\n\nOne afternoon a butterfly drifted past and Pip followed it without thinking. When he finally looked up the oak tree was nowhere to be seen. He tried to run back, but his back leg slipped between two rocks and caught fast, and when he pulled it free it hurt so much that he could not stand on it. He sat down in the wet grass and cried, and the rain began to fall.\n\nIt was an old badger who found him. She wrapped him in dry leaves and carried him home on her broad back. His leg was sore for many days and he had to stay inside while his sisters played, which he thought was terribly unfair. But it healed, and he never once forgot to look for the oak tree after that.",
+    "loss_offscreen": "The fox came to the hen house on three nights in a row. The hens heard him walking around outside in the dark, and they pressed themselves into the corner and did not make a sound.\n\nOn the third morning the farmer found a hole in the wire fence, and when he counted the hens there were only eleven where there had been twelve. Nobody said anything about the twelfth hen. The farmer mended the fence and went back to the house.\n\nFor a long time afterwards the hens would not go out into the yard, even when the sun was warm. They stayed near the door where they could get back inside quickly.",
+    "death_onscreen": "Rex the old dog could not walk any more. He lay in his kennel and his breathing was slow and heavy, and he did not lift his head when the boy came out with his bowl.\n\nThe boy sat down beside him and stroked his head all afternoon. He told Rex about the rabbit they had chased together when Rex was young, and about the time Rex had swum out into the lake after a stick and come back with a duck feather on his nose instead.\n\nIn the evening Rex breathed out and did not breathe in again. The boy buried him under the apple tree, and stood there for a long time after the sun had gone down."
+  },
+  "scales": {
+    "3 úrovně": [
+      "Not suitable: death, violence or loss that a child of this age cannot process alone",
+      "Needs care: real danger, injury or fear that an adult should be ready to talk about",
+      "Fully suitable: gentle throughout, the child finishes it feeling safe"
+    ],
+    "4 úrovně": [
+      "Graphic or distressing: death, violence or permanent loss shown directly",
+      "Heavy: something frightening or sad happens, or a threat is left unresolved",
+      "Real danger or injury, described without detail and fully resolved by the end",
+      "Entirely gentle: nothing bad happens, the child finishes it smiling"
+    ],
+    "6 úrovní": [
+      "Graphic violence, hunting in physical detail, blood or suffering shown directly",
+      "Death or permanent loss on-screen, handled gently, needs an adult to explain",
+      "Something frightening or sad happens off-screen, or a threat is left unresolved",
+      "Real danger or injury with a lasting consequence, no graphic detail, fully resolved by the end",
+      "Mild worry that resolves quickly: brief fear or sadness, then comfort and a warm ending",
+      "Entirely gentle: nothing bad happens, the child finishes it smiling"
+    ],
+    "10 úrovní": [
+      "Graphic violence with physical detail: blood, wounds, or suffering shown directly",
+      "Violence or killing shown on-screen without graphic detail",
+      "Death of a main character shown on-screen, handled gently and with care",
+      "Death or permanent loss that happens off-screen but is clearly understood",
+      "A threat or danger that is never resolved; the story ends unsettled",
+      "Something frightening happens off-screen; the ending is safe but subdued",
+      "Real injury or danger with a lasting consequence, fully resolved by the end",
+      "Brief real danger, resolved quickly, no lasting consequence",
+      "Mild worry or being briefly lost, comforted within a page, warm ending",
+      "Entirely gentle: nothing bad happens at all, the child finishes it smiling"
+    ]
+  },
+  "results": {
+    "gentle": {
+      "noul": {
+        "avg": 0.936,
+        "spread": 0.01,
+        "runs": [
+          0.94,
+          0.93,
+          0.94,
+          0.94,
+          0.93
+        ]
+      },
+      "3 úrovně": {
+        "raw": 2.0,
+        "normalized": 1.0,
+        "level": 2,
+        "confidence": 1.0,
+        "spread": 0.0,
+        "runs": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "last_probs": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 1.0
+        }
+      },
+      "4 úrovně": {
+        "raw": 3.0,
+        "normalized": 1.0,
+        "level": 3,
+        "confidence": 1.0,
+        "spread": 0.0,
+        "runs": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "last_probs": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 1.0
+        }
+      },
+      "6 úrovní": {
+        "raw": 5.0,
+        "normalized": 1.0,
+        "level": 5,
+        "confidence": 1.0,
+        "spread": 0.0,
+        "runs": [
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ],
+        "last_probs": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 1.0
+        }
+      },
+      "10 úrovní": {
+        "raw": 9.0,
+        "normalized": 1.0,
+        "level": 9,
+        "confidence": 1.0,
+        "spread": 0.0,
+        "runs": [
+          9.0,
+          9.0,
+          9.0,
+          9.0,
+          9.0
+        ],
+        "last_probs": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 1.0
+        }
+      }
+    },
+    "mild_worry": {
+      "noul": {
+        "avg": 0.928,
+        "spread": 0.01,
+        "runs": [
+          0.93,
+          0.93,
+          0.93,
+          0.93,
+          0.92
+        ]
+      },
+      "3 úrovně": {
+        "raw": 1.95,
+        "normalized": 0.975,
+        "level": 2,
+        "confidence": 0.924,
+        "spread": 0.02,
+        "runs": [
+          1.95,
+          1.94,
+          1.96,
+          1.95,
+          1.95
+        ],
+        "last_probs": {
+          "0": 0.0,
+          "1": 0.05,
+          "2": 0.95
+        }
+      },
+      "4 úrovně": {
+        "raw": 2.774,
+        "normalized": 0.925,
+        "level": 3,
+        "confidence": 0.774,
+        "spread": 0.05,
+        "runs": [
+          2.74,
+          2.79,
+          2.76,
+          2.79,
+          2.79
+        ],
+        "last_probs": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.21,
+          "3": 0.79
+        }
+      },
+      "6 úrovní": {
+        "raw": 4.006,
+        "normalized": 0.801,
+        "level": 4,
+        "confidence": 0.994,
+        "spread": 0.01,
+        "runs": [
+          4.01,
+          4.01,
+          4.01,
+          4.0,
+          4.0
+        ],
+        "last_probs": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.99,
+          "5": 0.01
+        }
+      },
+      "10 úrovní": {
+        "raw": 7.99,
+        "normalized": 0.888,
+        "level": 8,
+        "confidence": 1.0,
+        "spread": 0.0,
+        "runs": [
+          7.99,
+          7.99,
+          7.99,
+          7.99,
+          7.99
+        ],
+        "last_probs": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 1.0,
+          "9": 0.0
+        }
+      }
+    },
+    "real_injury": {
+      "noul": {
+        "avg": 0.902,
+        "spread": 0.01,
+        "runs": [
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.91
+        ]
+      },
+      "3 úrovně": {
+        "raw": 1.124,
+        "normalized": 0.562,
+        "level": 1,
+        "confidence": 0.814,
+        "spread": 0.03,
+        "runs": [
+          1.13,
+          1.11,
+          1.14,
+          1.13,
+          1.11
+        ],
+        "last_probs": {
+          "0": 0.0,
+          "1": 0.89,
+          "2": 0.11
+        }
+      },
+      "4 úrovně": {
+        "raw": 1.994,
+        "normalized": 0.665,
+        "level": 2,
+        "confidence": 0.99,
+        "spread": 0.01,
+        "runs": [
+          1.99,
+          2.0,
+          1.99,
+          2.0,
+          1.99
+        ],
+        "last_probs": {
+          "0": 0.0,
+          "1": 0.01,
+          "2": 0.99,
+          "3": 0.0
+        }
+      },
+      "6 úrovní": {
+        "raw": 3.406,
+        "normalized": 0.681,
+        "level": 3,
+        "confidence": 0.73,
+        "spread": 0.03,
+        "runs": [
+          3.39,
+          3.41,
+          3.42,
+          3.39,
+          3.42
+        ],
+        "last_probs": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.58,
+          "4": 0.42,
+          "5": 0.0
+        }
+      },
+      "10 úrovní": {
+        "raw": 6.542,
+        "normalized": 0.727,
+        "level": 7,
+        "confidence": 0.776,
+        "spread": 0.05,
+        "runs": [
+          6.56,
+          6.51,
+          6.56,
+          6.52,
+          6.56
+        ],
+        "last_probs": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.59,
+          "7": 0.26,
+          "8": 0.15,
+          "9": 0.0
+        }
+      }
+    },
+    "loss_offscreen": {
+      "noul": {
+        "avg": 0.5,
+        "spread": 0.02,
+        "runs": [
+          0.49,
+          0.5,
+          0.5,
+          0.5,
+          0.51
+        ]
+      },
+      "3 úrovně": {
+        "raw": 0.794,
+        "normalized": 0.397,
+        "level": 1,
+        "confidence": 0.68,
+        "spread": 0.04,
+        "runs": [
+          0.78,
+          0.78,
+          0.8,
+          0.82,
+          0.79
+        ],
+        "last_probs": {
+          "0": 0.22,
+          "1": 0.78,
+          "2": 0.0
+        }
+      },
+      "4 úrovně": {
+        "raw": 0.994,
+        "normalized": 0.331,
+        "level": 1,
+        "confidence": 0.936,
+        "spread": 0.01,
+        "runs": [
+          0.99,
+          0.99,
+          1.0,
+          0.99,
+          1.0
+        ],
+        "last_probs": {
+          "0": 0.03,
+          "1": 0.94,
+          "2": 0.03,
+          "3": 0.0
+        }
+      },
+      "6 úrovní": {
+        "raw": 1.728,
+        "normalized": 0.346,
+        "level": 2,
+        "confidence": 0.8,
+        "spread": 0.07,
+        "runs": [
+          1.7,
+          1.77,
+          1.71,
+          1.75,
+          1.71
+        ],
+        "last_probs": {
+          "0": 0.0,
+          "1": 0.31,
+          "2": 0.67,
+          "3": 0.02,
+          "4": 0.0,
+          "5": 0.0
+        }
+      },
+      "10 úrovní": {
+        "raw": 3.204,
+        "normalized": 0.356,
+        "level": 3,
+        "confidence": 0.914,
+        "spread": 0.05,
+        "runs": [
+          3.17,
+          3.21,
+          3.21,
+          3.22,
+          3.21
+        ],
+        "last_probs": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.88,
+          "4": 0.03,
+          "5": 0.09,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        }
+      }
+    },
+    "death_onscreen": {
+      "noul": {
+        "avg": 0.69,
+        "spread": 0.02,
+        "runs": [
+          0.7,
+          0.69,
+          0.68,
+          0.68,
+          0.7
+        ]
+      },
+      "3 úrovně": {
+        "raw": 0.842,
+        "normalized": 0.421,
+        "level": 1,
+        "confidence": 0.582,
+        "spread": 0.04,
+        "runs": [
+          0.82,
+          0.86,
+          0.85,
+          0.85,
+          0.83
+        ],
+        "last_probs": {
+          "0": 0.23,
+          "1": 0.71,
+          "2": 0.06
+        }
+      },
+      "4 úrovně": {
+        "raw": 0.258,
+        "normalized": 0.086,
+        "level": 0,
+        "confidence": 0.742,
+        "spread": 0.06,
+        "runs": [
+          0.22,
+          0.26,
+          0.28,
+          0.27,
+          0.26
+        ],
+        "last_probs": {
+          "0": 0.74,
+          "1": 0.26,
+          "2": 0.0,
+          "3": 0.0
+        }
+      },
+      "6 úrovní": {
+        "raw": 1.02,
+        "normalized": 0.204,
+        "level": 1,
+        "confidence": 0.988,
+        "spread": 0.0,
+        "runs": [
+          1.02,
+          1.02,
+          1.02,
+          1.02,
+          1.02
+        ],
+        "last_probs": {
+          "0": 0.0,
+          "1": 0.99,
+          "2": 0.0,
+          "3": 0.01,
+          "4": 0.0,
+          "5": 0.0
+        }
+      },
+      "10 úrovní": {
+        "raw": 2.128,
+        "normalized": 0.236,
+        "level": 2,
+        "confidence": 0.948,
+        "spread": 0.03,
+        "runs": [
+          2.12,
+          2.15,
+          2.13,
+          2.12,
+          2.12
+        ],
+        "last_probs": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.88,
+          "3": 0.12,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        }
+      }
+    }
+  },
+  "scale_stats": {
+    "3 úrovně": {
+      "range": 0.603,
+      "stdev": 0.296,
+      "mean_confidence": 0.8,
+      "max_spread": 0.04
+    },
+    "4 úrovně": {
+      "range": 0.914,
+      "stdev": 0.389,
+      "mean_confidence": 0.888,
+      "max_spread": 0.06
+    },
+    "6 úrovní": {
+      "range": 0.796,
+      "stdev": 0.327,
+      "mean_confidence": 0.902,
+      "max_spread": 0.07
+    },
+    "10 úrovní": {
+      "range": 0.764,
+      "stdev": 0.333,
+      "mean_confidence": 0.928,
+      "max_spread": 0.05
+    }
+  }
+}

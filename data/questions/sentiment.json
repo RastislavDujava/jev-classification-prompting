@@ -1,0 +1,34 @@
+{
+  "_comment": "DEFINICE OTÁZEK = pole 'questions' v API callu. Toto je ZPŮSOB hodnocení. Ukazuje všechna tři primitiva nad stejným vstupem. Klíče (negative_emotion, ...) si volíš ty — pod nimi přijdou odpovědi. Modelu se NEPOSÍLAJÍ, takže celý význam musí být v instructions.",
+
+  "negative_emotion": {
+    "type": "noul",
+    "instructions": "Does this text express negative emotion toward the company or its service?",
+    "criteria": {
+      "true": "The author expresses dissatisfaction, anger, frustration, or disappointment",
+      "false": "The author is neutral, factual, or positive"
+    }
+  },
+
+  "sentiment_category": {
+    "type": "choice",
+    "instructions": "What is the overall sentiment of this text toward the company?",
+    "criteria": {
+      "positive": "Praise, satisfaction, or gratitude",
+      "neutral": "Purely factual with no evaluative stance",
+      "negative": "Complaint, criticism, or dissatisfaction",
+      "mixed": "Contains both clearly positive and clearly negative evaluations"
+    }
+  },
+
+  "anger_level": {
+    "type": "score",
+    "instructions": "How angry is the author of this text?",
+    "criteria": [
+      "Completely calm, no irritation at all",
+      "Mildly irritated or inconvenienced",
+      "Clearly frustrated and complaining",
+      "Very angry, demanding, or hostile"
+    ]
+  }
+}

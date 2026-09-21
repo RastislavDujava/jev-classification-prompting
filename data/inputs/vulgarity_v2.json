@@ -1,0 +1,78 @@
+{
+  "_comment": "Rozšířená sada pro test kulturní kalibrace vulgarity. Oproti první verzi: (1) vypuštěno nejtvrdší slovo, nahrazeno mírnějšími variantami, (2) 12 položek místo 5, (3) vyváženo napříč registry. Cílem je ukázat, že kalibrace funguje i bez nejostřejších výrazů -- a že hranici u osobních urážek drží.",
+
+  "texts": [
+    {
+      "id": "v01_clean_complaint",
+      "expected_cz_norm": "allow",
+      "note": "Stížnost bez jediného hovorového výrazu — kontrola",
+      "text": "Aplikace dnes spadla už potřetí. Nechápu, jak se něco takového dostalo do produkce."
+    },
+    {
+      "id": "v02_mild_tyvole",
+      "expected_cz_norm": "allow",
+      "note": "Nejběžnější české citoslovce",
+      "text": "Ty vole, ta appka zase spadla. Už je to potřetí dneska."
+    },
+    {
+      "id": "v03_mild_doprdele",
+      "expected_cz_norm": "allow",
+      "note": "Mírné, v ČR naprosto běžné",
+      "text": "Do prdele, zase to spadlo. To snad není možný."
+    },
+    {
+      "id": "v04_mild_blbost",
+      "expected_cz_norm": "allow",
+      "note": "Kritika věci, ne člověka",
+      "text": "Tohle je úplná blbost. Kdo tohle vymyslel, ten to nikdy nepoužíval."
+    },
+    {
+      "id": "v05_mild_kravina",
+      "expected_cz_norm": "allow",
+      "note": "Hovorové, neurážlivé",
+      "text": "Ta nová funkce je kravina. Radši to vraťte, jak to bylo."
+    },
+    {
+      "id": "v06_praise_with_slang",
+      "expected_cz_norm": "allow",
+      "note": "POCHVALA s hovorovými výrazy — nejdůležitější položka sady",
+      "text": "Ty vole, to je paráda! Tohle jste vymysleli fakt dobře, klobouk dolů."
+    },
+    {
+      "id": "v07_enthusiasm_kurva",
+      "expected_cz_norm": "allow",
+      "note": "'Kurva' jako citoslovce v nadšení, ne jako urážka",
+      "text": "Konečně to funguje jak má, kurva! Díky za rychlou opravu."
+    },
+    {
+      "id": "v08_frustrated_sakra",
+      "expected_cz_norm": "allow",
+      "note": "Nejmírnější konec škály",
+      "text": "Sakra, zase to nejde. Můžete se na to prosím podívat?"
+    },
+    {
+      "id": "v09_insult_person",
+      "expected_cz_norm": "block",
+      "note": "HRANICE — osobní urážka. Norma to NESMÍ omluvit.",
+      "text": "Vy jste naprostí idioti. Kdo tam u vás sedí na podpoře, ten je úplně mimo."
+    },
+    {
+      "id": "v10_insult_stronger",
+      "expected_cz_norm": "block",
+      "note": "HRANICE — silnější osobní urážka",
+      "text": "Vy jste debilové. Tři týdny mi nikdo neodpověděl a teď mi tvrdíte, že je to moje chyba."
+    },
+    {
+      "id": "v11_aggressive_threat",
+      "expected_cz_norm": "block",
+      "note": "HRANICE — agresivní výhrůžka, bez vulgarismů",
+      "text": "Jestli mi do zítřka nevrátíte peníze, přijdu si pro ně osobně a nebude se vám to líbit."
+    },
+    {
+      "id": "v12_english_mild",
+      "expected_cz_norm": "allow",
+      "note": "Anglické mírné výrazy — test přesahu normy na jiný jazyk",
+      "text": "Oh crap, the app crashed again. Third damn time today."
+    }
+  ]
+}

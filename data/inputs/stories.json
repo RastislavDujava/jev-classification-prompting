@@ -1,0 +1,46 @@
+{
+  "_comment": "Krátké příběhy o zvířatech, seřazené podle očekávané vhodnosti pro děti 5-7 let. Cílem je pokrýt CELOU škálu, aby šlo poznat, jestli se model drží kotev v criteria, nebo si jede po své. 'expected_band' je můj odhad, kam by měl padnout -- ne pravda, ale referenční bod.",
+
+  "stories": [
+    {
+      "id": "s1_gentle",
+      "expected_band": 0.95,
+      "text": "Hedvábná myška Míša našla na louce ztracený knoflík. Byl modrý a leskl se na slunci. Míša ho odnesla domů a udělala si z něj stoleček. Pak pozvala kamarádku ježkovou na čaj a spolu se smály, jak je stoleček maličký."
+    },
+    {
+      "id": "s2_mild_worry",
+      "expected_band": 0.8,
+      "text": "Káčátko Kvído se zatoulalo daleko od rybníka a nemohlo najít cestu zpátky. Chvíli mu bylo smutno a trochu se bálo. Pak potkalo starou želvu, která mu cestu ukázala. Maminka ho doma objala a Kvído usnul spokojeně."
+    },
+    {
+      "id": "s3_peril_resolved",
+      "expected_band": 0.6,
+      "text": "Veverka Terka spadla z vysoké větve a poranila si tlapku. Bolelo to a Terka plakala. Sojka doletěla pro pomoc a lesní zvířátka Terku odnesla do dutiny stromu. Tlapka se za týden zahojila a Terka zase skákala po větvích."
+    },
+    {
+      "id": "s4_predation_offscreen",
+      "expected_band": 0.35,
+      "text": "Liška obcházela kurník celou noc. Slepice se krčily v koutě a bály se. Ráno našel hospodář v plotě díru a jedna slepice chyběla. Ostatní slepice se dlouho neodvážily vyjít ven."
+    },
+    {
+      "id": "s5_death_onscreen",
+      "expected_band": 0.15,
+      "text": "Starý pes Rex už nemohl chodit. Ležel v boudě a těžce dýchal. Kluk u něj seděl celé odpoledne a hladil ho po hlavě. Večer Rex naposledy vydechl a přestal se hýbat. Kluk ho pohřbil pod jabloní a dlouho tam stál."
+    },
+    {
+      "id": "s6_graphic",
+      "expected_band": 0.03,
+      "text": "Vlk dohnal srnu na mýtině. Zaťal jí zuby do krku a srna se ještě chvíli zmítala, než znehybněla. Sníh kolem zrudl. Vlk trhal maso z boku a odnášel kusy mláďatům do doupěte, kde se o ně rvala."
+    },
+    {
+      "id": "s7_scary_no_harm",
+      "expected_band": 0.5,
+      "text": "V noci se ozývalo z půdy škrábání. Kočka Bela se naježila a couvala ke dveřím. Škrábání se ozvalo znovu, blíž. Pak z trámu vykoukla malá sova, zamrkala a odletěla otevřeným oknem pryč."
+    },
+    {
+      "id": "s8_complex_theme",
+      "expected_band": 0.25,
+      "text": "Kůň Bleskovi bylo osmnáct let a už nemohl tahat vůz. Hospodář dlouho počítal, kolik stojí seno, a nakonec zavolal muže s náklaďákem. Bleska odvezli a hospodář se za vozem nedíval. Ve stáji zůstalo prázdné stání."
+    }
+  ]
+}

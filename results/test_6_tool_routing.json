@@ -1,0 +1,385 @@
+{
+  "queries": [
+    {
+      "id": "pope_current",
+      "text": "Who is the current Pope?",
+      "expected": "search",
+      "trap": "Sounds like a basic fact the model 'knows'. But popes change, and the answer may be stale.",
+      "category": "drifting_entity"
+    },
+    {
+      "id": "pope_historical",
+      "text": "Who was the Pope during World War II?",
+      "expected": "model",
+      "trap": "Near-identical wording to the above, but the fact is frozen in history.",
+      "category": "stable_historical"
+    },
+    {
+      "id": "capital_france",
+      "text": "What is the capital of France?",
+      "expected": "model",
+      "trap": "Genuinely stable. Should NOT trigger a search.",
+      "category": "stable_fact"
+    },
+    {
+      "id": "ceo_openai",
+      "text": "Who is the CEO of OpenAI?",
+      "expected": "search",
+      "trap": "Model has a confident answer in training data, but leadership changes.",
+      "category": "drifting_entity"
+    },
+    {
+      "id": "python_sort",
+      "text": "How do I sort a list of dictionaries by a key in Python?",
+      "expected": "model",
+      "trap": "Technical, but the answer has been stable for a decade.",
+      "category": "stable_skill"
+    },
+    {
+      "id": "react_latest",
+      "text": "What is the latest stable version of React and what changed in it?",
+      "expected": "search",
+      "trap": "Version numbers drift constantly. Model will confidently give an outdated one.",
+      "category": "drifting_version"
+    },
+    {
+      "id": "weather_prague",
+      "text": "What is the weather in Prague right now?",
+      "expected": "search",
+      "trap": "Obvious case -- should be easy for any classifier.",
+      "category": "realtime"
+    },
+    {
+      "id": "photosynthesis",
+      "text": "Explain how photosynthesis works.",
+      "expected": "model",
+      "trap": "Obvious case on the other side.",
+      "category": "stable_knowledge"
+    },
+    {
+      "id": "stock_price",
+      "text": "What is Apple's stock price?",
+      "expected": "search",
+      "trap": "Obvious realtime case.",
+      "category": "realtime"
+    },
+    {
+      "id": "boiling_point",
+      "text": "At what temperature does water boil at sea level?",
+      "expected": "model",
+      "trap": "Physical constant, never changes.",
+      "category": "stable_fact"
+    },
+    {
+      "id": "best_laptop",
+      "text": "What is the best laptop for programming?",
+      "expected": "search",
+      "trap": "Feels like an opinion the model can give, but 'best' depends on current models on the market.",
+      "category": "drifting_recommendation"
+    },
+    {
+      "id": "who_won_election_us_2020",
+      "text": "Who won the 2020 US presidential election?",
+      "expected": "model",
+      "trap": "A past event, settled and inside training data.",
+      "category": "stable_historical"
+    },
+    {
+      "id": "current_us_president",
+      "text": "Who is the current US president?",
+      "expected": "search",
+      "trap": "The single most classic knowledge-cutoff trap.",
+      "category": "drifting_entity"
+    },
+    {
+      "id": "translate_hello",
+      "text": "How do you say 'hello' in Japanese?",
+      "expected": "model",
+      "trap": "Pure language knowledge, stable.",
+      "category": "stable_skill"
+    },
+    {
+      "id": "company_acquired",
+      "text": "Has Figma been acquired, and by whom?",
+      "expected": "search",
+      "trap": "Corporate status changes; the model may recall a deal that later fell through.",
+      "category": "drifting_entity"
+    }
+  ],
+  "raw": {
+    "A naivní": {
+      "pope_current": [
+        0.44,
+        0.43,
+        0.42
+      ],
+      "pope_historical": [
+        0.08,
+        0.08,
+        0.07
+      ],
+      "capital_france": [
+        0.03,
+        0.03,
+        0.03
+      ],
+      "ceo_openai": [
+        0.36,
+        0.34,
+        0.35
+      ],
+      "python_sort": [
+        0.04,
+        0.04,
+        0.04
+      ],
+      "react_latest": [
+        0.92,
+        0.91,
+        0.92
+      ],
+      "weather_prague": [
+        0.97,
+        0.97,
+        0.97
+      ],
+      "photosynthesis": [
+        0.04,
+        0.04,
+        0.04
+      ],
+      "stock_price": [
+        0.96,
+        0.95,
+        0.95
+      ],
+      "boiling_point": [
+        0.04,
+        0.04,
+        0.04
+      ],
+      "best_laptop": [
+        0.32,
+        0.35,
+        0.35
+      ],
+      "who_won_election_us_2020": [
+        0.08,
+        0.09,
+        0.09
+      ],
+      "current_us_president": [
+        0.42,
+        0.42,
+        0.45
+      ],
+      "translate_hello": [
+        0.03,
+        0.03,
+        0.03
+      ],
+      "company_acquired": [
+        0.33,
+        0.33,
+        0.3
+      ]
+    },
+    "B poučená": {
+      "pope_current": [
+        0.88,
+        0.88,
+        0.89
+      ],
+      "pope_historical": [
+        0.05,
+        0.05,
+        0.05
+      ],
+      "capital_france": [
+        0.03,
+        0.02,
+        0.03
+      ],
+      "ceo_openai": [
+        0.88,
+        0.89,
+        0.89
+      ],
+      "python_sort": [
+        0.03,
+        0.03,
+        0.03
+      ],
+      "react_latest": [
+        0.96,
+        0.96,
+        0.96
+      ],
+      "weather_prague": [
+        0.98,
+        0.98,
+        0.98
+      ],
+      "photosynthesis": [
+        0.03,
+        0.03,
+        0.03
+      ],
+      "stock_price": [
+        0.97,
+        0.98,
+        0.97
+      ],
+      "boiling_point": [
+        0.03,
+        0.03,
+        0.03
+      ],
+      "best_laptop": [
+        0.79,
+        0.8,
+        0.8
+      ],
+      "who_won_election_us_2020": [
+        0.09,
+        0.1,
+        0.09
+      ],
+      "current_us_president": [
+        0.93,
+        0.93,
+        0.93
+      ],
+      "translate_hello": [
+        0.02,
+        0.02,
+        0.02
+      ],
+      "company_acquired": [
+        0.57,
+        0.56,
+        0.58
+      ]
+    },
+    "C s příklady": {
+      "pope_current": [
+        0.95,
+        0.95,
+        0.94
+      ],
+      "pope_historical": [
+        0.05,
+        0.04,
+        0.05
+      ],
+      "capital_france": [
+        0.03,
+        0.03,
+        0.03
+      ],
+      "ceo_openai": [
+        0.92,
+        0.92,
+        0.92
+      ],
+      "python_sort": [
+        0.03,
+        0.03,
+        0.03
+      ],
+      "react_latest": [
+        0.97,
+        0.97,
+        0.97
+      ],
+      "weather_prague": [
+        0.99,
+        0.98,
+        0.98
+      ],
+      "photosynthesis": [
+        0.03,
+        0.03,
+        0.03
+      ],
+      "stock_price": [
+        0.98,
+        0.98,
+        0.98
+      ],
+      "boiling_point": [
+        0.04,
+        0.03,
+        0.03
+      ],
+      "best_laptop": [
+        0.84,
+        0.84,
+        0.84
+      ],
+      "who_won_election_us_2020": [
+        0.13,
+        0.14,
+        0.13
+      ],
+      "current_us_president": [
+        0.96,
+        0.96,
+        0.96
+      ],
+      "translate_hello": [
+        0.03,
+        0.03,
+        0.03
+      ],
+      "company_acquired": [
+        0.64,
+        0.59,
+        0.59
+      ]
+    }
+  },
+  "accuracy": {
+    "A naivní": {
+      "correct": 10,
+      "total": 15,
+      "errors": [
+        [
+          "pope_current",
+          "search",
+          0.43
+        ],
+        [
+          "ceo_openai",
+          "search",
+          0.35
+        ],
+        [
+          "best_laptop",
+          "search",
+          0.34
+        ],
+        [
+          "current_us_president",
+          "search",
+          0.43
+        ],
+        [
+          "company_acquired",
+          "search",
+          0.32
+        ]
+      ]
+    },
+    "B poučená": {
+      "correct": 15,
+      "total": 15,
+      "errors": []
+    },
+    "C s příklady": {
+      "correct": 15,
+      "total": 15,
+      "errors": []
+    }
+  }
+}

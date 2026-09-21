@@ -1,0 +1,111 @@
+{
+  "_comment": "Dvojjazyčná sada pro měření výkonu na češtině. KAŽDÁ položka má českou a anglickou verzi TÉHOŽ obsahu, aby šlo porovnat jazyk při jinak shodném zadání. 'expected' je referenční odpověď.",
+
+  "pairs": [
+    {
+      "id": "b01_complaint_clear",
+      "expected": true,
+      "note": "Jednoznačná stížnost",
+      "cs": "Objednávka dorazila o dva týdny později a chyběla polovina zboží. Nikdo na moje e-maily neodpovídá.",
+      "en": "The order arrived two weeks late and half the items were missing. Nobody answers my emails."
+    },
+    {
+      "id": "b02_praise_clear",
+      "expected": false,
+      "note": "Jednoznačná pochvala",
+      "cs": "Skvělá zkušenost. Zboží přišlo druhý den a podpora mi odpověděla během deseti minut.",
+      "en": "Great experience. The goods arrived the next day and support replied within ten minutes."
+    },
+    {
+      "id": "b03_neutral_factual",
+      "expected": false,
+      "note": "Neutrální konstatování bez hodnocení",
+      "cs": "Zásilka byla doručena v úterý dopoledne. Obsahovala položky uvedené na faktuře.",
+      "en": "The parcel was delivered on Tuesday morning. It contained the items listed on the invoice."
+    },
+    {
+      "id": "b04_polite_anger",
+      "expected": true,
+      "note": "Zdvořilá forma, obsah je stížnost — test na formu vs. obsah",
+      "cs": "Byl bych velmi vděčný, kdyby mi někdo vysvětlil, proč mi byla částka stržena dvakrát, když moje předchozí tři dotazy zůstaly bez odpovědi.",
+      "en": "I would be most grateful if someone could explain why I was charged twice, given that my previous three enquiries have gone unanswered."
+    },
+    {
+      "id": "b05_sarcasm",
+      "expected": true,
+      "note": "Sarkasmus — formálně pochvalná slova, obsah negativní",
+      "cs": "No výborně, další týden bez objednávky. To je přesně ten zákaznický servis, za který si rád připlatím.",
+      "en": "Oh wonderful, another week without my order. That's exactly the customer service I'm happy to pay extra for."
+    },
+    {
+      "id": "b06_mixed",
+      "expected": true,
+      "note": "Smíšené — chvála i kritika",
+      "cs": "Doručení bylo rychlé a balení pěkné, ale výrobek se po dvou dnech rozbil.",
+      "en": "Delivery was quick and the packaging was nice, but the product broke after two days."
+    },
+    {
+      "id": "b07_negation",
+      "expected": false,
+      "note": "Negace — test, jestli model nereaguje jen na klíčová slova",
+      "cs": "Zásilka nedorazila pozdě a nic nechybělo. Všechno proběhlo bez problémů.",
+      "en": "The parcel did not arrive late and nothing was missing. Everything went without a problem."
+    },
+    {
+      "id": "b08_conditional",
+      "expected": false,
+      "note": "Podmiňovací způsob — stížnost se nekoná",
+      "cs": "Kdyby zásilka dorazila pozdě a něco chybělo, určitě bych si stěžoval. Naštěstí bylo všechno v pořádku.",
+      "en": "If the parcel had arrived late and something had been missing, I would certainly have complained. Fortunately everything was fine."
+    },
+    {
+      "id": "b09_third_person",
+      "expected": false,
+      "note": "Třetí osoba — stěžuje si někdo jiný",
+      "cs": "Soused říkal, že jeho zásilka dorazila pozdě a něco v ní chybělo. Mně zatím vždycky všechno přišlo v pořádku.",
+      "en": "My neighbour said his parcel arrived late and something was missing from it. Mine has always arrived fine so far."
+    },
+    {
+      "id": "b10_no_emotion_words",
+      "expected": true,
+      "note": "Stížnost bez jediného emocionálního slova",
+      "cs": "Kontaktoval jsem podporu čtyřikrát od třetího. Žádná odpověď. Částka je stále na výpisu.",
+      "en": "I have contacted support four times since the third. No reply. The charge is still on my statement."
+    },
+    {
+      "id": "b11_idiom",
+      "expected": true,
+      "note": "Český idiom bez přímého anglického ekvivalentu — test kulturní vazby",
+      "cs": "Z toho jsem byl úplně vedle. Slíbili mi to na pondělí a dodneška ani ťuk.",
+      "en": "I was completely thrown by it. They promised it for Monday and to this day, not a peep."
+    },
+    {
+      "id": "b12_understatement",
+      "expected": true,
+      "note": "Zlehčení — typicky české 'nic moc'",
+      "cs": "No, řekněme, že to nebylo úplně ono. Čekal jsem trochu víc za ty peníze.",
+      "en": "Well, let's say it wasn't quite it. I expected a bit more for the money."
+    },
+    {
+      "id": "b13_formal_business",
+      "expected": true,
+      "note": "Formální obchodní stížnost",
+      "cs": "Tímto vás upozorňuji, že dodávka neodpovídá specifikaci uvedené ve smlouvě, a žádám o nápravu do konce měsíce.",
+      "en": "I hereby notify you that the delivery does not match the specification stated in the contract, and I request remedy by the end of the month."
+    },
+    {
+      "id": "b14_enthusiastic_informal",
+      "expected": false,
+      "note": "Nadšená neformální pochvala s hovorovými výrazy",
+      "cs": "Ty jo, to je paráda! Konečně něco, co funguje tak, jak má. Klobouk dolů.",
+      "en": "Wow, that's brilliant! Finally something that works the way it should. Hats off."
+    },
+    {
+      "id": "b15_question_not_complaint",
+      "expected": false,
+      "note": "Dotaz, ne stížnost — snadno zaměnitelné",
+      "cs": "Dobrý den, chtěl bych se zeptat, jestli je možné změnit dodací adresu po odeslání objednávky.",
+      "en": "Hello, I would like to ask whether it is possible to change the delivery address after the order has been dispatched."
+    }
+  ]
+}

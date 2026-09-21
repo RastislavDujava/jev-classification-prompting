@@ -1,0 +1,111 @@
+{
+  "_comment": "User queries for tool-routing classification. 'expected' = what a well-built agent SHOULD do. The hard part is not fact vs opinion -- it is STABLE facts vs facts that DRIFT since the model's knowledge cutoff.",
+
+  "queries": [
+    {
+      "id": "pope_current",
+      "text": "Who is the current Pope?",
+      "expected": "search",
+      "trap": "Sounds like a basic fact the model 'knows'. But popes change, and the answer may be stale.",
+      "category": "drifting_entity"
+    },
+    {
+      "id": "pope_historical",
+      "text": "Who was the Pope during World War II?",
+      "expected": "model",
+      "trap": "Near-identical wording to the above, but the fact is frozen in history.",
+      "category": "stable_historical"
+    },
+    {
+      "id": "capital_france",
+      "text": "What is the capital of France?",
+      "expected": "model",
+      "trap": "Genuinely stable. Should NOT trigger a search.",
+      "category": "stable_fact"
+    },
+    {
+      "id": "ceo_openai",
+      "text": "Who is the CEO of OpenAI?",
+      "expected": "search",
+      "trap": "Model has a confident answer in training data, but leadership changes.",
+      "category": "drifting_entity"
+    },
+    {
+      "id": "python_sort",
+      "text": "How do I sort a list of dictionaries by a key in Python?",
+      "expected": "model",
+      "trap": "Technical, but the answer has been stable for a decade.",
+      "category": "stable_skill"
+    },
+    {
+      "id": "react_latest",
+      "text": "What is the latest stable version of React and what changed in it?",
+      "expected": "search",
+      "trap": "Version numbers drift constantly. Model will confidently give an outdated one.",
+      "category": "drifting_version"
+    },
+    {
+      "id": "weather_prague",
+      "text": "What is the weather in Prague right now?",
+      "expected": "search",
+      "trap": "Obvious case -- should be easy for any classifier.",
+      "category": "realtime"
+    },
+    {
+      "id": "photosynthesis",
+      "text": "Explain how photosynthesis works.",
+      "expected": "model",
+      "trap": "Obvious case on the other side.",
+      "category": "stable_knowledge"
+    },
+    {
+      "id": "stock_price",
+      "text": "What is Apple's stock price?",
+      "expected": "search",
+      "trap": "Obvious realtime case.",
+      "category": "realtime"
+    },
+    {
+      "id": "boiling_point",
+      "text": "At what temperature does water boil at sea level?",
+      "expected": "model",
+      "trap": "Physical constant, never changes.",
+      "category": "stable_fact"
+    },
+    {
+      "id": "best_laptop",
+      "text": "What is the best laptop for programming?",
+      "expected": "search",
+      "trap": "Feels like an opinion the model can give, but 'best' depends on current models on the market.",
+      "category": "drifting_recommendation"
+    },
+    {
+      "id": "who_won_election_us_2020",
+      "text": "Who won the 2020 US presidential election?",
+      "expected": "model",
+      "trap": "A past event, settled and inside training data.",
+      "category": "stable_historical"
+    },
+    {
+      "id": "current_us_president",
+      "text": "Who is the current US president?",
+      "expected": "search",
+      "trap": "The single most classic knowledge-cutoff trap.",
+      "category": "drifting_entity"
+    },
+    {
+      "id": "translate_hello",
+      "text": "How do you say 'hello' in Japanese?",
+      "expected": "model",
+      "trap": "Pure language knowledge, stable.",
+      "category": "stable_skill"
+    },
+    {
+      "id": "company_acquired",
+      "text": "Has Figma been acquired, and by whom?",
+      "expected": "search",
+      "trap": "Corporate status changes; the model may recall a deal that later fell through.",
+      "category": "drifting_entity"
+    }
+  ]
+}

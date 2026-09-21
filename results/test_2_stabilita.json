@@ -1,0 +1,1016 @@
+{
+  "mild_negative": [
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.69
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "negative",
+          "confidence": 0.99,
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.0,
+            "mixed": 0.0,
+            "neutral": 0.01
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.08,
+          "confidence": 0.89,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.01,
+            "1": 0.9,
+            "2": 0.09,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 502,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.174
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.68
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "negative",
+          "confidence": 0.99,
+          "probabilities": {
+            "mixed": 0.0,
+            "negative": 0.99,
+            "positive": 0.0,
+            "neutral": 0.01
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.09,
+          "confidence": 0.88,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.02,
+            "1": 0.87,
+            "2": 0.11,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 502,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.112
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.68
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "negative",
+          "confidence": 0.99,
+          "probabilities": {
+            "positive": 0.0,
+            "negative": 1.0,
+            "neutral": 0.0,
+            "mixed": 0.0
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.09,
+          "confidence": 0.88,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.01,
+            "1": 0.88,
+            "2": 0.11,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 502,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.134
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.69
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "negative",
+          "confidence": 0.99,
+          "probabilities": {
+            "negative": 1.0,
+            "positive": 0.0,
+            "mixed": 0.0,
+            "neutral": 0.0
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.1,
+          "confidence": 0.87,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.02,
+            "1": 0.87,
+            "2": 0.11,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 502,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.114
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.71
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "negative",
+          "confidence": 0.99,
+          "probabilities": {
+            "mixed": 0.0,
+            "neutral": 0.01,
+            "negative": 0.99,
+            "positive": 0.0
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.1,
+          "confidence": 0.88,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.01,
+            "1": 0.88,
+            "2": 0.11,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 502,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.221
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.69
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "negative",
+          "confidence": 0.99,
+          "probabilities": {
+            "mixed": 0.0,
+            "positive": 0.0,
+            "negative": 0.99,
+            "neutral": 0.01
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.09,
+          "confidence": 0.88,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.02,
+            "1": 0.88,
+            "2": 0.1,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 502,
+        "output_tokens": 81
+      },
+      "_latency_s": 7.959
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.7
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "negative",
+          "confidence": 0.99,
+          "probabilities": {
+            "mixed": 0.0,
+            "negative": 1.0,
+            "positive": 0.0,
+            "neutral": 0.0
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.09,
+          "confidence": 0.88,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.01,
+            "1": 0.88,
+            "2": 0.11,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 502,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.127
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.69
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "negative",
+          "confidence": 0.99,
+          "probabilities": {
+            "positive": 0.0,
+            "negative": 0.99,
+            "mixed": 0.0,
+            "neutral": 0.01
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.08,
+          "confidence": 0.89,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.02,
+            "1": 0.88,
+            "2": 0.1,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 502,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.162
+    }
+  ],
+  "mixed": [
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.85
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "mixed",
+          "confidence": 0.98,
+          "probabilities": {
+            "neutral": 0.0,
+            "positive": 0.0,
+            "mixed": 0.99,
+            "negative": 0.01
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.23,
+          "confidence": 0.77,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.0,
+            "1": 0.77,
+            "2": 0.23,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 510,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.221
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.85
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "mixed",
+          "confidence": 0.99,
+          "probabilities": {
+            "neutral": 0.0,
+            "positive": 0.0,
+            "negative": 0.01,
+            "mixed": 0.99
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.23,
+          "confidence": 0.77,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.0,
+            "1": 0.77,
+            "2": 0.23,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 510,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.148
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.86
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "mixed",
+          "confidence": 0.99,
+          "probabilities": {
+            "negative": 0.01,
+            "positive": 0.0,
+            "neutral": 0.0,
+            "mixed": 0.99
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.21,
+          "confidence": 0.78,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.0,
+            "1": 0.78,
+            "2": 0.22,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 510,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.214
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.85
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "mixed",
+          "confidence": 0.99,
+          "probabilities": {
+            "neutral": 0.0,
+            "negative": 0.01,
+            "mixed": 0.99,
+            "positive": 0.0
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.23,
+          "confidence": 0.77,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.0,
+            "1": 0.77,
+            "2": 0.23,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 510,
+        "output_tokens": 81
+      },
+      "_latency_s": 8.107
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.85
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "mixed",
+          "confidence": 0.99,
+          "probabilities": {
+            "mixed": 0.99,
+            "negative": 0.01,
+            "neutral": 0.0,
+            "positive": 0.0
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.2,
+          "confidence": 0.8,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.0,
+            "1": 0.8,
+            "2": 0.2,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 510,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.217
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.86
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "mixed",
+          "confidence": 0.99,
+          "probabilities": {
+            "negative": 0.01,
+            "mixed": 0.99,
+            "neutral": 0.0,
+            "positive": 0.0
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.22,
+          "confidence": 0.77,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.0,
+            "1": 0.77,
+            "2": 0.23,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 510,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.135
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.85
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "mixed",
+          "confidence": 0.99,
+          "probabilities": {
+            "positive": 0.0,
+            "neutral": 0.0,
+            "mixed": 0.99,
+            "negative": 0.01
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.21,
+          "confidence": 0.79,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.0,
+            "1": 0.79,
+            "2": 0.21,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 510,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.005
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.86
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "mixed",
+          "confidence": 0.99,
+          "probabilities": {
+            "mixed": 0.99,
+            "positive": 0.0,
+            "neutral": 0.0,
+            "negative": 0.01
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.18,
+          "confidence": 0.82,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.0,
+            "1": 0.82,
+            "2": 0.18,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 510,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.133
+    }
+  ],
+  "polite_but_angry": [
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.91
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "negative",
+          "confidence": 0.98,
+          "probabilities": {
+            "mixed": 0.01,
+            "negative": 0.99,
+            "positive": 0.0,
+            "neutral": 0.0
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.79,
+          "confidence": 0.79,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.0,
+            "1": 0.21,
+            "2": 0.79,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 517,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.112
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.91
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "negative",
+          "confidence": 0.99,
+          "probabilities": {
+            "neutral": 0.0,
+            "positive": 0.0,
+            "negative": 0.99,
+            "mixed": 0.01
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.78,
+          "confidence": 0.78,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.0,
+            "1": 0.22,
+            "2": 0.78,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 517,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.229
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.91
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "negative",
+          "confidence": 0.98,
+          "probabilities": {
+            "negative": 0.99,
+            "positive": 0.0,
+            "mixed": 0.01,
+            "neutral": 0.0
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.8,
+          "confidence": 0.8,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.0,
+            "1": 0.2,
+            "2": 0.8,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 517,
+        "output_tokens": 81
+      },
+      "_latency_s": 10.197
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.91
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "negative",
+          "confidence": 0.98,
+          "probabilities": {
+            "positive": 0.0,
+            "neutral": 0.0,
+            "mixed": 0.01,
+            "negative": 0.99
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.81,
+          "confidence": 0.8,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.0,
+            "1": 0.19,
+            "2": 0.81,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 517,
+        "output_tokens": 81
+      },
+      "_latency_s": 7.821
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.91
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "negative",
+          "confidence": 0.98,
+          "probabilities": {
+            "positive": 0.0,
+            "mixed": 0.01,
+            "neutral": 0.0,
+            "negative": 0.99
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.8,
+          "confidence": 0.8,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.0,
+            "1": 0.2,
+            "2": 0.8,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 517,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.19
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.91
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "negative",
+          "confidence": 0.98,
+          "probabilities": {
+            "neutral": 0.0,
+            "mixed": 0.02,
+            "positive": 0.0,
+            "negative": 0.98
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.79,
+          "confidence": 0.78,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.0,
+            "1": 0.21,
+            "2": 0.79,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 517,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.141
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.91
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "negative",
+          "confidence": 0.98,
+          "probabilities": {
+            "positive": 0.0,
+            "negative": 0.99,
+            "mixed": 0.01,
+            "neutral": 0.0
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.77,
+          "confidence": 0.77,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.0,
+            "1": 0.23,
+            "2": 0.77,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 517,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.234
+    },
+    {
+      "model": "jev-1.13.0",
+      "answers": {
+        "negative_emotion": {
+          "type": "noul",
+          "noul": 0.91
+        },
+        "sentiment_category": {
+          "type": "choice",
+          "choice": "negative",
+          "confidence": 0.98,
+          "probabilities": {
+            "neutral": 0.0,
+            "mixed": 0.01,
+            "negative": 0.99,
+            "positive": 0.0
+          }
+        },
+        "anger_level": {
+          "type": "score",
+          "score": 1.79,
+          "confidence": 0.79,
+          "legend": {
+            "0": "Completely calm, no irritation at all",
+            "1": "Mildly irritated or inconvenienced",
+            "2": "Clearly frustrated and complaining",
+            "3": "Very angry, demanding, or hostile"
+          },
+          "probabilities": {
+            "0": 0.0,
+            "1": 0.21,
+            "2": 0.79,
+            "3": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 517,
+        "output_tokens": 81
+      },
+      "_latency_s": 1.024
+    }
+  ]
+}

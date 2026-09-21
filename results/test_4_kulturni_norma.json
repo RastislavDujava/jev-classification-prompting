@@ -1,0 +1,1497 @@
+{
+  "mirne_ceske": {
+    "text": "Ty vole, ta appka zase spadla. Už je to potřetí dneska, do prdele. Fakt nechápu, jak může být takový blbost v produkci.",
+    "A_bez_normy": {
+      "is_vulgar": 0.98,
+      "vulgarity_level": 2.033333333333333,
+      "moderation_action": "flag_for_review",
+      "moderation_probs": {
+        "block": 0.18,
+        "flag_for_review": 0.58,
+        "allow": 0.24
+      },
+      "is_positive": 0.02,
+      "_raw": [
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.98
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 2.04,
+              "confidence": 0.89,
+              "legend": {
+                "0": "Completely clean, no profanity at all",
+                "1": "Mild informal language, borderline",
+                "2": "Clearly vulgar, would offend some readers",
+                "3": "Extremely vulgar, offensive to most readers"
+              },
+              "probabilities": {
+                "0": 0.0,
+                "1": 0.03,
+                "2": 0.9,
+                "3": 0.07
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "flag_for_review",
+              "confidence": 0.37,
+              "probabilities": {
+                "block": 0.18,
+                "flag_for_review": 0.58,
+                "allow": 0.24
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.02
+            }
+          },
+          "usage": {
+            "input_tokens": 531,
+            "output_tokens": 98
+          },
+          "_latency_s": 8.868
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.98
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 2.03,
+              "confidence": 0.9,
+              "legend": {
+                "0": "Completely clean, no profanity at all",
+                "1": "Mild informal language, borderline",
+                "2": "Clearly vulgar, would offend some readers",
+                "3": "Extremely vulgar, offensive to most readers"
+              },
+              "probabilities": {
+                "0": 0.0,
+                "1": 0.03,
+                "2": 0.91,
+                "3": 0.06
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "flag_for_review",
+              "confidence": 0.3,
+              "probabilities": {
+                "flag_for_review": 0.53,
+                "block": 0.2,
+                "allow": 0.27
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.02
+            }
+          },
+          "usage": {
+            "input_tokens": 531,
+            "output_tokens": 98
+          },
+          "_latency_s": 1.221
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.98
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 2.03,
+              "confidence": 0.9,
+              "legend": {
+                "0": "Completely clean, no profanity at all",
+                "1": "Mild informal language, borderline",
+                "2": "Clearly vulgar, would offend some readers",
+                "3": "Extremely vulgar, offensive to most readers"
+              },
+              "probabilities": {
+                "0": 0.0,
+                "1": 0.03,
+                "2": 0.91,
+                "3": 0.06
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "flag_for_review",
+              "confidence": 0.33,
+              "probabilities": {
+                "block": 0.18,
+                "flag_for_review": 0.56,
+                "allow": 0.26
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.02
+            }
+          },
+          "usage": {
+            "input_tokens": 531,
+            "output_tokens": 98
+          },
+          "_latency_s": 1.007
+        }
+      ]
+    },
+    "B_s_normou": {
+      "is_vulgar": 0.13333333333333333,
+      "vulgarity_level": 0.16666666666666669,
+      "moderation_action": "allow",
+      "moderation_probs": {
+        "flag_for_review": 0.13,
+        "block": 0.0,
+        "allow": 0.87
+      },
+      "is_positive": 0.043333333333333335,
+      "_raw": [
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.13
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 0.17,
+              "confidence": 0.83,
+              "legend": {
+                "0": "Completely clean, or contains only mild Czech colloquialisms ('ty vole', 'do prdele', 'blbost', 'kravina', 'sakra') that Czech speakers use routinely in normal conversation and do not consider offensive",
+                "1": "Noticeably coarse for a public forum, but still within the range of ordinary Czech pub talk; no personal attack",
+                "2": "Clearly vulgar by Czech standards: strong profanity (zkurvený, piča) or crude language aimed at the company",
+                "3": "Extremely vulgar by Czech standards: aggressive personal insults (debil, kretén) combined with the strongest profanity"
+              },
+              "probabilities": {
+                "0": 0.83,
+                "1": 0.16,
+                "2": 0.01,
+                "3": 0.0
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "allow",
+              "confidence": 0.8,
+              "probabilities": {
+                "flag_for_review": 0.13,
+                "block": 0.0,
+                "allow": 0.87
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.04
+            }
+          },
+          "usage": {
+            "input_tokens": 888,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.083
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.14
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 0.16,
+              "confidence": 0.84,
+              "legend": {
+                "0": "Completely clean, or contains only mild Czech colloquialisms ('ty vole', 'do prdele', 'blbost', 'kravina', 'sakra') that Czech speakers use routinely in normal conversation and do not consider offensive",
+                "1": "Noticeably coarse for a public forum, but still within the range of ordinary Czech pub talk; no personal attack",
+                "2": "Clearly vulgar by Czech standards: strong profanity (zkurvený, piča) or crude language aimed at the company",
+                "3": "Extremely vulgar by Czech standards: aggressive personal insults (debil, kretén) combined with the strongest profanity"
+              },
+              "probabilities": {
+                "0": 0.85,
+                "1": 0.15,
+                "2": 0.0,
+                "3": 0.0
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "allow",
+              "confidence": 0.77,
+              "probabilities": {
+                "block": 0.0,
+                "allow": 0.85,
+                "flag_for_review": 0.15
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.05
+            }
+          },
+          "usage": {
+            "input_tokens": 888,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.07
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.13
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 0.17,
+              "confidence": 0.83,
+              "legend": {
+                "0": "Completely clean, or contains only mild Czech colloquialisms ('ty vole', 'do prdele', 'blbost', 'kravina', 'sakra') that Czech speakers use routinely in normal conversation and do not consider offensive",
+                "1": "Noticeably coarse for a public forum, but still within the range of ordinary Czech pub talk; no personal attack",
+                "2": "Clearly vulgar by Czech standards: strong profanity (zkurvený, piča) or crude language aimed at the company",
+                "3": "Extremely vulgar by Czech standards: aggressive personal insults (debil, kretén) combined with the strongest profanity"
+              },
+              "probabilities": {
+                "0": 0.83,
+                "1": 0.16,
+                "2": 0.01,
+                "3": 0.0
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "allow",
+              "confidence": 0.79,
+              "probabilities": {
+                "flag_for_review": 0.14,
+                "block": 0.0,
+                "allow": 0.86
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.04
+            }
+          },
+          "usage": {
+            "input_tokens": 888,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.226
+        }
+      ]
+    }
+  },
+  "mirne_ceske_bez_vulgarit": {
+    "text": "Ta aplikace zase spadla. Už je to potřetí dneska. Nechápu, jak se něco takového mohlo dostat do produkce.",
+    "A_bez_normy": {
+      "is_vulgar": 0.04666666666666667,
+      "vulgarity_level": 0.12333333333333334,
+      "moderation_action": "allow",
+      "moderation_probs": {
+        "allow": 0.98,
+        "block": 0.0,
+        "flag_for_review": 0.02
+      },
+      "is_positive": 0.02,
+      "_raw": [
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.05
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 0.13,
+              "confidence": 0.87,
+              "legend": {
+                "0": "Completely clean, no profanity at all",
+                "1": "Mild informal language, borderline",
+                "2": "Clearly vulgar, would offend some readers",
+                "3": "Extremely vulgar, offensive to most readers"
+              },
+              "probabilities": {
+                "0": 0.88,
+                "1": 0.12,
+                "2": 0.0,
+                "3": 0.0
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "allow",
+              "confidence": 0.98,
+              "probabilities": {
+                "allow": 0.98,
+                "block": 0.0,
+                "flag_for_review": 0.02
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.02
+            }
+          },
+          "usage": {
+            "input_tokens": 526,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.016
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.05
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 0.13,
+              "confidence": 0.87,
+              "legend": {
+                "0": "Completely clean, no profanity at all",
+                "1": "Mild informal language, borderline",
+                "2": "Clearly vulgar, would offend some readers",
+                "3": "Extremely vulgar, offensive to most readers"
+              },
+              "probabilities": {
+                "0": 0.88,
+                "1": 0.12,
+                "2": 0.0,
+                "3": 0.0
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "allow",
+              "confidence": 0.97,
+              "probabilities": {
+                "flag_for_review": 0.02,
+                "allow": 0.98,
+                "block": 0.0
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.02
+            }
+          },
+          "usage": {
+            "input_tokens": 526,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.03
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.04
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 0.11,
+              "confidence": 0.89,
+              "legend": {
+                "0": "Completely clean, no profanity at all",
+                "1": "Mild informal language, borderline",
+                "2": "Clearly vulgar, would offend some readers",
+                "3": "Extremely vulgar, offensive to most readers"
+              },
+              "probabilities": {
+                "0": 0.9,
+                "1": 0.1,
+                "2": 0.0,
+                "3": 0.0
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "allow",
+              "confidence": 0.98,
+              "probabilities": {
+                "allow": 0.98,
+                "flag_for_review": 0.02,
+                "block": 0.0
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.02
+            }
+          },
+          "usage": {
+            "input_tokens": 526,
+            "output_tokens": 96
+          },
+          "_latency_s": 7.905
+        }
+      ]
+    },
+    "B_s_normou": {
+      "is_vulgar": 0.03,
+      "vulgarity_level": 0.0,
+      "moderation_action": "allow",
+      "moderation_probs": {
+        "flag_for_review": 0.0,
+        "allow": 1.0,
+        "block": 0.0
+      },
+      "is_positive": 0.026666666666666665,
+      "_raw": [
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.03
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 0.0,
+              "confidence": 1.0,
+              "legend": {
+                "0": "Completely clean, or contains only mild Czech colloquialisms ('ty vole', 'do prdele', 'blbost', 'kravina', 'sakra') that Czech speakers use routinely in normal conversation and do not consider offensive",
+                "1": "Noticeably coarse for a public forum, but still within the range of ordinary Czech pub talk; no personal attack",
+                "2": "Clearly vulgar by Czech standards: strong profanity (zkurvený, piča) or crude language aimed at the company",
+                "3": "Extremely vulgar by Czech standards: aggressive personal insults (debil, kretén) combined with the strongest profanity"
+              },
+              "probabilities": {
+                "0": 1.0,
+                "1": 0.0,
+                "2": 0.0,
+                "3": 0.0
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "allow",
+              "confidence": 1.0,
+              "probabilities": {
+                "flag_for_review": 0.0,
+                "allow": 1.0,
+                "block": 0.0
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.03
+            }
+          },
+          "usage": {
+            "input_tokens": 883,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.144
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.03
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 0.0,
+              "confidence": 1.0,
+              "legend": {
+                "0": "Completely clean, or contains only mild Czech colloquialisms ('ty vole', 'do prdele', 'blbost', 'kravina', 'sakra') that Czech speakers use routinely in normal conversation and do not consider offensive",
+                "1": "Noticeably coarse for a public forum, but still within the range of ordinary Czech pub talk; no personal attack",
+                "2": "Clearly vulgar by Czech standards: strong profanity (zkurvený, piča) or crude language aimed at the company",
+                "3": "Extremely vulgar by Czech standards: aggressive personal insults (debil, kretén) combined with the strongest profanity"
+              },
+              "probabilities": {
+                "0": 1.0,
+                "1": 0.0,
+                "2": 0.0,
+                "3": 0.0
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "allow",
+              "confidence": 0.99,
+              "probabilities": {
+                "block": 0.0,
+                "flag_for_review": 0.0,
+                "allow": 1.0
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.02
+            }
+          },
+          "usage": {
+            "input_tokens": 883,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.295
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.03
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 0.0,
+              "confidence": 1.0,
+              "legend": {
+                "0": "Completely clean, or contains only mild Czech colloquialisms ('ty vole', 'do prdele', 'blbost', 'kravina', 'sakra') that Czech speakers use routinely in normal conversation and do not consider offensive",
+                "1": "Noticeably coarse for a public forum, but still within the range of ordinary Czech pub talk; no personal attack",
+                "2": "Clearly vulgar by Czech standards: strong profanity (zkurvený, piča) or crude language aimed at the company",
+                "3": "Extremely vulgar by Czech standards: aggressive personal insults (debil, kretén) combined with the strongest profanity"
+              },
+              "probabilities": {
+                "0": 1.0,
+                "1": 0.0,
+                "2": 0.0,
+                "3": 0.0
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "allow",
+              "confidence": 0.99,
+              "probabilities": {
+                "allow": 1.0,
+                "block": 0.0,
+                "flag_for_review": 0.0
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.03
+            }
+          },
+          "usage": {
+            "input_tokens": 883,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.035
+        }
+      ]
+    }
+  },
+  "silne_ceske": {
+    "text": "Vy jste naprostí debilové, ta vaše zkurvená appka mi smazala data. Jděte do piče s takovým hnusem.",
+    "A_bez_normy": {
+      "is_vulgar": 0.99,
+      "vulgarity_level": 2.92,
+      "moderation_action": "block",
+      "moderation_probs": {
+        "block": 0.86,
+        "flag_for_review": 0.14,
+        "allow": 0.0
+      },
+      "is_positive": 0.01,
+      "_raw": [
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.99
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 2.93,
+              "confidence": 0.93,
+              "legend": {
+                "0": "Completely clean, no profanity at all",
+                "1": "Mild informal language, borderline",
+                "2": "Clearly vulgar, would offend some readers",
+                "3": "Extremely vulgar, offensive to most readers"
+              },
+              "probabilities": {
+                "0": 0.0,
+                "1": 0.0,
+                "2": 0.06,
+                "3": 0.9400000000000001
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "block",
+              "confidence": 0.79,
+              "probabilities": {
+                "block": 0.86,
+                "flag_for_review": 0.14,
+                "allow": 0.0
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.01
+            }
+          },
+          "usage": {
+            "input_tokens": 525,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.094
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.99
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 2.9,
+              "confidence": 0.9,
+              "legend": {
+                "0": "Completely clean, no profanity at all",
+                "1": "Mild informal language, borderline",
+                "2": "Clearly vulgar, would offend some readers",
+                "3": "Extremely vulgar, offensive to most readers"
+              },
+              "probabilities": {
+                "0": 0.0,
+                "1": 0.0,
+                "2": 0.09,
+                "3": 0.91
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "block",
+              "confidence": 0.78,
+              "probabilities": {
+                "block": 0.86,
+                "flag_for_review": 0.14,
+                "allow": 0.0
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.01
+            }
+          },
+          "usage": {
+            "input_tokens": 525,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.026
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.99
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 2.93,
+              "confidence": 0.93,
+              "legend": {
+                "0": "Completely clean, no profanity at all",
+                "1": "Mild informal language, borderline",
+                "2": "Clearly vulgar, would offend some readers",
+                "3": "Extremely vulgar, offensive to most readers"
+              },
+              "probabilities": {
+                "0": 0.0,
+                "1": 0.0,
+                "2": 0.07,
+                "3": 0.93
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "block",
+              "confidence": 0.76,
+              "probabilities": {
+                "allow": 0.0,
+                "flag_for_review": 0.15,
+                "block": 0.85
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.01
+            }
+          },
+          "usage": {
+            "input_tokens": 525,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.022
+        }
+      ]
+    },
+    "B_s_normou": {
+      "is_vulgar": 0.98,
+      "vulgarity_level": 2.99,
+      "moderation_action": "block",
+      "moderation_probs": {
+        "flag_for_review": 0.1,
+        "block": 0.88,
+        "allow": 0.02
+      },
+      "is_positive": 0.02,
+      "_raw": [
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.98
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 2.99,
+              "confidence": 0.99,
+              "legend": {
+                "0": "Completely clean, or contains only mild Czech colloquialisms ('ty vole', 'do prdele', 'blbost', 'kravina', 'sakra') that Czech speakers use routinely in normal conversation and do not consider offensive",
+                "1": "Noticeably coarse for a public forum, but still within the range of ordinary Czech pub talk; no personal attack",
+                "2": "Clearly vulgar by Czech standards: strong profanity (zkurvený, piča) or crude language aimed at the company",
+                "3": "Extremely vulgar by Czech standards: aggressive personal insults (debil, kretén) combined with the strongest profanity"
+              },
+              "probabilities": {
+                "0": 0.0,
+                "1": 0.0,
+                "2": 0.01,
+                "3": 0.99
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "block",
+              "confidence": 0.82,
+              "probabilities": {
+                "flag_for_review": 0.1,
+                "block": 0.88,
+                "allow": 0.02
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.02
+            }
+          },
+          "usage": {
+            "input_tokens": 882,
+            "output_tokens": 96
+          },
+          "_latency_s": 8.189
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.98
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 2.99,
+              "confidence": 0.99,
+              "legend": {
+                "0": "Completely clean, or contains only mild Czech colloquialisms ('ty vole', 'do prdele', 'blbost', 'kravina', 'sakra') that Czech speakers use routinely in normal conversation and do not consider offensive",
+                "1": "Noticeably coarse for a public forum, but still within the range of ordinary Czech pub talk; no personal attack",
+                "2": "Clearly vulgar by Czech standards: strong profanity (zkurvený, piča) or crude language aimed at the company",
+                "3": "Extremely vulgar by Czech standards: aggressive personal insults (debil, kretén) combined with the strongest profanity"
+              },
+              "probabilities": {
+                "0": 0.0,
+                "1": 0.0,
+                "2": 0.01,
+                "3": 0.99
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "block",
+              "confidence": 0.8,
+              "probabilities": {
+                "allow": 0.03,
+                "block": 0.86,
+                "flag_for_review": 0.11
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.02
+            }
+          },
+          "usage": {
+            "input_tokens": 882,
+            "output_tokens": 96
+          },
+          "_latency_s": 12.605
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.98
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 2.99,
+              "confidence": 0.99,
+              "legend": {
+                "0": "Completely clean, or contains only mild Czech colloquialisms ('ty vole', 'do prdele', 'blbost', 'kravina', 'sakra') that Czech speakers use routinely in normal conversation and do not consider offensive",
+                "1": "Noticeably coarse for a public forum, but still within the range of ordinary Czech pub talk; no personal attack",
+                "2": "Clearly vulgar by Czech standards: strong profanity (zkurvený, piča) or crude language aimed at the company",
+                "3": "Extremely vulgar by Czech standards: aggressive personal insults (debil, kretén) combined with the strongest profanity"
+              },
+              "probabilities": {
+                "0": 0.0,
+                "1": 0.0,
+                "2": 0.01,
+                "3": 0.99
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "block",
+              "confidence": 0.79,
+              "probabilities": {
+                "allow": 0.02,
+                "block": 0.87,
+                "flag_for_review": 0.11
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.02
+            }
+          },
+          "usage": {
+            "input_tokens": 882,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.018
+        }
+      ]
+    }
+  },
+  "anglicke_mirne": {
+    "text": "Oh crap, the app crashed again. Third damn time today. I don't get how this kind of rubbish ships to production.",
+    "A_bez_normy": {
+      "is_vulgar": 0.9366666666666666,
+      "vulgarity_level": 1.7366666666666666,
+      "moderation_action": "allow",
+      "moderation_probs": {
+        "block": 0.0,
+        "flag_for_review": 0.08,
+        "allow": 0.92
+      },
+      "is_positive": 0.02,
+      "_raw": [
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.94
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 1.74,
+              "confidence": 0.73,
+              "legend": {
+                "0": "Completely clean, no profanity at all",
+                "1": "Mild informal language, borderline",
+                "2": "Clearly vulgar, would offend some readers",
+                "3": "Extremely vulgar, offensive to most readers"
+              },
+              "probabilities": {
+                "0": 0.01,
+                "1": 0.24,
+                "2": 0.75,
+                "3": 0.0
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "allow",
+              "confidence": 0.88,
+              "probabilities": {
+                "block": 0.0,
+                "flag_for_review": 0.08,
+                "allow": 0.92
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.02
+            }
+          },
+          "usage": {
+            "input_tokens": 512,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.046
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.94
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 1.75,
+              "confidence": 0.75,
+              "legend": {
+                "0": "Completely clean, no profanity at all",
+                "1": "Mild informal language, borderline",
+                "2": "Clearly vulgar, would offend some readers",
+                "3": "Extremely vulgar, offensive to most readers"
+              },
+              "probabilities": {
+                "0": 0.01,
+                "1": 0.22,
+                "2": 0.77,
+                "3": 0.0
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "allow",
+              "confidence": 0.9,
+              "probabilities": {
+                "allow": 0.93,
+                "block": 0.0,
+                "flag_for_review": 0.07
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.02
+            }
+          },
+          "usage": {
+            "input_tokens": 512,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.101
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.93
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 1.72,
+              "confidence": 0.71,
+              "legend": {
+                "0": "Completely clean, no profanity at all",
+                "1": "Mild informal language, borderline",
+                "2": "Clearly vulgar, would offend some readers",
+                "3": "Extremely vulgar, offensive to most readers"
+              },
+              "probabilities": {
+                "0": 0.02,
+                "1": 0.25,
+                "2": 0.73,
+                "3": 0.0
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "allow",
+              "confidence": 0.88,
+              "probabilities": {
+                "flag_for_review": 0.08,
+                "allow": 0.92,
+                "block": 0.0
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.02
+            }
+          },
+          "usage": {
+            "input_tokens": 512,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.013
+        }
+      ]
+    },
+    "B_s_normou": {
+      "is_vulgar": 0.3433333333333333,
+      "vulgarity_level": 0.8233333333333334,
+      "moderation_action": "allow",
+      "moderation_probs": {
+        "block": 0.0,
+        "allow": 0.88,
+        "flag_for_review": 0.12
+      },
+      "is_positive": 0.03,
+      "_raw": [
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.34
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 0.85,
+              "confidence": 0.41,
+              "legend": {
+                "0": "Completely clean, or contains only mild Czech colloquialisms ('ty vole', 'do prdele', 'blbost', 'kravina', 'sakra') that Czech speakers use routinely in normal conversation and do not consider offensive",
+                "1": "Noticeably coarse for a public forum, but still within the range of ordinary Czech pub talk; no personal attack",
+                "2": "Clearly vulgar by Czech standards: strong profanity (zkurvený, piča) or crude language aimed at the company",
+                "3": "Extremely vulgar by Czech standards: aggressive personal insults (debil, kretén) combined with the strongest profanity"
+              },
+              "probabilities": {
+                "0": 0.37,
+                "1": 0.42,
+                "2": 0.21,
+                "3": 0.0
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "allow",
+              "confidence": 0.81,
+              "probabilities": {
+                "block": 0.0,
+                "allow": 0.88,
+                "flag_for_review": 0.12
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.03
+            }
+          },
+          "usage": {
+            "input_tokens": 869,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.025
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.37
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 0.84,
+              "confidence": 0.42,
+              "legend": {
+                "0": "Completely clean, or contains only mild Czech colloquialisms ('ty vole', 'do prdele', 'blbost', 'kravina', 'sakra') that Czech speakers use routinely in normal conversation and do not consider offensive",
+                "1": "Noticeably coarse for a public forum, but still within the range of ordinary Czech pub talk; no personal attack",
+                "2": "Clearly vulgar by Czech standards: strong profanity (zkurvený, piča) or crude language aimed at the company",
+                "3": "Extremely vulgar by Czech standards: aggressive personal insults (debil, kretén) combined with the strongest profanity"
+              },
+              "probabilities": {
+                "0": 0.37,
+                "1": 0.43,
+                "2": 0.2,
+                "3": 0.0
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "allow",
+              "confidence": 0.81,
+              "probabilities": {
+                "block": 0.0,
+                "flag_for_review": 0.13,
+                "allow": 0.87
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.03
+            }
+          },
+          "usage": {
+            "input_tokens": 869,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.021
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.32
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 0.78,
+              "confidence": 0.22,
+              "legend": {
+                "0": "Completely clean, or contains only mild Czech colloquialisms ('ty vole', 'do prdele', 'blbost', 'kravina', 'sakra') that Czech speakers use routinely in normal conversation and do not consider offensive",
+                "1": "Noticeably coarse for a public forum, but still within the range of ordinary Czech pub talk; no personal attack",
+                "2": "Clearly vulgar by Czech standards: strong profanity (zkurvený, piča) or crude language aimed at the company",
+                "3": "Extremely vulgar by Czech standards: aggressive personal insults (debil, kretén) combined with the strongest profanity"
+              },
+              "probabilities": {
+                "0": 0.43,
+                "1": 0.37,
+                "2": 0.2,
+                "3": 0.0
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "allow",
+              "confidence": 0.78,
+              "probabilities": {
+                "allow": 0.86,
+                "flag_for_review": 0.14,
+                "block": 0.0
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.03
+            }
+          },
+          "usage": {
+            "input_tokens": 869,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.133
+        }
+      ]
+    }
+  },
+  "hospodske_pratelske": {
+    "text": "Ty vole, to je paráda! Tohle jste vymysleli fakt dobře, klobouk dolů. Konečně to funguje jak má, kurva.",
+    "A_bez_normy": {
+      "is_vulgar": 0.98,
+      "vulgarity_level": 2.01,
+      "moderation_action": "flag_for_review",
+      "moderation_probs": {
+        "allow": 0.21,
+        "flag_for_review": 0.61,
+        "block": 0.18
+      },
+      "is_positive": 0.9333333333333333,
+      "_raw": [
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.98
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 2.01,
+              "confidence": 0.92,
+              "legend": {
+                "0": "Completely clean, no profanity at all",
+                "1": "Mild informal language, borderline",
+                "2": "Clearly vulgar, would offend some readers",
+                "3": "Extremely vulgar, offensive to most readers"
+              },
+              "probabilities": {
+                "0": 0.0,
+                "1": 0.03,
+                "2": 0.93,
+                "3": 0.04
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "flag_for_review",
+              "confidence": 0.4,
+              "probabilities": {
+                "allow": 0.21,
+                "flag_for_review": 0.61,
+                "block": 0.18
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.94
+            }
+          },
+          "usage": {
+            "input_tokens": 526,
+            "output_tokens": 98
+          },
+          "_latency_s": 1.006
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.98
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 2.01,
+              "confidence": 0.93,
+              "legend": {
+                "0": "Completely clean, no profanity at all",
+                "1": "Mild informal language, borderline",
+                "2": "Clearly vulgar, would offend some readers",
+                "3": "Extremely vulgar, offensive to most readers"
+              },
+              "probabilities": {
+                "0": 0.0,
+                "1": 0.03,
+                "2": 0.93,
+                "3": 0.04
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "flag_for_review",
+              "confidence": 0.42,
+              "probabilities": {
+                "block": 0.18,
+                "allow": 0.2,
+                "flag_for_review": 0.62
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.92
+            }
+          },
+          "usage": {
+            "input_tokens": 526,
+            "output_tokens": 98
+          },
+          "_latency_s": 1.017
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.98
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 2.01,
+              "confidence": 0.92,
+              "legend": {
+                "0": "Completely clean, no profanity at all",
+                "1": "Mild informal language, borderline",
+                "2": "Clearly vulgar, would offend some readers",
+                "3": "Extremely vulgar, offensive to most readers"
+              },
+              "probabilities": {
+                "0": 0.0,
+                "1": 0.03,
+                "2": 0.93,
+                "3": 0.04
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "flag_for_review",
+              "confidence": 0.42,
+              "probabilities": {
+                "block": 0.17,
+                "allow": 0.22,
+                "flag_for_review": 0.61
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.94
+            }
+          },
+          "usage": {
+            "input_tokens": 526,
+            "output_tokens": 98
+          },
+          "_latency_s": 1.32
+        }
+      ]
+    },
+    "B_s_normou": {
+      "is_vulgar": 0.23333333333333334,
+      "vulgarity_level": 1.0733333333333333,
+      "moderation_action": "allow",
+      "moderation_probs": {
+        "allow": 0.68,
+        "block": 0.03,
+        "flag_for_review": 0.29
+      },
+      "is_positive": 0.94,
+      "_raw": [
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.22
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 1.04,
+              "confidence": 0.45,
+              "legend": {
+                "0": "Completely clean, or contains only mild Czech colloquialisms ('ty vole', 'do prdele', 'blbost', 'kravina', 'sakra') that Czech speakers use routinely in normal conversation and do not consider offensive",
+                "1": "Noticeably coarse for a public forum, but still within the range of ordinary Czech pub talk; no personal attack",
+                "2": "Clearly vulgar by Czech standards: strong profanity (zkurvený, piča) or crude language aimed at the company",
+                "3": "Extremely vulgar by Czech standards: aggressive personal insults (debil, kretén) combined with the strongest profanity"
+              },
+              "probabilities": {
+                "0": 0.25,
+                "1": 0.46,
+                "2": 0.29,
+                "3": 0.0
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "allow",
+              "confidence": 0.52,
+              "probabilities": {
+                "allow": 0.68,
+                "block": 0.03,
+                "flag_for_review": 0.29
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.94
+            }
+          },
+          "usage": {
+            "input_tokens": 883,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.137
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.25
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 1.16,
+              "confidence": 0.44,
+              "legend": {
+                "0": "Completely clean, or contains only mild Czech colloquialisms ('ty vole', 'do prdele', 'blbost', 'kravina', 'sakra') that Czech speakers use routinely in normal conversation and do not consider offensive",
+                "1": "Noticeably coarse for a public forum, but still within the range of ordinary Czech pub talk; no personal attack",
+                "2": "Clearly vulgar by Czech standards: strong profanity (zkurvený, piča) or crude language aimed at the company",
+                "3": "Extremely vulgar by Czech standards: aggressive personal insults (debil, kretén) combined with the strongest profanity"
+              },
+              "probabilities": {
+                "0": 0.2,
+                "1": 0.44,
+                "2": 0.36,
+                "3": 0.0
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "allow",
+              "confidence": 0.34,
+              "probabilities": {
+                "allow": 0.56,
+                "flag_for_review": 0.41,
+                "block": 0.03
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.94
+            }
+          },
+          "usage": {
+            "input_tokens": 883,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.112
+        },
+        {
+          "model": "jev-1.13.0",
+          "answers": {
+            "is_vulgar": {
+              "type": "noul",
+              "noul": 0.23
+            },
+            "vulgarity_level": {
+              "type": "score",
+              "score": 1.02,
+              "confidence": 0.47,
+              "legend": {
+                "0": "Completely clean, or contains only mild Czech colloquialisms ('ty vole', 'do prdele', 'blbost', 'kravina', 'sakra') that Czech speakers use routinely in normal conversation and do not consider offensive",
+                "1": "Noticeably coarse for a public forum, but still within the range of ordinary Czech pub talk; no personal attack",
+                "2": "Clearly vulgar by Czech standards: strong profanity (zkurvený, piča) or crude language aimed at the company",
+                "3": "Extremely vulgar by Czech standards: aggressive personal insults (debil, kretén) combined with the strongest profanity"
+              },
+              "probabilities": {
+                "0": 0.26,
+                "1": 0.47,
+                "2": 0.27,
+                "3": 0.0
+              }
+            },
+            "moderation_action": {
+              "type": "choice",
+              "choice": "allow",
+              "confidence": 0.49,
+              "probabilities": {
+                "flag_for_review": 0.32,
+                "block": 0.02,
+                "allow": 0.66
+              }
+            },
+            "is_positive": {
+              "type": "noul",
+              "noul": 0.94
+            }
+          },
+          "usage": {
+            "input_tokens": 883,
+            "output_tokens": 96
+          },
+          "_latency_s": 1.433
+        }
+      ]
+    }
+  }
+}

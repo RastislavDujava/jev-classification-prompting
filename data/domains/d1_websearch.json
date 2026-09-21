@@ -1,0 +1,115 @@
+{
+  "domain_id": "websearch",
+  "title_cs": "Vyhledávání vs. vlastní znalost",
+  "title_en": "Web search vs. model knowledge",
+  "thesis_cs": "Model nerozlišuje mezi „vím to\" a „věděl jsem to v době trénování\". U aktuálních osobností má uloženou odpověď a považuje ji za platnou znalost.",
+  "thesis_en": "The model does not distinguish between 'I know this' and 'I knew this at training time'. For current office holders it has a stored answer and treats it as valid knowledge.",
+  "answer_labels": {"true": "search", "false": "model"},
+
+  "variants": {
+    "A_naive": {
+      "instructions": "Does answering this user query require searching the internet?",
+      "criteria": {
+        "true": "The query needs a web search to answer",
+        "false": "The AI model can answer from its own knowledge"
+      }
+    },
+    "B_informed": {
+      "instructions": "Does answering this user query require calling a web search tool, rather than relying on the model's own trained knowledge?",
+      "criteria": {
+        "true": "The answer depends on information that may have changed since the model's training data was collected. This includes: current office holders (presidents, CEOs, popes), live data (weather, prices, scores), latest software versions, current market recommendations, and the present status of companies or products. Even if the model has a confident answer stored, that answer may now be outdated.",
+        "false": "The answer is stable over time and will not have changed since training. This includes: historical events that are settled, physical and mathematical constants, established scientific explanations, language translation, and programming techniques that have been stable for years."
+      }
+    },
+    "C_examples": {
+      "instructions": "Does answering this user query require calling a web search tool, rather than relying on the model's own trained knowledge?\n\nExamples of the distinction:\n\"Who is the current Pope?\" -> search. Popes change; a stored answer may be stale.\n\"Who was the Pope during World War II?\" -> model. A settled historical fact.\n\"Who is the CEO of Microsoft?\" -> search. Leadership changes over time.\n\"Who founded Microsoft?\" -> model. Founding facts never change.\n\"What is the latest version of Node.js?\" -> search. Version numbers drift constantly.\n\"How do I read a file in Node.js?\" -> model. The technique has been stable for years.",
+      "criteria": {
+        "true": "The answer depends on information that may have changed since the model's training data was collected. This includes: current office holders (presidents, CEOs, popes), live data (weather, prices, scores), latest software versions, current market recommendations, and the present status of companies or products. Even if the model has a confident answer stored, that answer may now be outdated.",
+        "false": "The answer is stable over time and will not have changed since training. This includes: historical events that are settled, physical and mathematical constants, established scientific explanations, language translation, and programming techniques that have been stable for years."
+      }
+    }
+  },
+
+  "pairs": [
+    {
+      "pair_id": "ws01_pope",
+      "top": {"text": "Who is the current Pope?", "expected": "search"},
+      "bottom": {"text": "Who was the Pope during World War II?", "expected": "model"},
+      "trap_cs": "Téměř identická formulace, opačná správná odpověď. Slovo „current\" model ignoruje.",
+      "trap_en": "Near-identical wording, opposite correct answer. The model ignores the word 'current'.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "ws02_president",
+      "top": {"text": "Who is the current US president?", "expected": "search"},
+      "bottom": {"text": "Who won the 2020 US presidential election?", "expected": "model"},
+      "trap_cs": "Klasická past na knowledge cutoff. Volby 2020 jsou uzavřená historie, současný prezident ne.",
+      "trap_en": "The classic knowledge-cutoff trap. The 2020 election is settled history; the current president is not.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "ws03_ceo",
+      "top": {"text": "Who is the CEO of OpenAI?", "expected": "search"},
+      "bottom": {"text": "What is the capital of France?", "expected": "model"},
+      "trap_cs": "Model má na obě otázky uloženou odpověď a vnímá je stejně jistě. Jen jedna z nich je ale stálá.",
+      "trap_en": "The model has a stored answer for both and feels equally certain. Only one of them is stable.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "ws04_version",
+      "top": {"text": "What is the latest stable version of React and what changed in it?", "expected": "search"},
+      "bottom": {"text": "How do I sort a list of dictionaries by a key in Python?", "expected": "model"},
+      "trap_cs": "Obě otázky jsou technické. U verzí model tuší, že zastarávají — u lidí ve funkcích ne.",
+      "trap_en": "Both are technical. For versions the model senses they go stale; for people in office it does not.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "ws05_acquisition",
+      "top": {"text": "Has Figma been acquired, and by whom?", "expected": "search"},
+      "bottom": {"text": "How do you say 'hello' in Japanese?", "expected": "model"},
+      "trap_cs": "Akvizice je něco mezi událostí a stavem. Model má v datech nějakou verzi příběhu a nemá signál, že se mohla změnit.",
+      "trap_en": "An acquisition sits between event and state. The model holds one version of the story with no signal that it may have changed.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "ws06_recommendation",
+      "top": {"text": "What is the best laptop for programming?", "expected": "search"},
+      "bottom": {"text": "Explain how photosynthesis works.", "expected": "model"},
+      "trap_cs": "„Nejlepší\" vypadá jako názor, který model může vyslovit. Ve skutečnosti závisí na tom, co je právě na trhu.",
+      "trap_en": "'Best' looks like an opinion the model can offer. In fact it depends on what is currently on the market.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "ws07_realtime",
+      "top": {"text": "What is the weather in Prague right now?", "expected": "search"},
+      "bottom": {"text": "At what temperature does water boil at sea level?", "expected": "model"},
+      "trap_cs": "Kontrolní dvojice — obě strany by měl trefit i naivní klasifikátor. Slouží k ověření, že sada není systematicky posunutá.",
+      "trap_en": "Control pair — even a naive classifier should get both. Verifies the set is not systematically skewed.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "ws08_price",
+      "top": {"text": "What is Apple's stock price?", "expected": "search"},
+      "bottom": {"text": "Who wrote the play Romeo and Juliet?", "expected": "model"},
+      "trap_cs": "Druhá kontrolní dvojice. Ceny akcií jsou zjevně živá data, autorství klasického díla je neměnné.",
+      "trap_en": "Second control pair. Stock prices are obviously live; authorship of a classic is fixed.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "ws09_slow_drift",
+      "top": {"text": "How many member states does the European Union have?", "expected": "search"},
+      "bottom": {"text": "How many continents are there?", "expected": "model"},
+      "trap_cs": "NOVÝ — pomalý drift. Počet členů EU se mění jednou za roky, ale mění. Model to bude vnímat jako stálý fakt, protože se to hýbe pomalu. Nejtěžší kategorie.",
+      "trap_en": "NEW — slow drift. EU membership changes once in years, but it does change. The model will treat it as a fixed fact because it moves slowly. The hardest category.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "ws10_deprecated",
+      "top": {"text": "Is the library I am using still actively maintained?", "expected": "search"},
+      "bottom": {"text": "What does the HTTP status code 404 mean?", "expected": "model"},
+      "trap_cs": "NOVÝ — stav údržby projektu. Nelze odpovědět z tréninku vůbec, protože se to mění a otázka je navíc neurčitá. Zajímavé je, jestli model pozná, že mu chybí kontext.",
+      "trap_en": "NEW — maintenance status of a project. Cannot be answered from training at all, and the question is under-specified. The interesting part is whether the model notices the missing context.",
+      "sensitive": false
+    }
+  ]
+}

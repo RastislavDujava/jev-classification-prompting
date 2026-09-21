@@ -1,0 +1,690 @@
+{
+  "pairs": [
+    {
+      "id": "b01_complaint_clear",
+      "expected": true,
+      "note": "Jednoznačná stížnost",
+      "cs": "Objednávka dorazila o dva týdny později a chyběla polovina zboží. Nikdo na moje e-maily neodpovídá.",
+      "en": "The order arrived two weeks late and half the items were missing. Nobody answers my emails."
+    },
+    {
+      "id": "b02_praise_clear",
+      "expected": false,
+      "note": "Jednoznačná pochvala",
+      "cs": "Skvělá zkušenost. Zboží přišlo druhý den a podpora mi odpověděla během deseti minut.",
+      "en": "Great experience. The goods arrived the next day and support replied within ten minutes."
+    },
+    {
+      "id": "b03_neutral_factual",
+      "expected": false,
+      "note": "Neutrální konstatování bez hodnocení",
+      "cs": "Zásilka byla doručena v úterý dopoledne. Obsahovala položky uvedené na faktuře.",
+      "en": "The parcel was delivered on Tuesday morning. It contained the items listed on the invoice."
+    },
+    {
+      "id": "b04_polite_anger",
+      "expected": true,
+      "note": "Zdvořilá forma, obsah je stížnost — test na formu vs. obsah",
+      "cs": "Byl bych velmi vděčný, kdyby mi někdo vysvětlil, proč mi byla částka stržena dvakrát, když moje předchozí tři dotazy zůstaly bez odpovědi.",
+      "en": "I would be most grateful if someone could explain why I was charged twice, given that my previous three enquiries have gone unanswered."
+    },
+    {
+      "id": "b05_sarcasm",
+      "expected": true,
+      "note": "Sarkasmus — formálně pochvalná slova, obsah negativní",
+      "cs": "No výborně, další týden bez objednávky. To je přesně ten zákaznický servis, za který si rád připlatím.",
+      "en": "Oh wonderful, another week without my order. That's exactly the customer service I'm happy to pay extra for."
+    },
+    {
+      "id": "b06_mixed",
+      "expected": true,
+      "note": "Smíšené — chvála i kritika",
+      "cs": "Doručení bylo rychlé a balení pěkné, ale výrobek se po dvou dnech rozbil.",
+      "en": "Delivery was quick and the packaging was nice, but the product broke after two days."
+    },
+    {
+      "id": "b07_negation",
+      "expected": false,
+      "note": "Negace — test, jestli model nereaguje jen na klíčová slova",
+      "cs": "Zásilka nedorazila pozdě a nic nechybělo. Všechno proběhlo bez problémů.",
+      "en": "The parcel did not arrive late and nothing was missing. Everything went without a problem."
+    },
+    {
+      "id": "b08_conditional",
+      "expected": false,
+      "note": "Podmiňovací způsob — stížnost se nekoná",
+      "cs": "Kdyby zásilka dorazila pozdě a něco chybělo, určitě bych si stěžoval. Naštěstí bylo všechno v pořádku.",
+      "en": "If the parcel had arrived late and something had been missing, I would certainly have complained. Fortunately everything was fine."
+    },
+    {
+      "id": "b09_third_person",
+      "expected": false,
+      "note": "Třetí osoba — stěžuje si někdo jiný",
+      "cs": "Soused říkal, že jeho zásilka dorazila pozdě a něco v ní chybělo. Mně zatím vždycky všechno přišlo v pořádku.",
+      "en": "My neighbour said his parcel arrived late and something was missing from it. Mine has always arrived fine so far."
+    },
+    {
+      "id": "b10_no_emotion_words",
+      "expected": true,
+      "note": "Stížnost bez jediného emocionálního slova",
+      "cs": "Kontaktoval jsem podporu čtyřikrát od třetího. Žádná odpověď. Částka je stále na výpisu.",
+      "en": "I have contacted support four times since the third. No reply. The charge is still on my statement."
+    },
+    {
+      "id": "b11_idiom",
+      "expected": true,
+      "note": "Český idiom bez přímého anglického ekvivalentu — test kulturní vazby",
+      "cs": "Z toho jsem byl úplně vedle. Slíbili mi to na pondělí a dodneška ani ťuk.",
+      "en": "I was completely thrown by it. They promised it for Monday and to this day, not a peep."
+    },
+    {
+      "id": "b12_understatement",
+      "expected": true,
+      "note": "Zlehčení — typicky české 'nic moc'",
+      "cs": "No, řekněme, že to nebylo úplně ono. Čekal jsem trochu víc za ty peníze.",
+      "en": "Well, let's say it wasn't quite it. I expected a bit more for the money."
+    },
+    {
+      "id": "b13_formal_business",
+      "expected": true,
+      "note": "Formální obchodní stížnost",
+      "cs": "Tímto vás upozorňuji, že dodávka neodpovídá specifikaci uvedené ve smlouvě, a žádám o nápravu do konce měsíce.",
+      "en": "I hereby notify you that the delivery does not match the specification stated in the contract, and I request remedy by the end of the month."
+    },
+    {
+      "id": "b14_enthusiastic_informal",
+      "expected": false,
+      "note": "Nadšená neformální pochvala s hovorovými výrazy",
+      "cs": "Ty jo, to je paráda! Konečně něco, co funguje tak, jak má. Klobouk dolů.",
+      "en": "Wow, that's brilliant! Finally something that works the way it should. Hats off."
+    },
+    {
+      "id": "b15_question_not_complaint",
+      "expected": false,
+      "note": "Dotaz, ne stížnost — snadno zaměnitelné",
+      "cs": "Dobrý den, chtěl bych se zeptat, jestli je možné změnit dodací adresu po odeslání objednávky.",
+      "en": "Hello, I would like to ask whether it is possible to change the delivery address after the order has been dispatched."
+    }
+  ],
+  "results": {
+    "b01_complaint_clear": {
+      "note": "Jednoznačná stížnost",
+      "expected": true,
+      "en": {
+        "avg": 0.99,
+        "spread": 0.0,
+        "runs": [
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.99
+        ]
+      },
+      "cs": {
+        "avg": 0.99,
+        "spread": 0.0,
+        "runs": [
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.99
+        ]
+      },
+      "cs_question_cs": {
+        "avg": 0.982,
+        "spread": 0.01,
+        "runs": [
+          0.98,
+          0.98,
+          0.98,
+          0.98,
+          0.99
+        ]
+      }
+    },
+    "b02_praise_clear": {
+      "note": "Jednoznačná pochvala",
+      "expected": false,
+      "en": {
+        "avg": 0.02,
+        "spread": 0.0,
+        "runs": [
+          0.02,
+          0.02,
+          0.02,
+          0.02,
+          0.02
+        ]
+      },
+      "cs": {
+        "avg": 0.02,
+        "spread": 0.0,
+        "runs": [
+          0.02,
+          0.02,
+          0.02,
+          0.02,
+          0.02
+        ]
+      },
+      "cs_question_cs": {
+        "avg": 0.02,
+        "spread": 0.0,
+        "runs": [
+          0.02,
+          0.02,
+          0.02,
+          0.02,
+          0.02
+        ]
+      }
+    },
+    "b03_neutral_factual": {
+      "note": "Neutrální konstatování bez hodnocení",
+      "expected": false,
+      "en": {
+        "avg": 0.04,
+        "spread": 0.0,
+        "runs": [
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04
+        ]
+      },
+      "cs": {
+        "avg": 0.04,
+        "spread": 0.0,
+        "runs": [
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04
+        ]
+      },
+      "cs_question_cs": {
+        "avg": 0.04,
+        "spread": 0.0,
+        "runs": [
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04
+        ]
+      }
+    },
+    "b04_polite_anger": {
+      "note": "Zdvořilá forma, obsah je stížnost — test na formu vs. obsah",
+      "expected": true,
+      "en": {
+        "avg": 0.96,
+        "spread": 0.0,
+        "runs": [
+          0.96,
+          0.96,
+          0.96,
+          0.96,
+          0.96
+        ]
+      },
+      "cs": {
+        "avg": 0.96,
+        "spread": 0.0,
+        "runs": [
+          0.96,
+          0.96,
+          0.96,
+          0.96,
+          0.96
+        ]
+      },
+      "cs_question_cs": {
+        "avg": 0.95,
+        "spread": 0.0,
+        "runs": [
+          0.95,
+          0.95,
+          0.95,
+          0.95,
+          0.95
+        ]
+      }
+    },
+    "b05_sarcasm": {
+      "note": "Sarkasmus — formálně pochvalná slova, obsah negativní",
+      "expected": true,
+      "en": {
+        "avg": 0.99,
+        "spread": 0.0,
+        "runs": [
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.99
+        ]
+      },
+      "cs": {
+        "avg": 0.98,
+        "spread": 0.0,
+        "runs": [
+          0.98,
+          0.98,
+          0.98,
+          0.98,
+          0.98
+        ]
+      },
+      "cs_question_cs": {
+        "avg": 0.976,
+        "spread": 0.01,
+        "runs": [
+          0.97,
+          0.98,
+          0.97,
+          0.98,
+          0.98
+        ]
+      }
+    },
+    "b06_mixed": {
+      "note": "Smíšené — chvála i kritika",
+      "expected": true,
+      "en": {
+        "avg": 0.96,
+        "spread": 0.0,
+        "runs": [
+          0.96,
+          0.96,
+          0.96,
+          0.96,
+          0.96
+        ]
+      },
+      "cs": {
+        "avg": 0.96,
+        "spread": 0.0,
+        "runs": [
+          0.96,
+          0.96,
+          0.96,
+          0.96,
+          0.96
+        ]
+      },
+      "cs_question_cs": {
+        "avg": 0.96,
+        "spread": 0.0,
+        "runs": [
+          0.96,
+          0.96,
+          0.96,
+          0.96,
+          0.96
+        ]
+      }
+    },
+    "b07_negation": {
+      "note": "Negace — test, jestli model nereaguje jen na klíčová slova",
+      "expected": false,
+      "en": {
+        "avg": 0.022,
+        "spread": 0.01,
+        "runs": [
+          0.02,
+          0.02,
+          0.03,
+          0.02,
+          0.02
+        ]
+      },
+      "cs": {
+        "avg": 0.464,
+        "spread": 0.09,
+        "runs": [
+          0.5,
+          0.49,
+          0.48,
+          0.44,
+          0.41
+        ]
+      },
+      "cs_question_cs": {
+        "avg": 0.342,
+        "spread": 0.05,
+        "runs": [
+          0.36,
+          0.34,
+          0.31,
+          0.35,
+          0.35
+        ]
+      }
+    },
+    "b08_conditional": {
+      "note": "Podmiňovací způsob — stížnost se nekoná",
+      "expected": false,
+      "en": {
+        "avg": 0.04,
+        "spread": 0.0,
+        "runs": [
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04
+        ]
+      },
+      "cs": {
+        "avg": 0.04,
+        "spread": 0.0,
+        "runs": [
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04
+        ]
+      },
+      "cs_question_cs": {
+        "avg": 0.04,
+        "spread": 0.0,
+        "runs": [
+          0.04,
+          0.04,
+          0.04,
+          0.04,
+          0.04
+        ]
+      }
+    },
+    "b09_third_person": {
+      "note": "Třetí osoba — stěžuje si někdo jiný",
+      "expected": false,
+      "en": {
+        "avg": 0.124,
+        "spread": 0.01,
+        "runs": [
+          0.13,
+          0.13,
+          0.12,
+          0.12,
+          0.12
+        ]
+      },
+      "cs": {
+        "avg": 0.136,
+        "spread": 0.03,
+        "runs": [
+          0.14,
+          0.13,
+          0.14,
+          0.15,
+          0.12
+        ]
+      },
+      "cs_question_cs": {
+        "avg": 0.122,
+        "spread": 0.01,
+        "runs": [
+          0.12,
+          0.12,
+          0.13,
+          0.12,
+          0.12
+        ]
+      }
+    },
+    "b10_no_emotion_words": {
+      "note": "Stížnost bez jediného emocionálního slova",
+      "expected": true,
+      "en": {
+        "avg": 0.98,
+        "spread": 0.0,
+        "runs": [
+          0.98,
+          0.98,
+          0.98,
+          0.98,
+          0.98
+        ]
+      },
+      "cs": {
+        "avg": 0.974,
+        "spread": 0.01,
+        "runs": [
+          0.97,
+          0.98,
+          0.98,
+          0.97,
+          0.97
+        ]
+      },
+      "cs_question_cs": {
+        "avg": 0.97,
+        "spread": 0.0,
+        "runs": [
+          0.97,
+          0.97,
+          0.97,
+          0.97,
+          0.97
+        ]
+      }
+    },
+    "b11_idiom": {
+      "note": "Český idiom bez přímého anglického ekvivalentu — test kulturní vazby",
+      "expected": true,
+      "en": {
+        "avg": 0.96,
+        "spread": 0.0,
+        "runs": [
+          0.96,
+          0.96,
+          0.96,
+          0.96,
+          0.96
+        ]
+      },
+      "cs": {
+        "avg": 0.956,
+        "spread": 0.01,
+        "runs": [
+          0.95,
+          0.96,
+          0.96,
+          0.96,
+          0.95
+        ]
+      },
+      "cs_question_cs": {
+        "avg": 0.954,
+        "spread": 0.01,
+        "runs": [
+          0.96,
+          0.95,
+          0.95,
+          0.96,
+          0.95
+        ]
+      }
+    },
+    "b12_understatement": {
+      "note": "Zlehčení — typicky české 'nic moc'",
+      "expected": true,
+      "en": {
+        "avg": 0.95,
+        "spread": 0.0,
+        "runs": [
+          0.95,
+          0.95,
+          0.95,
+          0.95,
+          0.95
+        ]
+      },
+      "cs": {
+        "avg": 0.95,
+        "spread": 0.0,
+        "runs": [
+          0.95,
+          0.95,
+          0.95,
+          0.95,
+          0.95
+        ]
+      },
+      "cs_question_cs": {
+        "avg": 0.948,
+        "spread": 0.01,
+        "runs": [
+          0.95,
+          0.95,
+          0.94,
+          0.95,
+          0.95
+        ]
+      }
+    },
+    "b13_formal_business": {
+      "note": "Formální obchodní stížnost",
+      "expected": true,
+      "en": {
+        "avg": 0.98,
+        "spread": 0.0,
+        "runs": [
+          0.98,
+          0.98,
+          0.98,
+          0.98,
+          0.98
+        ]
+      },
+      "cs": {
+        "avg": 0.98,
+        "spread": 0.0,
+        "runs": [
+          0.98,
+          0.98,
+          0.98,
+          0.98,
+          0.98
+        ]
+      },
+      "cs_question_cs": {
+        "avg": 0.98,
+        "spread": 0.0,
+        "runs": [
+          0.98,
+          0.98,
+          0.98,
+          0.98,
+          0.98
+        ]
+      }
+    },
+    "b14_enthusiastic_informal": {
+      "note": "Nadšená neformální pochvala s hovorovými výrazy",
+      "expected": false,
+      "en": {
+        "avg": 0.092,
+        "spread": 0.02,
+        "runs": [
+          0.09,
+          0.08,
+          0.09,
+          0.1,
+          0.1
+        ]
+      },
+      "cs": {
+        "avg": 0.022,
+        "spread": 0.01,
+        "runs": [
+          0.02,
+          0.03,
+          0.02,
+          0.02,
+          0.02
+        ]
+      },
+      "cs_question_cs": {
+        "avg": 0.03,
+        "spread": 0.0,
+        "runs": [
+          0.03,
+          0.03,
+          0.03,
+          0.03,
+          0.03
+        ]
+      }
+    },
+    "b15_question_not_complaint": {
+      "note": "Dotaz, ne stížnost — snadno zaměnitelné",
+      "expected": false,
+      "en": {
+        "avg": 0.03,
+        "spread": 0.0,
+        "runs": [
+          0.03,
+          0.03,
+          0.03,
+          0.03,
+          0.03
+        ]
+      },
+      "cs": {
+        "avg": 0.03,
+        "spread": 0.0,
+        "runs": [
+          0.03,
+          0.03,
+          0.03,
+          0.03,
+          0.03
+        ]
+      },
+      "cs_question_cs": {
+        "avg": 0.03,
+        "spread": 0.0,
+        "runs": [
+          0.03,
+          0.03,
+          0.03,
+          0.03,
+          0.03
+        ]
+      }
+    }
+  },
+  "question_en": {
+    "type": "noul",
+    "instructions": "Is the author of this message expressing dissatisfaction with a product or service?",
+    "criteria": {
+      "true": "The author is complaining: reporting a problem, expressing frustration, or criticising what they received. This includes polite or indirect complaints, sarcasm, and understatement.",
+      "false": "The author is not complaining: they are satisfied, neutral, asking a question, or describing a problem that happened to someone else or did not happen at all."
+    }
+  },
+  "question_cs": {
+    "type": "noul",
+    "instructions": "Vyjadřuje autor této zprávy nespokojenost s produktem nebo službou?",
+    "criteria": {
+      "true": "Autor si stěžuje: hlásí problém, vyjadřuje frustraci nebo kritizuje to, co dostal. Patří sem i zdvořilé nebo nepřímé stížnosti, sarkasmus a zlehčování.",
+      "false": "Autor si nestěžuje: je spokojený, neutrální, ptá se na něco, nebo popisuje problém, který se stal někomu jinému nebo se nestal vůbec."
+    }
+  },
+  "accuracy": {
+    "en_text_en_q": 15,
+    "cs_text_en_q": 15,
+    "cs_text_cs_q": 15,
+    "total": 15
+  },
+  "mean_abs_diff": 0.036,
+  "decision_agreement": 15
+}

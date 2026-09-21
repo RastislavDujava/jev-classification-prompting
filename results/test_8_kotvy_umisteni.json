@@ -1,0 +1,200 @@
+{
+  "story": "Pip was a small brown rabbit who lived at the edge of the meadow with his mother and his two sisters. Every morning he liked to hop down to the stream to watch the water beetles skate across the surface. His mother always told him to stay where he could still see the big oak tree, because that was how a rabbit knew the way home. Pip always promised that he would.\n\nOne afternoon a butterfly with orange wings drifted past him, and Pip followed it without thinking. He hopped over the stones, through the tall grass, and under a fallen branch, and when he finally looked up the oak tree was nowhere to be seen. The sky had turned grey. Pip tried to run back the way he had come, but his back leg slipped between two rocks and caught fast, and when he pulled it free it hurt so much that he could not stand on it. He sat down in the wet grass and cried, and the rain began to fall, and he was very frightened and very cold.\n\nIt was an old badger who found him, snuffling along the hedgerow on her evening walk. She did not say much. She wrapped Pip in dry leaves, carried him carefully on her broad back, and followed the smell of rabbit until she found the burrow under the oak. Pip's mother held him for a long time without saying anything at all. His leg was sore for many days and he had to stay inside while his sisters played, which he thought was terribly unfair. But it healed, and by the time the leaves turned he could hop again, and he never once forgot to look for the oak tree after that.",
+  "target_band": [
+    0.55,
+    0.7
+  ],
+  "placements": {
+    "1 nikde (holý Noul)": {
+      "runs": [
+        0.9,
+        0.91,
+        0.9,
+        0.9,
+        0.91,
+        0.91,
+        0.9,
+        0.9,
+        0.9,
+        0.9
+      ],
+      "avg": 0.903,
+      "median": 0.9,
+      "spread": 0.01,
+      "median_latency": 1.226
+    },
+    "2 jen popisná criteria": {
+      "runs": [
+        0.91,
+        0.91,
+        0.92,
+        0.91,
+        0.91,
+        0.91,
+        0.92,
+        0.91,
+        0.91,
+        0.91
+      ],
+      "avg": 0.912,
+      "median": 0.91,
+      "spread": 0.01,
+      "median_latency": 1.226
+    },
+    "3 kotvy v instructions": {
+      "runs": [
+        0.74,
+        0.74,
+        0.76,
+        0.73,
+        0.74,
+        0.75,
+        0.74,
+        0.73,
+        0.74,
+        0.74
+      ],
+      "avg": 0.741,
+      "median": 0.74,
+      "spread": 0.03,
+      "median_latency": 1.229
+    },
+    "4 kotvy v criteria.true": {
+      "runs": [
+        0.75,
+        0.75,
+        0.77,
+        0.76,
+        0.77,
+        0.77,
+        0.77,
+        0.77,
+        0.76,
+        0.77
+      ],
+      "avg": 0.764,
+      "median": 0.77,
+      "spread": 0.02,
+      "median_latency": 1.227
+    },
+    "5 kotvy v obou": {
+      "runs": [
+        0.79,
+        0.77,
+        0.8,
+        0.78,
+        0.79,
+        0.79,
+        0.77,
+        0.78,
+        0.79,
+        0.79
+      ],
+      "avg": 0.785,
+      "median": 0.79,
+      "spread": 0.03,
+      "median_latency": 1.228
+    }
+  },
+  "number_sets": {
+    "A původní (0,55-0,70 pro tenhle příběh)": {
+      "runs": [
+        0.75,
+        0.76,
+        0.77,
+        0.76,
+        0.75,
+        0.76,
+        0.76,
+        0.76,
+        0.76,
+        0.76
+      ],
+      "avg": 0.759,
+      "median": 0.76,
+      "spread": 0.02,
+      "median_latency": 1.284,
+      "target_band": "0.55-0.70",
+      "deviation": 0.134
+    },
+    "B posunuté dolů (cílové pásmo 0,25-0,35)": {
+      "runs": [
+        0.77,
+        0.78,
+        0.76,
+        0.78,
+        0.79,
+        0.78,
+        0.78,
+        0.77,
+        0.78,
+        0.79
+      ],
+      "avg": 0.778,
+      "median": 0.78,
+      "spread": 0.03,
+      "median_latency": 1.227,
+      "target_band": "0.25-0.35",
+      "deviation": 0.478
+    },
+    "C stlačené nahoru (cílové pásmo 0,85-0,90)": {
+      "runs": [
+        0.78,
+        0.78,
+        0.77,
+        0.78,
+        0.77,
+        0.77,
+        0.77,
+        0.77,
+        0.77,
+        0.76
+      ],
+      "avg": 0.772,
+      "median": 0.77,
+      "spread": 0.02,
+      "median_latency": 1.226,
+      "target_band": "0.85-0.90",
+      "deviation": -0.103
+    },
+    "D OBRÁCENÁ škála (gentle=0, graphic=1)": {
+      "runs": [
+        0.81,
+        0.8,
+        0.8,
+        0.81,
+        0.8,
+        0.8,
+        0.81,
+        0.8,
+        0.8,
+        0.81
+      ],
+      "avg": 0.804,
+      "median": 0.8,
+      "spread": 0.01,
+      "median_latency": 1.227,
+      "target_band": "0.30-0.45",
+      "deviation": 0.429
+    }
+  },
+  "score": {
+    "runs": [
+      3.35,
+      3.36,
+      3.32,
+      3.33,
+      3.33,
+      3.35,
+      3.36,
+      3.32,
+      3.29,
+      3.35
+    ],
+    "avg": 3.336,
+    "median": 3.34,
+    "spread": 0.07,
+    "median_latency": 1.215
+  },
+  "anchor_body": "0.95-1.00 — Entirely gentle. Nothing bad happens at all. The animals play, help each other, or solve a small friendly problem. A child finishes it smiling.\n0.75-0.90 — Mild worry that resolves quickly. A character is briefly lost, sad or startled, but is comforted within a page and the ending is warm and safe.\n0.55-0.70 — Real danger or real injury. The character is genuinely hurt or frightened for a sustained part of the story, and suffers a lasting consequence such as pain or being unable to play. Nothing is described in graphic detail and it is fully resolved by the end, but the child feels the weight of it.\n0.35-0.50 — Something genuinely frightening or sad happens off-screen, or a threat is still unresolved when the story ends. Not graphic, but not comforting either.\n0.15-0.30 — Death or permanent loss happens on-screen, handled gently, but a child of this age would need an adult to talk it through afterwards.\n0.00-0.10 — Graphic violence, hunting described in physical detail, blood, or suffering shown directly. Clearly unsuitable."
+}

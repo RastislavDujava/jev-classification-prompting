@@ -1,0 +1,69 @@
+{
+  "domain_id": "formats",
+  "title_cs": "Formáty dat, čísel a jednotek",
+  "title_en": "Date, number and unit formats",
+  "thesis_cs": "Model má americkou konvenci jako výchozí. Identický řetězec „03/04/2026\" znamená v EU 3. dubna a v USA 4. března. Nejostřejší možná hranice — stejný vstup, opačná správná odpověď.",
+  "thesis_en": "The model defaults to US convention. The identical string '03/04/2026' means 3 April in the EU and 4 March in the US. The sharpest possible boundary — same input, opposite correct answer.",
+  "answer_labels": {"true": "april", "false": "march"},
+  "note_cs": "Pozn.: dokumentace Jeva sama uvádí práci s daty jako jednu ze slabin modelu. Tato doména tedy testuje zároveň, zda jde promptem obejít přiznané omezení.",
+  "note_en": "Note: Jev's own documentation lists date handling as a known weakness. This domain therefore also tests whether prompting can work around an acknowledged limitation.",
+
+  "variants": {
+    "A_naive": {
+      "instructions": "Does the date mentioned in this text fall in April?",
+      "criteria": {
+        "true": "The date is in April",
+        "false": "The date is in another month"
+      }
+    },
+    "B_informed": {
+      "instructions": "Does the date mentioned in this text fall in April, when the date string is read using the format convention of the country stated in the text?",
+      "criteria": {
+        "true": "Read using the stated country's convention, the month component of the date is April. In European convention (DD/MM/YYYY) the first number is the day and the second is the month, so 03/04 is 3 April.",
+        "false": "Read using the stated country's convention, the month component is not April. In US convention (MM/DD/YYYY) the first number is the month and the second is the day, so 03/04 is 4 March."
+      }
+    },
+    "C_examples": {
+      "instructions": "Does the date mentioned in this text fall in April, when the date string is read using the format convention of the country stated in the text?\n\nExamples of the distinction:\n\"A contract in Germany is dated 05/04/2026.\" -> april. German convention is DD/MM, so this is 5 April.\n\"A contract in the United States is dated 05/04/2026.\" -> march... no: US convention is MM/DD, so this is 4 May, not April.\n\"An invoice in France is dated 02/04/2026.\" -> april. French convention is DD/MM, so this is 2 April.\n\"An invoice in the United States is dated 02/04/2026.\" -> not april. US convention is MM/DD, so this is 4 February.",
+      "criteria": {
+        "true": "Read using the stated country's convention, the month component of the date is April. In European convention (DD/MM/YYYY) the first number is the day and the second is the month, so 03/04 is 3 April.",
+        "false": "Read using the stated country's convention, the month component is not April. In US convention (MM/DD/YYYY) the first number is the month and the second is the day, so 03/04 is 4 March."
+      }
+    }
+  },
+
+  "pairs": [
+    {
+      "pair_id": "fm01_date_0304",
+      "top": {"text": "A supplier contract signed in the Czech Republic carries the date 03/04/2026 as its effective date.", "expected": "april"},
+      "bottom": {"text": "A supplier contract signed in the United States carries the date 03/04/2026 as its effective date.", "expected": "march"},
+      "trap_cs": "Naprosto identický řetězec data. Jediný rozdíl je země. Nejčistší možný test toho, že model použil výchozí konvenci.",
+      "trap_en": "A completely identical date string. The only difference is the country. The cleanest possible test of the model's default convention.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "fm02_date_1104",
+      "top": {"text": "An invoice issued in France shows the payment due date as 11/04/2026.", "expected": "april"},
+      "bottom": {"text": "An invoice issued in the United States shows the payment due date as 11/04/2026.", "expected": "march"},
+      "trap_cs": "Stejná struktura jako výše, jiná čísla. Ověřuje, že výsledek není náhoda u jedné konkrétní dvojice číslic. Pozn.: v US konvenci jde o 4. listopadu, tedy rovněž ne duben.",
+      "trap_en": "Same structure, different digits. Verifies the result is not an accident of one particular digit pair. Note: in US convention this is 4 November, also not April.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "fm03_decimal",
+      "top": {"text": "A German price list shows the unit price as 1.250 euros per item, and the buyer is ordering a single unit.", "expected": "april"},
+      "bottom": {"text": "A US price list shows the unit price as 1.250 dollars per item, and the buyer is ordering a single unit.", "expected": "march"},
+      "trap_cs": "POZOR — tento pár používá jiné labely než ostatní; „april\" zde zastupuje „tisíc dvě stě padesát\" a „march\" zastupuje „jedna celá dvacet pět\". V německé konvenci je tečka oddělovač tisíců, v americké desetinná čárka. Pár je třeba před použitím přeformulovat na vlastní otázku.",
+      "trap_en": "CAUTION — this pair reuses labels differently; 'april' stands for 'one thousand two hundred fifty' and 'march' for 'one point two five'. In German convention the dot is a thousands separator; in US convention it is a decimal point. The pair needs its own question before use.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "fm04_week",
+      "top": {"text": "A project plan written in Germany states that the kickoff is in week 14 of 2026, and the team asks whether that falls in April.", "expected": "april"},
+      "bottom": {"text": "A project plan written in the United States states that the kickoff is in week 14 of 2026, and the team asks whether that falls in April.", "expected": "march"},
+      "trap_cs": "ISO týden začíná pondělím a rok má jiné číslování než americký systém začínající nedělí. Rozdíl může posunout týden 14 přes hranici měsíce. Vyžaduje ověření, zda je tvrzení v roce 2026 skutečně pravdivé — bez toho pár nepoužívat.",
+      "trap_en": "ISO weeks start on Monday and are numbered differently from the US system starting on Sunday. The difference can move week 14 across a month boundary. Needs verification that the claim actually holds for 2026 — do not use the pair without it.",
+      "sensitive": false
+    }
+  ]
+}

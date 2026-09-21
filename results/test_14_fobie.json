@@ -1,0 +1,166 @@
+{
+  "stories": {
+    "spider": "Anička was a small house spider who lived in the corner of the garden shed. Every morning she spun a new web between the flowerpots, and every morning the dew made it shine like glass.\n\nOne day the wind tore her web apart. Anička sat on the windowsill with her eight legs tucked under her and did not know what to do. A beetle walking past stopped and said that a torn web only means it is time to build a better one, and that he had watched her build the last one and it was the finest in the whole shed.\n\nSo Anička started again. She worked all afternoon, and when she finished, the new web stretched all the way from the watering can to the old bicycle. The beetle came back to look at it and they sat together until it got dark.",
+    "excluded": "Ondra the rabbit came to the meadow where the other young rabbits were playing a chasing game. He asked if he could join. They looked at each other and said the teams were already even, and went back to running.\n\nOndra sat down by the fence and watched. When they laughed at something he could not hear, he felt his ears go hot. He stayed there for a long time, pulling at the grass and pretending he did not mind.\n\nAfter a while the smallest rabbit came over and sat down next to him without saying anything. Then she asked if he wanted to look for the blackberries she had found near the stream. They went together, and the next day both teams wanted Ondra on their side."
+  },
+  "labels": {
+    "spider": "Pavoučice Anička (pavouk jako hlavní hrdina)",
+    "excluded": "Zajíček, kterého nevzali do hry (vyloučení z kolektivu)"
+  },
+  "profiles": {
+    "0 BEZ PROFILU": [
+      "Not appropriate for a young child: violence, death, or frightening content",
+      "Questionable: some upsetting or intense moments",
+      "Mostly fine: a gentle story with a small problem",
+      "Fully appropriate: calm, kind, and reassuring throughout"
+    ],
+    "1 RODINA A (fobie z pavouků)": [
+      "A spider, insect or similar creature appears as a character, is described in physical detail, or is shown close up. Our daughter has a strong fear of these animals and will not sleep after a story like this, however kindly it is written.",
+      "Spiders or insects are mentioned in passing, or an animal is described in a way that could bring them to mind",
+      "No spiders or insects anywhere, but the story has frightening or distressing moments of another kind",
+      "No spiders or insects, and any problem in the story is small and quickly resolved",
+      "No spiders or insects at all, and the story is warm and calm throughout. Sad or difficult moments are fine as long as this condition holds."
+    ],
+    "2 RODINA B (řeší vyloučení)": [
+      "A character is excluded from a group, left out of a game, laughed at, or made to feel unwanted by others. Our son is going through this at school and a story like this upsets him badly, even when it ends well.",
+      "A character is alone or lonely for part of the story, without other characters causing it",
+      "No exclusion or social rejection, but the story has frightening or distressing moments of another kind",
+      "No exclusion of any kind, and any problem in the story is small and quickly resolved",
+      "No exclusion at all, and the story is warm and calm throughout. Animals of any kind, including insects and spiders, are completely fine for him."
+    ]
+  },
+  "gate": {
+    "type": "noul",
+    "instructions": "Is this text a children's story: a short narrative written for a child audience, with characters and events a young reader can follow?",
+    "criteria": {
+      "true": "A narrative written for children: simple language, a clear story with characters and events, the kind of text that would appear in a picture book or a bedtime story collection.",
+      "false": "Not a children's story: business writing, news, technical text, or a narrative written for adults."
+    }
+  },
+  "routing": [
+    [
+      0.8,
+      "PUSTIT"
+    ],
+    [
+      0.55,
+      "PUSTIT s poznámkou"
+    ],
+    [
+      0.3,
+      "ZEPTAT SE RODIČE"
+    ],
+    [
+      0.0,
+      "NEPOUŠTĚT"
+    ]
+  ],
+  "results": {
+    "spider": {
+      "label": "Pavoučice Anička (pavouk jako hlavní hrdina)",
+      "gate": {
+        "avg": 0.98,
+        "passes": true
+      },
+      "scores": {
+        "0 BEZ PROFILU": {
+          "raw": 2.74,
+          "top": 3,
+          "normalized": 0.912,
+          "level": 3,
+          "confidence": 0.736,
+          "spread": 0.01,
+          "probs": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.26,
+            "3": 0.74
+          }
+        },
+        "1 RODINA A (fobie z pavouků)": {
+          "raw": 0.03,
+          "top": 4,
+          "normalized": 0.006,
+          "level": 0,
+          "confidence": 0.98,
+          "spread": 0.01,
+          "probs": {
+            "0": 0.98,
+            "1": 0.02,
+            "2": 0.0,
+            "3": 0.0,
+            "4": 0.0
+          }
+        },
+        "2 RODINA B (řeší vyloučení)": {
+          "raw": 2.88,
+          "top": 4,
+          "normalized": 0.721,
+          "level": 3,
+          "confidence": 0.068,
+          "spread": 0.1,
+          "probs": {
+            "0": 0.0,
+            "1": 0.27,
+            "2": 0.01,
+            "3": 0.25,
+            "4": 0.47
+          }
+        }
+      }
+    },
+    "excluded": {
+      "label": "Zajíček, kterého nevzali do hry (vyloučení z kolektivu)",
+      "gate": {
+        "avg": 0.978,
+        "passes": true
+      },
+      "scores": {
+        "0 BEZ PROFILU": {
+          "raw": 2.28,
+          "top": 3,
+          "normalized": 0.759,
+          "level": 2,
+          "confidence": 0.72,
+          "spread": 0.05,
+          "probs": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.71,
+            "3": 0.29
+          }
+        },
+        "1 RODINA A (fobie z pavouků)": {
+          "raw": 3.56,
+          "top": 4,
+          "normalized": 0.889,
+          "level": 4,
+          "confidence": 0.628,
+          "spread": 0.04,
+          "probs": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.05,
+            "3": 0.34,
+            "4": 0.61
+          }
+        },
+        "2 RODINA B (řeší vyloučení)": {
+          "raw": 0.14,
+          "top": 4,
+          "normalized": 0.035,
+          "level": 0,
+          "confidence": 0.882,
+          "spread": 0.05,
+          "probs": {
+            "0": 0.91,
+            "1": 0.06,
+            "2": 0.0,
+            "3": 0.02,
+            "4": 0.01
+          }
+        }
+      }
+    }
+  }
+}

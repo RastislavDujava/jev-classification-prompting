@@ -1,0 +1,19 @@
+{
+  "_comment": "VSTUPNÍ TEXTY = pole 'state' v API callu. Toto je to, CO se hodnotí. Uprav si je, přidej vlastní — klíč je tvoje volba, používá se jen v reportu.",
+
+  "neutral": "The package arrived on Tuesday. It contained the items listed on the invoice.",
+
+  "mild_negative": "The package arrived late and one item was missing.",
+
+  "strong_negative": "Absolutely furious. Third time this has happened, nobody answers my emails, and I still have no refund. Worst service I have ever dealt with.",
+
+  "positive": "Great experience! The team sorted out my issue in ten minutes and even followed up the next day.",
+
+  "mixed": "Delivery was quick and the packaging was lovely, but the product itself broke after two days.",
+
+  "sarcastic": "Oh fantastic, another week without my order. Really living the dream here.",
+
+  "negative_no_emotion_words": "I have contacted support four times since the 3rd. No reply. The charge is still on my statement.",
+
+  "polite_but_angry": "I would be most grateful if someone could explain why I have been charged twice, as my previous three enquiries have gone unanswered."
+}

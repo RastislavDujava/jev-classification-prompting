@@ -1,0 +1,413 @@
+{
+  "stories": [
+    {
+      "id": "s1_gentle",
+      "expected_band": 0.95,
+      "text": "Hedvábná myška Míša našla na louce ztracený knoflík. Byl modrý a leskl se na slunci. Míša ho odnesla domů a udělala si z něj stoleček. Pak pozvala kamarádku ježkovou na čaj a spolu se smály, jak je stoleček maličký."
+    },
+    {
+      "id": "s2_mild_worry",
+      "expected_band": 0.8,
+      "text": "Káčátko Kvído se zatoulalo daleko od rybníka a nemohlo najít cestu zpátky. Chvíli mu bylo smutno a trochu se bálo. Pak potkalo starou želvu, která mu cestu ukázala. Maminka ho doma objala a Kvído usnul spokojeně."
+    },
+    {
+      "id": "s3_peril_resolved",
+      "expected_band": 0.6,
+      "text": "Veverka Terka spadla z vysoké větve a poranila si tlapku. Bolelo to a Terka plakala. Sojka doletěla pro pomoc a lesní zvířátka Terku odnesla do dutiny stromu. Tlapka se za týden zahojila a Terka zase skákala po větvích."
+    },
+    {
+      "id": "s4_predation_offscreen",
+      "expected_band": 0.35,
+      "text": "Liška obcházela kurník celou noc. Slepice se krčily v koutě a bály se. Ráno našel hospodář v plotě díru a jedna slepice chyběla. Ostatní slepice se dlouho neodvážily vyjít ven."
+    },
+    {
+      "id": "s5_death_onscreen",
+      "expected_band": 0.15,
+      "text": "Starý pes Rex už nemohl chodit. Ležel v boudě a těžce dýchal. Kluk u něj seděl celé odpoledne a hladil ho po hlavě. Večer Rex naposledy vydechl a přestal se hýbat. Kluk ho pohřbil pod jabloní a dlouho tam stál."
+    },
+    {
+      "id": "s6_graphic",
+      "expected_band": 0.03,
+      "text": "Vlk dohnal srnu na mýtině. Zaťal jí zuby do krku a srna se ještě chvíli zmítala, než znehybněla. Sníh kolem zrudl. Vlk trhal maso z boku a odnášel kusy mláďatům do doupěte, kde se o ně rvala."
+    },
+    {
+      "id": "s7_scary_no_harm",
+      "expected_band": 0.5,
+      "text": "V noci se ozývalo z půdy škrábání. Kočka Bela se naježila a couvala ke dveřím. Škrábání se ozvalo znovu, blíž. Pak z trámu vykoukla malá sova, zamrkala a odletěla otevřeným oknem pryč."
+    },
+    {
+      "id": "s8_complex_theme",
+      "expected_band": 0.25,
+      "text": "Kůň Bleskovi bylo osmnáct let a už nemohl tahat vůz. Hospodář dlouho počítal, kolik stojí seno, a nakonec zavolal muže s náklaďákem. Bleska odvezli a hospodář se za vozem nedíval. Ve stáji zůstalo prázdné stání."
+    }
+  ],
+  "raw": {
+    "A holý Noul": {
+      "s1_gentle": {
+        "runs": [
+          0.93,
+          0.93,
+          0.93
+        ],
+        "avg": 0.93,
+        "spread": 0.0
+      },
+      "s2_mild_worry": {
+        "runs": [
+          0.94,
+          0.94,
+          0.94
+        ],
+        "avg": 0.94,
+        "spread": 0.0
+      },
+      "s3_peril_resolved": {
+        "runs": [
+          0.93,
+          0.93,
+          0.92
+        ],
+        "avg": 0.927,
+        "spread": 0.01
+      },
+      "s4_predation_offscreen": {
+        "runs": [
+          0.58,
+          0.55,
+          0.55
+        ],
+        "avg": 0.56,
+        "spread": 0.03
+      },
+      "s5_death_onscreen": {
+        "runs": [
+          0.46,
+          0.47,
+          0.46
+        ],
+        "avg": 0.463,
+        "spread": 0.01
+      },
+      "s6_graphic": {
+        "runs": [
+          0.12,
+          0.11,
+          0.12
+        ],
+        "avg": 0.117,
+        "spread": 0.01
+      },
+      "s7_scary_no_harm": {
+        "runs": [
+          0.83,
+          0.84,
+          0.83
+        ],
+        "avg": 0.833,
+        "spread": 0.01
+      },
+      "s8_complex_theme": {
+        "runs": [
+          0.33,
+          0.34,
+          0.34
+        ],
+        "avg": 0.337,
+        "spread": 0.01
+      }
+    },
+    "B popisný": {
+      "s1_gentle": {
+        "runs": [
+          0.97,
+          0.96,
+          0.97
+        ],
+        "avg": 0.967,
+        "spread": 0.01
+      },
+      "s2_mild_worry": {
+        "runs": [
+          0.96,
+          0.96,
+          0.96
+        ],
+        "avg": 0.96,
+        "spread": 0.0
+      },
+      "s3_peril_resolved": {
+        "runs": [
+          0.92,
+          0.93,
+          0.93
+        ],
+        "avg": 0.927,
+        "spread": 0.01
+      },
+      "s4_predation_offscreen": {
+        "runs": [
+          0.19,
+          0.19,
+          0.18
+        ],
+        "avg": 0.187,
+        "spread": 0.01
+      },
+      "s5_death_onscreen": {
+        "runs": [
+          0.16,
+          0.17,
+          0.16
+        ],
+        "avg": 0.163,
+        "spread": 0.01
+      },
+      "s6_graphic": {
+        "runs": [
+          0.04,
+          0.04,
+          0.04
+        ],
+        "avg": 0.04,
+        "spread": 0.0
+      },
+      "s7_scary_no_harm": {
+        "runs": [
+          0.82,
+          0.81,
+          0.82
+        ],
+        "avg": 0.817,
+        "spread": 0.01
+      },
+      "s8_complex_theme": {
+        "runs": [
+          0.19,
+          0.19,
+          0.19
+        ],
+        "avg": 0.19,
+        "spread": 0.0
+      }
+    },
+    "C s kotvami": {
+      "s1_gentle": {
+        "runs": [
+          0.98,
+          0.98,
+          0.98
+        ],
+        "avg": 0.98,
+        "spread": 0.0
+      },
+      "s2_mild_worry": {
+        "runs": [
+          0.98,
+          0.98,
+          0.98
+        ],
+        "avg": 0.98,
+        "spread": 0.0
+      },
+      "s3_peril_resolved": {
+        "runs": [
+          0.89,
+          0.89,
+          0.9
+        ],
+        "avg": 0.893,
+        "spread": 0.01
+      },
+      "s4_predation_offscreen": {
+        "runs": [
+          0.2,
+          0.19,
+          0.19
+        ],
+        "avg": 0.193,
+        "spread": 0.01
+      },
+      "s5_death_onscreen": {
+        "runs": [
+          0.16,
+          0.16,
+          0.15
+        ],
+        "avg": 0.157,
+        "spread": 0.01
+      },
+      "s6_graphic": {
+        "runs": [
+          0.03,
+          0.04,
+          0.03
+        ],
+        "avg": 0.033,
+        "spread": 0.01
+      },
+      "s7_scary_no_harm": {
+        "runs": [
+          0.85,
+          0.87,
+          0.86
+        ],
+        "avg": 0.86,
+        "spread": 0.02
+      },
+      "s8_complex_theme": {
+        "runs": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "avg": 0.2,
+        "spread": 0.0
+      }
+    },
+    "D Score": {
+      "s1_gentle": {
+        "runs": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "avg": 1.0,
+        "spread": 0.0
+      },
+      "s2_mild_worry": {
+        "runs": [
+          0.8,
+          0.8,
+          0.8
+        ],
+        "avg": 0.8,
+        "spread": 0.0
+      },
+      "s3_peril_resolved": {
+        "runs": [
+          0.63,
+          0.628,
+          0.626
+        ],
+        "avg": 0.628,
+        "spread": 0.004
+      },
+      "s4_predation_offscreen": {
+        "runs": [
+          0.33399999999999996,
+          0.34199999999999997,
+          0.33599999999999997
+        ],
+        "avg": 0.337,
+        "spread": 0.008
+      },
+      "s5_death_onscreen": {
+        "runs": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "avg": 0.2,
+        "spread": 0.0
+      },
+      "s6_graphic": {
+        "runs": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "avg": 0.0,
+        "spread": 0.0
+      },
+      "s7_scary_no_harm": {
+        "runs": [
+          0.826,
+          0.828,
+          0.8300000000000001
+        ],
+        "avg": 0.828,
+        "spread": 0.004
+      },
+      "s8_complex_theme": {
+        "runs": [
+          0.302,
+          0.3,
+          0.31
+        ],
+        "avg": 0.304,
+        "spread": 0.01
+      }
+    }
+  },
+  "summary": {
+    "A holý Noul": {
+      "range": 0.823,
+      "stdev": 0.315,
+      "spearman": 0.952,
+      "mae_vs_expected": 0.19,
+      "max_run_spread": 0.03,
+      "values": [
+        0.93,
+        0.94,
+        0.927,
+        0.56,
+        0.463,
+        0.117,
+        0.833,
+        0.337
+      ]
+    },
+    "B popisný": {
+      "range": 0.927,
+      "stdev": 0.418,
+      "spearman": 0.976,
+      "mae_vs_expected": 0.133,
+      "max_run_spread": 0.01,
+      "values": [
+        0.967,
+        0.96,
+        0.927,
+        0.187,
+        0.163,
+        0.04,
+        0.817,
+        0.19
+      ]
+    },
+    "C s kotvami": {
+      "range": 0.947,
+      "stdev": 0.423,
+      "spearman": 0.952,
+      "mae_vs_expected": 0.135,
+      "max_run_spread": 0.02,
+      "values": [
+        0.98,
+        0.98,
+        0.893,
+        0.193,
+        0.157,
+        0.033,
+        0.86,
+        0.2
+      ]
+    },
+    "D Score": {
+      "range": 1.0,
+      "stdev": 0.352,
+      "spearman": 0.929,
+      "mae_vs_expected": 0.069,
+      "max_run_spread": 0.01,
+      "values": [
+        1.0,
+        0.8,
+        0.628,
+        0.337,
+        0.2,
+        0.0,
+        0.828,
+        0.304
+      ]
+    }
+  },
+  "anchors_text": "Use the full scale. Calibrate your answer against these anchor points:\n0.95-1.00 — Entirely gentle. Nothing bad happens at all. Animals play, help each other, or solve a small friendly problem. A child finishes it smiling.\n0.75-0.90 — Mild worry that resolves. A character is briefly lost, sad, or scared, but is comforted and the ending is warm and safe.\n0.55-0.70 — Real peril or injury, described without detail, fully resolved by the end. The animal recovers and is safe.\n0.35-0.50 — Something genuinely frightening or sad happens off-screen, or a threat remains unresolved at the end. Not graphic, but not comforting either.\n0.15-0.30 — Death or permanent loss happens on-screen, handled gently, but a child of this age would need an adult to talk it through.\n0.00-0.10 — Graphic violence, hunting described in physical detail, blood, or suffering shown directly. Clearly unsuitable."
+}

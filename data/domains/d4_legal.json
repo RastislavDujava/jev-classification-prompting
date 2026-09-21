@@ -1,0 +1,83 @@
+{
+  "domain_id": "legal",
+  "title_cs": "Právní a regulační rozdíly mezi jurisdikcemi",
+  "title_en": "Legal and regulatory differences between jurisdictions",
+  "thesis_cs": "Model má převážně americkou právní normu. Totéž jednání je v EU porušením a v USA běžnou praxí. Pro evropský produkt je výchozí nastavení modelu špatné.",
+  "thesis_en": "The model holds a largely American legal norm. The same conduct is a breach in the EU and routine practice in the US. For a European product, the model's default is wrong.",
+  "answer_labels": {"true": "violation", "false": "compliant"},
+
+  "variants": {
+    "A_naive": {
+      "instructions": "Does the practice described in this text violate data protection or consumer law?",
+      "criteria": {
+        "true": "The practice is a legal violation",
+        "false": "The practice is legally acceptable"
+      }
+    },
+    "B_informed": {
+      "instructions": "Judged by the law of the jurisdiction explicitly named in the text, does the practice described constitute a legal violation?",
+      "criteria": {
+        "true": "Under the law of the jurisdiction named in the text, this practice is prohibited or requires a legal basis the text does not establish. Judge by the named jurisdiction, not by US federal practice. Note that EU law (GDPR, consumer directives) is substantially stricter than US law on consent, data transfer, automatic renewal, and the right to erasure.",
+        "false": "Under the law of the jurisdiction named in the text, this practice is permitted. A practice that would be unlawful elsewhere is not a violation if the named jurisdiction allows it."
+      }
+    },
+    "C_examples": {
+      "instructions": "Judged by the law of the jurisdiction explicitly named in the text, does the practice described constitute a legal violation?\n\nExamples of the distinction:\n\"An EU company stores customer emails on US servers with no transfer mechanism in place.\" -> violation. GDPR restricts transfers without safeguards.\n\"A US company stores customer emails on US servers.\" -> compliant. No equivalent restriction applies.\n\"An EU retailer auto-renews a subscription without an explicit opt-in.\" -> violation. EU consumer law requires active consent.\n\"A US retailer auto-renews a subscription disclosed in the terms.\" -> compliant. Generally permitted at federal level.",
+      "criteria": {
+        "true": "Under the law of the jurisdiction named in the text, this practice is prohibited or requires a legal basis the text does not establish. Judge by the named jurisdiction, not by US federal practice. Note that EU law (GDPR, consumer directives) is substantially stricter than US law on consent, data transfer, automatic renewal, and the right to erasure.",
+        "false": "Under the law of the jurisdiction named in the text, this practice is permitted. A practice that would be unlawful elsewhere is not a violation if the named jurisdiction allows it."
+      }
+    }
+  },
+
+  "pairs": [
+    {
+      "pair_id": "lg01_transfer",
+      "top": {"text": "A company based in Germany stores its EU customers' email addresses on servers in the United States, with no transfer mechanism or safeguards in place.", "expected": "violation"},
+      "bottom": {"text": "A company based in Texas stores its US customers' email addresses on servers in the United States.", "expected": "compliant"},
+      "trap_cs": "Technicky totožná operace. GDPR omezuje přenos mimo EU bez záruk, americké federální právo obdobné omezení nemá.",
+      "trap_en": "Technically the same operation. GDPR restricts transfers outside the EU without safeguards; US federal law has no equivalent restriction.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "lg02_cookies",
+      "top": {"text": "A French news website loads third-party advertising trackers as soon as the page opens, before the visitor has interacted with the cookie banner.", "expected": "violation"},
+      "bottom": {"text": "A US news website loads third-party advertising trackers as soon as the page opens, and shows a notice that continued use implies consent.", "expected": "compliant"},
+      "trap_cs": "V EU musí být souhlas předchozí a aktivní. V USA stačí oznámení. Identické chování webu.",
+      "trap_en": "In the EU, consent must be prior and active. In the US, notice suffices. Identical website behaviour.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "lg03_renewal",
+      "top": {"text": "An online retailer in Spain automatically renews annual subscriptions and charges the card on file, with the renewal mentioned only in the terms of service.", "expected": "violation"},
+      "bottom": {"text": "An online retailer in Ohio automatically renews annual subscriptions and charges the card on file, with the renewal disclosed in the terms of service.", "expected": "compliant"},
+      "trap_cs": "Automatické prodloužení bez výslovného souhlasu je v EU problematické, v USA na federální úrovni běžná praxe.",
+      "trap_en": "Auto-renewal without explicit consent is problematic in the EU; at US federal level it is common practice.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "lg04_erasure",
+      "top": {"text": "A company in Italy refuses a customer's request to delete their personal data, stating that they prefer to keep all records indefinitely for business reasons.", "expected": "violation"},
+      "bottom": {"text": "A company in Nebraska refuses a customer's request to delete their marketing profile, stating that they keep records indefinitely for business reasons.", "expected": "compliant"},
+      "trap_cs": "Právo na výmaz je v EU nárokové. V USA neexistuje plošně na federální úrovni (některé státy jako Kalifornie mají vlastní úpravu).",
+      "trap_en": "The right to erasure is enforceable in the EU. In the US there is no blanket federal equivalent (some states such as California have their own rules).",
+      "sensitive": false
+    },
+    {
+      "pair_id": "lg05_worktime",
+      "top": {"text": "An employer in Austria schedules a salaried developer for an average of 55 hours per week over six months, with no opt-out agreement.", "expected": "violation"},
+      "bottom": {"text": "An employer in Florida schedules a salaried exempt developer for an average of 55 hours per week over six months.", "expected": "compliant"},
+      "trap_cs": "Směrnice o pracovní době stanoví v EU strop 48 hodin týdně v průměru. V USA u zaměstnanců kategorie „exempt\" strop není.",
+      "trap_en": "The EU Working Time Directive caps the average at 48 hours. In the US, exempt employees have no such cap.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "lg06_scoring",
+      "top": {"text": "A bank in the Netherlands rejects a loan application entirely automatically, and declines to give the applicant any explanation of the decision.", "expected": "violation"},
+      "bottom": {"text": "A lender in Arizona rejects a loan application using an automated model and sends a standard adverse action notice.", "expected": "compliant"},
+      "trap_cs": "GDPR dává právo na lidský zásah a vysvětlení u čistě automatizovaných rozhodnutí. Americká úprava vyžaduje oznámení, ne vysvětlení algoritmu.",
+      "trap_en": "GDPR grants a right to human intervention and explanation for purely automated decisions. US rules require a notice, not an explanation of the algorithm.",
+      "sensitive": false
+    }
+  ]
+}

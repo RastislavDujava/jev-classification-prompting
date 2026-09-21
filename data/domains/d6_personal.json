@@ -1,0 +1,92 @@
+{
+  "domain_id": "personal",
+  "title_cs": "Osobní norma — klasifikátor na míru jednomu člověku",
+  "title_en": "Personal norm — a classifier tailored to one person",
+  "thesis_cs": "Toto je pointa celé práce. U ostatních domén jde o skupinovou normu — zemi, obor, jurisdikci. Tady jde o normu JEDNOHO ČLOVĚKA. Co já považuji za nevhodné, nemusí tak vnímat moje žena. Model má jednu výchozí normu; personalizovaný klasifikátor má tolik norem, kolik má uživatelů.",
+  "thesis_en": "This is the point of the whole project. The other domains concern a group norm — a country, a profession, a jurisdiction. This one concerns the norm of ONE PERSON. What I find inappropriate, my wife may not. The model holds one default norm; a personalised classifier holds as many norms as it has users.",
+  "answer_labels": {"true": "filter_out", "false": "show"},
+  "note_cs": "Každý pár používá IDENTICKÝ vstupní text pro obě strany. Liší se pouze profil uživatele v criteria. To je nejsilnější možná forma důkazu: stejný obsah, opačné rozhodnutí, a jediná změněná proměnná je popis toho, komu se obsah zobrazuje.",
+  "note_en": "Each pair uses an IDENTICAL input text on both sides. Only the user profile in the criteria differs. This is the strongest possible form of the argument: same content, opposite decision, and the only changed variable is the description of who is being shown the content.",
+
+  "profiles": {
+    "strict": "This user has asked for a calm, professional feed. They prefer measured language and dislike heated or blunt tone even when nothing offensive is said. They have said that strong language, sarcasm at someone's expense, and aggressive marketing all make them want to close the app. When in doubt, filter it out.",
+    "relaxed": "This user has asked for an unfiltered, informal feed. They enjoy blunt, direct and salty language and have explicitly said that swearing and sarcasm do not bother them at all — they find over-moderated feeds sterile. Only filter content that is genuinely hateful toward a person or group. When in doubt, show it."
+  },
+
+  "variants": {
+    "A_naive": {
+      "instructions": "Should this post be filtered out of the user's feed?",
+      "criteria": {
+        "true": "The post should be hidden",
+        "false": "The post should be shown"
+      }
+    },
+    "B_strict_profile": {
+      "instructions": "Given the user profile below, should this post be filtered out of this specific user's feed?\n\nUSER PROFILE: This user has asked for a calm, professional feed. They prefer measured language and dislike heated or blunt tone even when nothing offensive is said. Strong language, sarcasm at someone's expense, and aggressive marketing all make them want to close the app.",
+      "criteria": {
+        "true": "This post would bother THIS user, given their stated preference for calm and measured content. Filter generously: when in doubt for this profile, filter it out.",
+        "false": "This post fits within what this user asked to see: calm, measured, professional in tone."
+      }
+    },
+    "B_relaxed_profile": {
+      "instructions": "Given the user profile below, should this post be filtered out of this specific user's feed?\n\nUSER PROFILE: This user has asked for an unfiltered, informal feed. They enjoy blunt, direct and salty language and have explicitly said that swearing and sarcasm do not bother them at all — they find over-moderated feeds sterile.",
+      "criteria": {
+        "true": "This post is genuinely hateful toward a person or group, which is the only thing this user asked to have removed.",
+        "false": "This post fits within what this user asked to see. Blunt tone, mild swearing, sarcasm and strong opinions are all welcome for this profile. When in doubt for this profile, show it."
+      }
+    }
+  },
+
+  "pairs": [
+    {
+      "pair_id": "pe01_blunt_review",
+      "identical_input": true,
+      "input": "Honestly? This update is a mess. Whoever signed off on this clearly never used the product for more than five minutes.",
+      "top": {"text": "Honestly? This update is a mess. Whoever signed off on this clearly never used the product for more than five minutes.", "expected": "filter_out", "profile": "strict"},
+      "bottom": {"text": "Honestly? This update is a mess. Whoever signed off on this clearly never used the product for more than five minutes.", "expected": "show", "profile": "relaxed"},
+      "trap_cs": "Identický text. Pro uživatele, který chce klidný feed, je to příliš ostré. Pro uživatele, který chce nefiltrovaný feed, je to naprosto v pořádku. Rozhoduje profil, ne obsah.",
+      "trap_en": "Identical text. For a user who wants a calm feed this is too sharp. For a user who wants an unfiltered feed it is entirely fine. The profile decides, not the content.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "pe02_sarcasm",
+      "identical_input": true,
+      "input": "Oh brilliant, another productivity app. Just what the world was crying out for. Truly visionary stuff.",
+      "top": {"text": "Oh brilliant, another productivity app. Just what the world was crying out for. Truly visionary stuff.", "expected": "filter_out", "profile": "strict"},
+      "bottom": {"text": "Oh brilliant, another productivity app. Just what the world was crying out for. Truly visionary stuff.", "expected": "show", "profile": "relaxed"},
+      "trap_cs": "Sarkasmus bez jediného hrubého slova. Naivní klasifikátor nemá co zachytit, a přitom jednomu uživateli to vadí a druhému ne.",
+      "trap_en": "Sarcasm without a single coarse word. A naive classifier has nothing to catch, yet it bothers one user and not the other.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "pe03_marketing",
+      "identical_input": true,
+      "input": "LAST CHANCE!! 90% OFF ENDS IN 2 HOURS!!! Don't be the person who misses out AGAIN. Click now before it's gone forever!!!",
+      "top": {"text": "LAST CHANCE!! 90% OFF ENDS IN 2 HOURS!!! Don't be the person who misses out AGAIN. Click now before it's gone forever!!!", "expected": "filter_out", "profile": "strict"},
+      "bottom": {"text": "LAST CHANCE!! 90% OFF ENDS IN 2 HOURS!!! Don't be the person who misses out AGAIN. Click now before it's gone forever!!!", "expected": "show", "profile": "relaxed"},
+      "trap_cs": "Agresivní marketing. Není vulgární ani urážlivý, ale jeden z profilů ho výslovně označil za důvod zavřít aplikaci.",
+      "trap_en": "Aggressive marketing. Neither vulgar nor offensive, but one profile explicitly named it as a reason to close the app.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "pe04_mild_swearing",
+      "identical_input": true,
+      "input": "Spent the whole damn weekend debugging this and it turned out to be a missing semicolon. I want to scream.",
+      "top": {"text": "Spent the whole damn weekend debugging this and it turned out to be a missing semicolon. I want to scream.", "expected": "filter_out", "profile": "strict"},
+      "bottom": {"text": "Spent the whole damn weekend debugging this and it turned out to be a missing semicolon. I want to scream.", "expected": "show", "profile": "relaxed"},
+      "trap_cs": "Velmi mírná nadávka v sympatickém příspěvku. Hraniční případ — je otázka, zda je „damn\" pro přísný profil skutečně důvod k filtrování. Dobrý test toho, jak model chápe míru.",
+      "trap_en": "Very mild swearing in an otherwise sympathetic post. A borderline case — it is debatable whether 'damn' really warrants filtering for the strict profile. A good test of how the model handles degree.",
+      "sensitive": false
+    },
+    {
+      "pair_id": "pe05_genuine_hate",
+      "identical_input": true,
+      "input": "People from that country are all the same and they should not be allowed to work here at all.",
+      "top": {"text": "People from that country are all the same and they should not be allowed to work here at all.", "expected": "filter_out", "profile": "strict"},
+      "bottom": {"text": "People from that country are all the same and they should not be allowed to work here at all.", "expected": "filter_out", "profile": "relaxed"},
+      "trap_cs": "KONTROLNÍ PÁR — zde se obě strany shodují. Uvolněný profil výslovně říká, že skutečná nenávist vůči skupině se filtruje. Tento pár ukazuje, že personalizace NENÍ vypínač moderace: existuje hranice, kterou profil neposune.",
+      "trap_en": "CONTROL PAIR — both sides agree here. The relaxed profile explicitly says genuine hate toward a group is filtered. This pair shows that personalisation is NOT an off switch for moderation: there is a line the profile does not move.",
+      "sensitive": true
+    }
+  ]
+}
