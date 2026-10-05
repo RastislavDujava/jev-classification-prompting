@@ -621,6 +621,10 @@ at a million calls a month that's $1,260 for a norm that never changes. The abla
 
 ## Reproduce it
 
+> **Just want to use the API?** [`handoff/`](handoff/) is a self-contained pack: the
+> whole API on one screen, a standalone client, the vendor docs and the verified limits.
+> Start at [handoff/README.md](handoff/README.md).
+
 ```bash
 git clone https://github.com/RastislavDujava/jev-classification-prompting
 cd jev-classification-prompting

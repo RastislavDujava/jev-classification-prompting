@@ -610,6 +610,10 @@ rozdíl je síťový round-trip, TypeSafe nemá evropský region.
 
 ## Jak si to pustit
 
+> **Chcete jen volat API?** [`handoff/`](handoff/) je samostatná sada: celé API na jedné
+> obrazovce, nezávislý klient, oficiální dokumentace a ověřené limity.
+> Začněte v [handoff/README.md](handoff/README.md).
+
 ```bash
 git clone https://github.com/RastislavDujava/jev-classification-prompting
 cd jev-classification-prompting
